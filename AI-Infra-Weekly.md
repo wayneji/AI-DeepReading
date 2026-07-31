@@ -4,6 +4,122 @@
 
 ---
 
+## 2026-07-31｜Agent入口成为Token分发层，大厂开始重写Inference竞争
+
+**观察区间：2026-07-25—2026-07-31**
+
+### 本期核心结论
+
+1. **Cloud AI Infrastructure 的竞争入口正在上移到 Coding Agent 与企业工作流，但最终消耗仍回到底层 Token 和 GPU。** Codex、Claude Code 已证明，持续执行、代码库理解、工具调用和云端并行任务可以形成高频、长上下文的推理负载。国内阿里百炼、腾讯 TokenHub、火山方舟也开始把 Claude Code、Codex CLI、Qwen Code、CodeBuddy、TRAE 等工具接入订阅型 Token Plan。Coding Agent 不只是 SaaS 产品，而正在成为新的 Token 分发渠道。
+2. **字节调整对 GPUaaS 的直接冲击有限，对 Inference/Token 的冲击更大。** 豆包与飞书统一产品侧、火山引擎与飞书统一 GTM 后，字节获得“模型—办公入口—企业销售—MaaS/Cloud”的闭环。它不会立刻改变 GPU 型号、集群网络和交付能力的竞争，却会通过自有流量提高推理池利用率、建立价格/性能基准，并把压力传给 Kimi、智谱、DeepSeek、硅基流动、趋境等模型公司和 Token Hub。
+3. **阿里、腾讯和火山正在从“卖某个自研模型”转向“多模型订阅 + Agent工具兼容 + Cloud计费”。** 阿里 Token Plan 已把文本、图像、视频模型和 Harness 工具纳入统一 Credits；腾讯 TokenHub 同时提供混元和多家第三方模型，并兼容 Claude Code、Cursor、Codex CLI 等工具；火山方舟 Coding Plan 同样强调多模型和工具不限。这意味着 Hyperscaler 正在复制独立 Token Hub 的聚合价值，同时用 Cloud、企业入口与账单体系增强分发。
+4. **Token Volume 高增长不代表 Token 上游利润同步增长。** IDC 预计中国公有云 MaaS 调用量由 2025 年约 1,944 万亿 Token 增至 2026 年约 40,000 万亿，而收入由约 30.7 亿元增至约 186 亿元。按该预测粗算，混合平均收入从约 1.58 元/百万 Token 降至约 0.47 元，下降约 71%；这不是单一模型报价预测，但明确说明 Volume 增速可能远高于收入和毛利增速。
+5. **SenseCore 不应成为另一个面向长尾开发者的公共 MaaS，而应成为 Wholesale Inference Cloud。** 核心客户应是少数大型模型公司、Token Hub 与高负载 AI-native 应用，通过 Dedicated Inference Capacity、最低消费承诺和 SLA 锁定基础利用率；GPU 从 GPUaaS 池转入 Inference 池的唯一硬标准，应是风险调整后的每 GPU 小时毛利更高。
+
+### 关键动态及影响
+
+| 公司 / 产品 | 已确认动态 | 对 AI Infra 的含义 | 本期判断 |
+|---|---|---|---|
+| 字节：豆包、飞书、火山引擎 | 7 月 30 日调整产品与 GTM：飞书产品团队与豆包整合；飞书 GTM 与火山引擎对应团队整合为“创造力服务平台”，统一服务 MaaS 与 SaaS 客户 | 企业办公入口可直接把 Agent 需求导向豆包与火山方舟，提升自有 Inference 利用率和交叉销售能力 | **上调 Token 分发与 GTM 执行力；GPUaaS 身位不因此直接上调** |
+| 字节“大模型业务 ARR” | 媒体称按 7 月平均消耗年化约 40 亿美元，但未披露外部/内部、标价/实收、飞书 AI 与传统 Cloud 的边界 | 该数字约合 287 亿元，已高于 IDC 对 2026 年中国公有云 MaaS 全市场 186 亿元的预测，两个口径显然不可直接比较 | **作为需求势能指标；不计入火山 Cloud AI Infrastructure revenue** |
+| 阿里云百炼 | Token Plan 7 月 27 日更新：统一 Credits，可在 Claude Code、Cursor、Qwen Code、Qoder 等工具使用，并覆盖文本、图像、视频模型及工具；Coding Plan 聚合千问及第三方模型 | 阿里把 Qwen 模型、Qoder/Qwen Code、百炼模型市场、Cloud 计费和团队席位做成完整漏斗 | **目前国内最完整的“模型—Coding Agent—MaaS—Cloud”组合之一** |
+| 腾讯云 | TokenHub 提供通用 Token Plan 与自研 Hy Token Plan，兼容 Claude Code、CodeBuddy、Cursor、Codex CLI 等；WorkBuddy 对接 QQ/企微生态和 Token Plan | 腾讯由“混元单模型供给”转向“自研模型 + 多模型聚合 + 工作入口”；对独立 Token Hub 的重叠度明显上升 | **上调 Inference 分发能力，整体执行仍需看付费 Token 与企业留存** |
+| 百度智能云 | 文心快码 Comate 已形成多智能体 Coding Agent；千帆持续提供模型、Agent开发、数据和运行环境等企业 Agent Infra，但本观察期没有看到与字节调整同量级的新整合披露 | 百度仍偏企业开发、政企交付和工具链，公共 Token 订阅与高频工作入口的新增信号相对弱 | **总体身位不变；企业工程化强于开发者 Token 分发势能** |
+| OpenAI Codex / GPT-5.6 | Codex 工作流继续向跨设备同步、云端任务和多角色工作扩展；OpenAI 7 月 30 日将 GPT-5.6 Luna 价格下调 80%、Terra 下调 20% | 全球头部已用“能力分层 + 成本分层 + Agent入口”做流量调度，价格下降会继续传导至中国 Coding/Agent 套餐 | **进一步验证 Agent 是推理需求入口，模型路由是成本控制核心** |
+| Anthropic Claude Code / Opus 5 | 7 月 24 日推出 Claude Opus 5，并作为 Claude Code 的高能力模型来源之一；Claude Code持续强化企业治理和代码审查 | 高端 Coding Agent 仍能通过高任务完成率获得溢价，但订阅限额、模型路由和企业治理决定商业化效率 | **全球产品标杆继续抬高任务完成率与企业安全门槛** |
+| CoreWeave / 海外 Neocloud | FT 报道 CoreWeave 为与 Anthropic 合同相关的 26 亿美元贷款提高收益率并增加保护条款，最终融资需求改善 | AI算力需求仍强，但资本市场开始更严格地区分客户合同期限、融资成本和资产寿命 | **Neocloud需求逻辑不变，资本成本与合同质量权重上升** |
+
+### Portfolio对比：谁在控制Inference流量
+
+| 玩家 | 模型层 | Agent / Coding入口 | MaaS / Token分发 | Cloud与企业入口 | 当前优势与缺口 |
+|---|---|---|---|---|---|
+| 阿里 | Qwen全系列及第三方模型 | Qoder、Qwen Code、Claude Code等兼容 | 百炼 Coding Plan、Token Plan、按量API | 阿里云、钉钉及企业客户体系 | 组合最完整；挑战是把产品广度转化为稳定付费与一致体验 |
+| 字节 | Doubao/Seed系列及方舟第三方模型 | TRAE、方舟 Coding Plan、豆包企业版 | 火山方舟 MaaS、Agent/Coding订阅 | 飞书工作流与统一 ToB GTM | 自有流量和价格能力最强；外部收入边界与毛利仍不透明 |
+| 腾讯 | Hy3/混元及TokenHub第三方模型 | CodeBuddy、WorkBuddy、Claude Code/Codex等兼容 | TokenHub个人版、企业版与API | 企微、QQ、腾讯文档、会议、ima | 入口多、聚合转向快；仍需证明产品之间形成稳定闭环 |
+| 百度 | 文心及千帆多模型生态 | Comate/Zulu、多Agent开发 | 千帆 ModelBuilder、AppBuilder和API | 搜索、百度办公/企业与政企渠道 | 企业工程化与行业交付较强；公共 Token 分发新增势能较弱 |
+| OpenAI | GPT-5.6分层模型 | Codex、ChatGPT Work、CLI/IDE/Cloud | API、订阅与Credits | ChatGPT、GitHub连接及企业治理 | Agent入口与模型协同领先，正从Coding扩展到通用工作 |
+| Anthropic | Claude Sonnet/Opus系列 | Claude Code | Claude Platform、云渠道 | Claude Enterprise及第三方Cloud | Coding任务完成率与企业信任强，但基础设施依赖合作云 |
+
+### 对 GPUaaS 的未来影响
+
+**未来 3—6 个月：格局不会因字节组织调整而突变。** GPUaaS 的采购仍由 GPU 类型、互联、可用容量、SLA、数据位置和价格决定。字节新增推理需求主要会先进入自己的火山体系，不会直接成为 SenseCore 的增量订单。
+
+**未来 6—12 个月：通用 GPU 租赁会出现两股相反力量。**
+
+- 正面：Agent与Coding工作负载扩大，Hyperscaler自用推理吞噬更多GPU，可能继续维持外部高性能GPU供给偏紧。
+- 负面：大厂以 Token Plan、MaaS 和应用订阅打包销售，客户越来越按任务结果和 Token 采购，而不是按GPU小时采购；缺少Serving和调度能力的“裸卡云”会被压缩。
+- 结果：GPUaaS不会消失，但价值将向长期预留集群、专属推理实例、低延迟网络和可快速转为Inference的弹性池集中。
+
+### 对 Inference / Token 的未来影响
+
+最可能发生的不是 Token 需求不足，而是**流量与利润向掌握入口的一侧集中**：
+
+1. Coding Agent和企业工作流产生持续、高上下文、多步骤调用，Token消耗增长加速。
+2. 阿里、腾讯、火山通过订阅套餐聚合模型，决定用户默认调用哪个模型，并逐渐成为模型公司的分发渠道。
+3. Kimi、智谱、DeepSeek等模型公司若没有足够强的自有入口，将更依赖Cloud和Token Hub获取流量，同时被要求降价。
+4. 硅基流动、趋境等中立Token平台仍有多模型、跨芯片和“不与客户竞争”的价值，但Hyperscaler开始复制其聚合模式，零售利润会受到挤压。
+5. 价格压力最终通过模型公司和Token Hub传到GPU/Inference供应商，表现为更低的每Token采购价、更短的承诺周期、更强的弹性要求和更严格的SLA。
+
+### 对 SenseCore 的具体传导
+
+SenseCore 需要把客户分为三层，而不是建设公共API长尾漏斗：
+
+- **头部 Anchor（建议占 Inference 收入/产能 55%—65%）：** Kimi、智谱、DeepSeek等大型模型公司，以及硅基流动、趋境等头部Token Hub。打法是12—24个月容量规划、Take-or-pay、Dedicated Inference与超额Token计费。
+- **腰部 Growth（25%—35%）：** Coding Agent、AI搜索、视频/语音生成、企业Agent和垂直模型公司。打法是标准化专属实例、Reserved Throughput和3—12个月承诺，尽量减少项目制开发。
+- **长尾 Ecosystem（不超过10%）：** 小模型公司、开发者和小B客户。由Token Hub、模型平台和ISV覆盖，SenseCore只做幕后Wholesale Inference，不承担直接获客和客服成本。
+
+对GPU池的决策应统一为一个指标：
+
+> **Risk-adjusted Gross Profit per GPU Hour = Inference每GPU小时贡献 − 客户集中、流量波动与SLA风险溢价。**
+
+只有当它持续高于GPUaaS每GPU小时贡献时，才把GPU从租赁池转入Inference池。纯按实际Token结算、没有最低消费承诺的合同，不应成为大规模迁卡依据。
+
+### 最新竞争坐标
+
+总体顺序本期不调整，以下仍是分析框架而非 Gartner 官方排名：
+
+- **Ceiling：** 阿里云 → 火山引擎 → 腾讯云 → 百度智能云 → 华为云
+- **SenseCore Arena：** 天翼云 → SenseCore 商汤大装置 → 金山云 → 并行科技 → 曙光先进计算云 → 首都在线 → UCloud
+- **Chasers & Adjacent：** 硅基流动 → PPIO 派欧云 → 无问芯穹 → 趋境科技 → 基流科技 → ZStack
+
+但在细分维度上发生两项变化：
+
+1. **Token分发与Inference GTM：** 火山与阿里继续拉开与其他国内玩家的差距；腾讯通过TokenHub、WorkBuddy和CodeBuddy快速补位。
+2. **独立Token Hub的战略位置：** 市场需求得到验证，但护城河必须从“聚合模型”升级为跨芯片Serving效率、专属部署、中立性和可验证毛利。
+
+### 未来 3—12 个月观察指标
+
+1. 字节是否披露 40 亿美元 ARR 的外部客户、实际确认收入、内部调用和产品边界。
+2. 阿里、腾讯、火山 Coding/Token Plan 的真实付费用户、续费率、平均Token消耗和推理毛利。
+3. Coding Agent 是否从个人订阅进入企业集中采购，并产生可预测的Reserved Inference需求。
+4. Kimi、智谱、DeepSeek、硅基流动和趋境是否签订更长期的外部算力或Token产能合同。
+5. SenseCore Inference池的合同覆盖率、每GPU小时毛利、Top 1/Top 3客户集中度，以及GPUaaS与Inference之间的可逆调度时间。
+6. CoreWeave、Nebius等Neocloud的新增融资成本、合同期限和客户集中度；资本成本是否开始限制扩张速度。
+
+### 主要风险与口径提示
+
+- 字节 40 亿美元 ARR 目前来自媒体“按平均消耗年化”的说法，不等于审计收入，也不能直接与IDC公有云MaaS市场规模或火山引擎AI Infra收入比较。
+- Coding Plan标称折扣不能直接代表底层Inference毛利，套餐并发限制、模型路由、缓存命中和用户未用完额度都会改变真实经济性。
+- IDC的平均每Token收入下降是根据市场预测做出的混合口径推算，不是任何单一模型或厂商的价格预测。
+- 大模型公司和Token Hub既可能是SenseCore客户，也可能自建推理或反向成为竞争者；合同的最低承诺比客户品牌更重要。
+
+### 主要来源
+
+- [每日经济新闻：字节调整豆包、飞书与火山引擎产品及GTM](https://www.nbd.com.cn/articles/2026-07-30/4526528.html)
+- [新浪科技：字节大模型业务ARR约40亿美元的媒体口径](https://finance.sina.com.cn/tech/roll/2026-07-30/doc-inikqcsp5217058.shtml)
+- [IDC：中国MaaS市场Token量与收入预测](https://www.idc.com/resource-center/blog/%E4%B8%AD%E5%9B%BDmaas%E5%B8%82%E5%9C%BA%E8%BF%9B%E5%85%A5%E9%AB%98%E9%80%9F%E5%A2%9E%E9%95%BF%E6%9C%9F%EF%BC%8Ctoken%E7%BB%8F%E6%B5%8E%E4%BB%8E%E6%A6%82%E5%BF%B5%E8%B5%B0%E5%90%91%E8%A7%84%E6%A8%A1-2/)
+- [阿里云百炼 Token Plan](https://help.aliyun.com/zh/model-studio/token-plan-overview)
+- [阿里云百炼 Coding Plan](https://help.aliyun.com/zh/model-studio/coding-plan)
+- [Alibaba Cloud：Qwen-Coder-Qoder](https://www.alibabacloud.com/blog/603370)
+- [腾讯云 TokenHub Token Plan](https://cloud.tencent.com/document/product/1823/130060)
+- [腾讯云 Coding Plan](https://cloud.tencent.com/document/product/1823/130092)
+- [腾讯云 WorkBuddy](https://intl.cloud.tencent.com/zh/document/product/1300/81046)
+- [百度智能云：文心快码 Comate](https://comate.baidu.com/zh/news?tab=news)
+- [OpenAI Codex What's New](https://developers.openai.com/codex/whats-new)
+- [OpenAI GPT-5.6及7月30日价格更新](https://openai.com/index/gpt-5-6/)
+- [Anthropic Claude应用Release Notes](https://docs.anthropic.com/en/release-notes/claude-apps)
+- [FT：CoreWeave与Anthropic合同相关融资条款](https://www.ft.com/content/9d2117af-b3ec-4ca4-b00f-6813ab5075ec)
+
 ## 2026-07-28｜超节点走向 Cloud 化，Hyperscaler 算力缺口外溢
 
 **观察区间：2026-07-21—2026-07-28**
