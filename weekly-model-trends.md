@@ -4,6 +4,105 @@
 
 ---
 
+# 每周模型趋势周报｜2026-08-03
+
+> 更新窗口：2026-08-01 至 2026-08-03
+
+## 本期结论
+
+**正式开放权重 Top 11 暂时没有换位，但格局已经进入下一次洗牌前夜：阿里发布了 2.4T 参数的 Qwen3.8-Max Preview，早期榜单信号很强；然而它目前仍是 API/Token Plan 预览型号，Qwen 官方 Hugging Face Collection 尚无对应权重，因此暂不能挑战 Kimi K3 的开放权重榜首席位。与此同时，DeepSeek V4-Flash 以极低价格和仅 13B 激活参数，把“能力第一”之外的成本效率竞争推到新高度。**
+
+## Top 11 快速概览
+
+### 中国开放权重 Top 5
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index | 本期判断 |
+|---:|---|---|---:|---|
+| 1 | **Kimi K3** | 2026-07；官方 HF 已提供完整权重 | **57** | —；当前开放权重能力榜首，原生多模态与 Agent 强，但速度、价格和部署规模是明显代价 |
+| 2 | **GLM-5.2** | 2026-06；MIT | **51** | —；综合能力略低，但吞吐、40B 激活参数和许可证更适合生产部署 |
+| 3 | **MiniMax M3** | 2026-06；官方权重已发布 | **44** | —；以原生图像/视频理解和计算机操作能力暂列同分模型之前；专用许可证需单独核查 |
+| 4 | **DeepSeek V4 Pro** | 2026-04-24；Preview；MIT | **44** | —；文本推理、代码、1M 上下文和价格优势突出，但仍属预览版 |
+| 5 | **MiMo-V2.5-Pro** | 2026-04；MIT | **42** | —；1M 上下文、宽松许可证和低成本使其继续占据性价比席位 |
+
+**Qwen3.8-Max 是本期最重要的“榜外第一候选”。** Reuters 报道其拥有 2.4T 总参数、每次推理约激活 95B 参数，并在公开竞技场迅速获得很强反馈；阿里云官方目前提供的型号仍是 `qwen3.8-max-preview`，且主要通过 Token Plan/API 使用。Qwen 官方 Hugging Face Collection 最新可见的旗舰开放系列仍是 Qwen3.6、Qwen3.5 等，因此本期不把它计入开放权重 Top 5。
+
+这意味着目前存在两个不同榜单：
+
+- **在线预览能力榜：** Qwen3.8-Max 已可能进入中国最前沿竞争；
+- **可下载开放权重榜：** 在权重、模型卡和许可证正式进入官方 HF 前，Kimi K3 仍是第一。
+
+**DeepSeek V4-Flash 的意义不在“突然发布”，而在价格被重新关注。** Artificial Analysis 将其发布日期列为 2026 年 4 月；在最高推理设置下约 40 分，低于本期 Top 5 门槛，但其 284B 总参数、13B 激活参数、约 118 tokens/s，以及极低 API 价格，使它成为批量推理、Agent 子任务和成本敏感业务的突出候选。它没有改写能力榜，却可能改写生产选型榜。
+
+### 中国以外开放权重 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本期判断 |
+|---:|---|---:|---:|---|
+| 1 | **Inkling**（Thinking Machines） | 2026-07-15 | **41** | —；1M 上下文，支持文本、图像和语音输入，Apache 2.0 |
+| 2 | **NVIDIA Nemotron 3 Ultra** | 2026-06-04 | **38** | —；约 200 tokens/s 的高吞吐和开放训练体系仍是核心优势 |
+| 3 | **Mistral Medium 3.5 128B** | 2026-04-29 | **30** | —；模型较紧凑且支持视觉，但能力与中国头部旗舰差距明显 |
+
+**海外开放权重本期没有新模型正式改写前三。** Inkling 仍是海外综合最强代表，Nemotron 的优势集中在速度、企业部署和透明度；Mistral 保留较紧凑的工程价值。中国第五名 MiMo 仍略高于海外第一名 Inkling，中国第一名 Kimi K3 则领先 16 分。
+
+**候补关注：** Poolside Laguna S 2.1 和 Upstage Solar-Open2-250B 已在 Hugging Face 获得开发者关注，但独立综合评测尚不足以替换现有前三；它们更适合作为下期观察项，而不是凭厂商 benchmark 直接入榜。
+
+### 全球闭源 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本期判断 |
+|---:|---|---:|---:|---|
+| 1 | **Claude Opus 5** | 2026-07-24 | **61** | —；综合智能和复杂长周期 Agent 仍居首 |
+| 2 | **Claude Fable 5** | 2026-06-09 | **60** | —；知识工作强，但价格非常高且部分任务存在 fallback 变量 |
+| 3 | **GPT-5.6 Sol** | 2026-07-09 | **59** | —；综合分略低，但编码 Agent、终端任务与产品工具链竞争力强 |
+
+闭源前三本期没有发布新旗舰。Kimi K3 与 GPT-5.6 Sol 的综合分差仍约 2 分，与 Opus 5 相差约 4 分。**差距已经不再主要体现为“开放模型不会做”，而是闭源平台在复杂工具环境、稳定完成率、安全治理和端到端产品体验上仍更成熟。**
+
+Gemini 3.6 Flash 以约 50 分和非常高的输出速度继续代表另一条路线：它并非能力榜前三，但在实时多模态、1M 上下文、视频/语音输入和大规模低延迟服务方面具有明显产品优势。
+
+## 本期真正发生的变化
+
+1. **Qwen 从“生态强、旗舰暂缺”重新回到能力前沿。** Qwen3.8-Max Preview 的出现意味着 Kimi K3 和 GLM-5.2 面临现实挑战；但是否改写开放榜，要等官方 HF 权重、许可证和独立评测落地。
+2. **中国模型竞争正在分成三条战线。** Kimi K3 争最高能力，GLM-5.2 争能力与工程平衡，DeepSeek V4-Flash 争极致成本效率。单一“谁最强”的问题已经不足以指导真实选型。
+3. **开放权重的定义必须继续严格执行。** Reuters 将中国路线概括为开放权重趋势，但具体到 Qwen3.8-Max，本期可验证状态仍是 Preview/API；“计划开放”不能提前等同于“权重已开放”。
+
+## 本周其他爆点
+
+### MiniMax H3：视频权重仍在等待落地
+
+MiniMax 7 月 31 日发布的 H3 仍是本周最重要的非语言模型热点。它主打文本、图像、视频和音频输入，可生成带原生声音的视频，并支持编辑与动作迁移。真正会改变行业格局的是公司承诺开放模型权重。
+
+**截至 2026-08-03，MiniMax 官方 Hugging Face 模型列表中仍以 MiniMax M3 为最新主要模型，尚未出现 H3 权重。** 因此 H3 继续归类为“已发布产品、开放权重待兑现”，而不是正式开放视频模型。
+
+如果权重落地，重点不应只看演示画质，而应关注：许可证是否允许商用、训练和推理需要多少 GPU、角色一致性和音画同步能否被第三方复现，以及社区是否能对其进行 LoRA、控制网络和行业微调。
+
+## 下一步观察
+
+1. Qwen3.8-Max 是否进入 Qwen 官方 Hugging Face Collection，具体开放的是 Max 本体还是较小版本。
+2. 独立评测是否支持阿里“接近闭源最前沿”的判断，以及它能否超过 Kimi K3 的 57 分。
+3. DeepSeek V4-Flash 的真实业务吞吐和成本是否能在第三方服务商上稳定复现。
+4. MiniMax H3 权重、模型卡和许可证是否正式发布。
+5. Laguna S 2.1、Solar-Open2-250B 是否获得足够独立评测，推动海外开放 Top 3 换位。
+
+## 主要来源
+
+- [Reuters：Alibaba 发布 Qwen3.8-Max，DeepSeek V4-Flash 引发成本关注](https://www.reuters.com/business/retail-consumer/alibaba-unveils-its-most-capable-ai-model-date-not-far-behind-moonshots-size-2026-08-03/)
+- [Alibaba Cloud Model Studio：Qwen3.8-Max-Preview](https://modelstudio.alibabacloud.com/)
+- [Alibaba Cloud 模型列表](https://help.aliyun.com/en/model-studio/models)
+- [Qwen 官方 Hugging Face Collections](https://huggingface.co/Qwen/collections)
+- [Kimi K3 官方模型](https://huggingface.co/moonshotai/Kimi-K3)
+- [Kimi K3 vs. GLM-5.2 — Artificial Analysis](https://artificialanalysis.ai/models/comparisons/kimi-k3-vs-glm-5-2)
+- [GLM-5.2 官方模型](https://huggingface.co/zai-org/GLM-5.2)
+- [DeepSeek V4-Flash 官方模型](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash)
+- [DeepSeek V4-Flash vs. GLM-5.2 — Artificial Analysis](https://artificialanalysis.ai/models/comparisons/glm-5-2-non-reasoning-vs-deepseek-v4-flash)
+- [MiniMax 官方 Hugging Face 模型列表](https://huggingface.co/MiniMaxAI/models)
+- [Inkling — Artificial Analysis](https://artificialanalysis.ai/models/inkling)
+- [Nemotron 3 Ultra — Artificial Analysis](https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b)
+- [Mistral Medium 3.5 — Artificial Analysis](https://artificialanalysis.ai/models/mistral-medium-3-5)
+- [Claude Opus 5 — Artificial Analysis](https://artificialanalysis.ai/models/claude-opus-5)
+- [Claude Fable 5 — Artificial Analysis](https://artificialanalysis.ai/models/claude-fable-5)
+- [GPT-5.6 Sol — Artificial Analysis](https://artificialanalysis.ai/models/gpt-5-6-sol)
+- [Gemini 3.6 Flash — Artificial Analysis](https://artificialanalysis.ai/models/gemini-3-6-flash)
+
+---
+
 # 每周模型趋势周报｜2026-08-01
 
 > 更新窗口：2026-07-28 至 2026-08-01
