@@ -4,6 +4,147 @@
 
 ---
 
+## 2026-08-07｜GPU脱销之后：低价Token与国产化重写AI Cloud回报率
+
+**观察区间：2026-08-01—2026-08-07**
+
+### 本期核心结论
+
+1. **Inference需求仍在增长，但Token不再天然是高毛利池。** 8月3日，Reuters援引Artificial Analysis称，DeepSeek V4-Flash的公开价为每百万输入/输出Token分别0.14/0.28美元，单次基准测试平均成本约0.03美元。低价模型、订阅制与缓存折扣正在把“Token量增长”与“Token收入、毛利增长”进一步拆开。
+2. **中国AI Infra的主要矛盾正从“有没有GPU”变成“稀缺NVIDIA资源如何分配、国产GPU如何形成有效供给”。** 存量高端GPU可以维持高利用率和价格，但新增国产算力只有在模型适配、Serving效率、稳定性和迁移服务完成后，才等同于可销售产能。
+3. **阿里、腾讯正在让模型、Agent入口和Cloud计费进一步收敛。** 阿里本周发布Qwen3.8-Max，并继续以Token Plan把Qwen、第三方模型、多模态能力及Claude Code等兼容工具装进统一订阅；腾讯则公告将部分旧Agent模型迁移至DeepSeek V4 Pro。Cloud正在成为模型路由、套餐设计和Token结算层，而不只是API托管方。
+4. **海外Neocloud的壁垒正在从“拿到GPU”上升到“拿到电力、低成本资本和长期合同”。** CoreWeave宣布在印度尼西亚建设三个合计360MW的数据中心，计划2028年上线，标志其首次实体进入亚太；与此同时，Financial Times报道Google围绕Anthropic组织了约2,000亿美元的芯片与数据中心融资体系。AI Infra越来越像“技术运营能力 + Structured Finance”的复合行业。
+5. **量化私募等新算力买方扩大的是上游资产需求，不必然扩大Neocloud的可服务TAM。** 顶级量化机构可能自购GPU、自建集群，甚至与模型公司或SPV共同持有资产；它们也可能成为稀缺GPU的竞买者。只有接受国产芯片迁移、承诺长期负载或由客户出资而AI Cloud代建代运维时，才是当前更高质量的客户。
+
+---
+
+### 一、关键动态及影响
+
+#### 1. DeepSeek再次压低公开Inference价格
+
+- **【已确认事实】** [Reuters 8月3日报道](https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/)，V4-Flash每百万输入Token为0.14美元、输出Token为0.28美元；Artificial Analysis给出的单次基准测试平均成本约0.03美元，明显低于Kimi K3、OpenAI GPT-5.6 Sol和Anthropic Claude Fable 5。
+- **【分析判断】** 这不是“所有高端模型必须跟到同一价格”，而是把高频、可容错、可路由的Inference工作负载重新锚定到极低价格。Coding Agent、搜索、批处理和多Agent协作会首先采用“强模型做规划、低价模型做执行”的分层路由。
+- **【行业影响】** Token Hub的调用量可能上升，但若仍按公开API折扣转售，毛利会更快下降。真正可防守的利润将来自批量调度、缓存命中、量化与Serving优化、SLA、私有化和专属并发，而不是API价差。
+
+#### 2. 阿里Qwen3.8-Max：模型首发本身成为订阅获客工具
+
+- **【已确认事实】** [Reuters 8月3日报道](https://www.reuters.com/business/retail-consumer/alibaba-unveils-its-most-capable-ai-model-date-not-far-behind-moonshots-size-2026-08-03/)，阿里发布2.4万亿参数的Qwen3.8-Max，单次请求激活约950亿参数，并支持多模态和100万Token上下文。
+- **【已确认事实】** 阿里此前已在[Model Studio Token Plan](https://modelstudio.alibabacloud.com/intl/blog/model-studio-token-plan-individual/)中让Qwen3.8-Max-Preview首发，统一覆盖文本、图像、视频、语音与平台工具，并兼容Claude Code及OpenAI/Anthropic API格式。其Credits按5小时和7天滚动刷新，且可叠加低谷折扣。
+- **【分析判断】** 阿里的核心动作不是单独卖一个Qwen模型，而是用新模型拉动订阅，再把开发工具、模型路由和Cloud结算收进Model Studio。它在复制Codex、Claude Code所验证的高频Agent消费形态，同时利用Hyperscaler的模型、算力与计费一体化降低获客成本。
+
+#### 3. 腾讯从自有Agent模型切向DeepSeek V4 Pro
+
+- **【已确认事实】** [腾讯云公告](https://cloud.tencent.com/announce/detail/2393)称，youtu-agent及youtu-mrc-pro将于8月28日起停止调用；套餐用户如未自行切换，将自动迁移至DeepSeek V4 Pro。youtu-agent专属并发也将停止新购和续购。
+- **【分析判断】** 这说明MaaS平台可以主动替换底层模型，而用户入口、套餐、计费和Agent工作流继续留在Cloud。对模型公司的挑战是：即使模型被采用，客户关系和收入控制权也可能属于平台；对Token Hub而言，模型路由能力的重要性高于单一模型代理权。
+- **【待验证】** 自动迁移后的实际单位成本、并发体验及腾讯自有模型在企业Agent中的份额尚无公开数据，不能据此断言腾讯已放弃自有模型路线。
+
+#### 4. CoreWeave首次实体进入亚太
+
+- **【已确认事实】** [Reuters 8月4日报道](https://www.reuters.com/world/asia-pacific/coreweave-expands-into-indonesia-announces-first-data-center-asia-pacific-2026-08-04/)，CoreWeave将在印度尼西亚建设三个数据中心，合计规划360MW、预计2028年上线，这是其首次在亚太建立实体基础设施。
+- **【分析判断】** 这对中国市场短期没有直接供给冲击，但验证了Neocloud的下一阶段竞争是区域电力、数据主权和本地交付。亚太客户未来可以在Hyperscaler之外获得更专业的AI Cloud选项；国内独立AI Cloud若走海外，需要同时具备本地电力、融资、客户承诺和跨区域运维，不能只输出GPU租赁产品。
+
+#### 5. AI Infra开始被大规模Structured Finance重构
+
+- **【可信报道】** [Financial Times 8月4日报道](https://www.ft.com/content/549f2e23-5aa2-49c7-9ea6-a9784ab7087c)，Google围绕向Anthropic提供TPU算力组织了约2,000亿美元的融资体系，涉及芯片采购、Compute SPV、数据中心项目融资以及供应商残值支持。相关安排未被完整纳入公司公开指引，应视为可信报道而非已审计口径。
+- **【分析判断】** 全球AI Infra的资本天花板不再由Cloud公司单一资产负债表决定，而由长期客户合同、芯片残值、厂商担保和Private Credit共同决定。这也给中国市场一个提示：基金、量化机构和产业资本更可能先成为算力资产的出资人或共同持有人，再决定是否成为Cloud客户。
+
+---
+
+### 二、竞争格局变化
+
+本周没有足够证据改变此前的中国总体排序：
+
+- **天花板层：** 阿里云 → 火山引擎 → 腾讯云 → 百度智能云 → 华为云
+- **SenseCore Arena：** 天翼云 → SenseCore → 金山云 → 并行科技 → 曙光先进计算云 → 首都在线 → UCloud
+- **AI-native追赶层：** 硅基流动 → PPIO → 无问芯穹 → 趋境科技 → 基流科技 → ZStack
+
+但三个分项坐标正在变化：
+
+| 分项战场 | 本周相对变化 | 含义 |
+|---|---|---|
+| 模型能力与Agent入口 | 阿里上升；DeepSeek继续掌握价格锚 | 新模型若同时绑定订阅和开发工具，价值高于只发布API |
+| MaaS与Token分发 | 阿里、腾讯强化平台控制权 | 底层模型可替换，用户关系与结算留在Cloud |
+| GPUaaS与国产化执行 | 排名暂不变，执行差距扩大 | 装机规模不等于有效产能，国产芯片的模型适配与SLA成为分水岭 |
+| 海外Neocloud | CoreWeave的区域与融资优势扩大 | Lambda、Nebius、Crusoe仍是同类对标，但CoreWeave更接近“AI-native Hyperscaler” |
+| 新型算力买方 | 量化机构重要性上升，但客户属性分化 | 顶级机构可能自建或竞买，中腰部更可能采购托管/专属集群 |
+
+字节、百度本周未出现足以改变判断的新增公开披露。此前形成的判断仍成立：字节的豆包/飞书/火山整合会增加Agent入口对Token流量的控制；百度以ERNIE、千帆、GPU Cloud和昆仑芯形成全栈闭环。二者对独立GPU Cloud最直接的压力，仍是把模型入口、Inference资源和Cloud账单打包，而不是简单增加一批GPU供给。
+
+Codex与Claude Code本周也未出现需要重估的重大产品发布。全球趋势没有反转：Coding Agent仍是高频Token分发层，OpenAI/Anthropic兼容接口正在成为国内Token Plan的事实接入标准之一。
+
+---
+
+### 三、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：稀缺资源与国产资源将形成两个价格体系
+
+1. **高端NVIDIA池：** 若存量资源已处于高利用率，短期问题不是找更多客户，而是把容量分配给期限更长、信用更好、单位GPU贡献更高的合同。量化私募可能与AI Cloud竞买这类资源，并非天然增量客户。
+2. **国产GPU池：** 真正的销售单位不应是“卡”或“P算力”，而应是通过验证的模型吞吐、首Token延迟、连续服务稳定性和迁移周期。国产化会扩大名义供给，却可能先造成型号碎片化、软件适配与交付成本上升。
+3. **商业模式：** 在客户愿意承担CAPEX的情况下，“客户出资 + AI Cloud代建代运维 + 最低使用承诺”比纯GPU租赁更适合承接量化机构、模型公司和大型企业的专属需求。
+
+#### Inference/Token：量增仍确定，利润池继续上移
+
+- 公开Token价将继续下降，尤其是可批处理、可缓存、可路由的工作负载。
+- 高毛利环节向模型路由、缓存、量化、推测解码、异构调度、SLA和企业数据隔离迁移。
+- Token Hub会出现两极分化：有稳定流量、跨模型调度和硬件议价能力的平台扩大规模；只做API转售的平台被订阅制和Hyperscaler价格挤压。
+- 对大型模型公司而言，低价API既是获客手段，也是对基础设施效率的压力测试。没有自研Serving优化或稳定批发算力来源的公司，Token越多未必利润越高。
+
+---
+
+### 四、对SenseCore的具体传导
+
+#### 1. 从“卖可用GPU”切换为“分配稀缺容量”
+
+在存量GPU供给紧张的情景下，销售目标应从新增Logo转为合同质量。建议以四项指标决定资源优先级：最低消费承诺、负载稳定性、回款与信用、迁移到国产GPU的可行性。单纯因为客户有品牌或有AUM，不应获得稀缺资源优先权。
+
+#### 2. 把国产化做成产品，不做成采购口径
+
+SenseCore的优势不应只表述为支持多种国产芯片，而应形成可售卖的“模型—芯片—Serving”矩阵：
+
+- 对Kimi、智谱、DeepSeek等模型公司，给出主力模型在不同国产芯片上的吞吐、时延和单位Token成本；
+- 对硅基流动、趋境科技等Token Hub，提供跨模型路由、专属并发、峰谷调度和最低成本方案；
+- 对企业与量化客户，提供迁移评估、专属集群、数据隔离和代运维，而不是开放式长尾API。
+
+#### 3. 客户组合建议
+
+| 客户层 | 典型客户 | 资源策略 | 建议优先级 |
+|---|---|---|---|
+| Anchor | 大型模型公司、头部Token Hub | Take-or-pay、专属容量、联合优化 | 最高 |
+| Strategic Builder | 有稳定负载且愿意共建的企业、部分量化机构 | 客户出资或预付、SenseCore代建代运维 | 高 |
+| Diversifier | 垂直Agent、金融/科研/工业AI应用 | 国产池、标准SLA、组合采购 | 中 |
+| Long tail | 小B、实验性项目、纯比价客户 | 通过伙伴或标准平台服务 | 低 |
+
+量化私募应被放在Strategic Builder而不是默认Anchor：其价值在于可能承担资产投资和形成长期专属负载；风险在于自建、挖人后内化能力，或只争夺稀缺NVIDIA资源。判断一家量化机构是否值得进入Sales Pipeline，应先验证三件事：是否接受国产芯片、是否有可量化的训练/Inference负载、是否愿意签24—36个月最低承诺。
+
+#### 4. 不追求公开API价格战
+
+SenseCore更适合定位为Wholesale Inference Cloud和Managed AI Infrastructure。面对DeepSeek的公开价，不能用零散Token价硬碰，而应出售“可预测成本 + 容量保障 + 迁移服务 + 私有部署”。若合同没有最低消费、容量费或客户预付，纯按Token结算会把利用率和价格风险全部留给SenseCore。
+
+---
+
+### 五、未来3—12个月观察指标
+
+1. **模型价格与真实使用：** DeepSeek V4-Flash、V4-Pro和Qwen3.8-Max的实际调用份额、缓存命中率、促销后价格及企业续费率。
+2. **国产GPU有效供给：** 不是新增卡数，而是主流模型在国产芯片上的单位Token成本、稳定运行天数、集群利用率和迁移周期。
+3. **大厂Portfolio：** 火山方舟、阿里Model Studio、腾讯ADP/TokenHub、百度千帆是否继续把Agent订阅、Coding工具和MaaS账单合并；第三方模型在各平台的流量占比。
+4. **SenseCore执行：** 国产集群的已签客户、最低消费覆盖率、Inference收入中专属容量与纯Token结算的比例。
+5. **Neocloud资本结构：** CoreWeave印度尼西亚项目的电力与客户承诺、Nebius/Lambda/Crusoe的新增长合同，以及Private Credit对GPU和数据中心项目的融资成本。
+6. **量化机构算力行为：** 是直接采购GPU、租用专属集群、与模型公司共建，还是转向云/API；尤其关注采购主体是否为基金产品、管理人、关联科技公司或SPV。
+
+---
+
+### 六、风险与口径说明
+
+- DeepSeek价格为公开API标价和第三方测评口径，不等于所有企业客户的实现价格或模型全生命周期成本。
+- CoreWeave亚太数据中心计划到2028年上线，属于中长期供给，不能计入未来12个月可用产能。
+- Financial Times披露的Google/Anthropic融资结构为媒体报道，合同规模、担保和表内外归属仍需监管文件或公司披露验证。
+- 国内GPU供给紧张与国产化节奏因型号、区域和客户类型差异很大；“GPU脱销”不代表所有算力、所有芯片均短缺。
+- 量化机构的AUM、AI研究能力和可投入AI Infra的CAPEX并非同一口径；招聘采购人才只能视为建设意图信号，不能直接推断采购预算或建成规模。
+
+### 本期一句话判断
+
+> GPU短缺保证了短期利用率，低价Token压缩了长期毛利；SenseCore下一步的胜负，不在于卖出更多卡，而在于把国产算力变成可验证的有效供给，并用长期合同让客户共同承担资产风险。
+
 ## 2026-07-31｜Agent入口成为Token分发层，大厂开始重写Inference竞争
 
 **观察区间：2026-07-25—2026-07-31**
