@@ -4,6 +4,119 @@
 
 ---
 
+## 2026-08-09｜号外：Inference Cloud不是一个赛道——中美AI-native Infra对照
+
+**专题范围：** Lepton、Together AI、Fireworks AI、Baseten，以及硅基流动、趋境科技、无问芯穹、清程极智、基流科技；补充 PPIO、Modal、Anyscale、BentoML 等邻近玩家。  
+**口径：** 比较截至 2026-08-09 的产品边界、收入单元、资源控制力和商业化证据；融资额、估值、Token吞吐与Revenue不作等价处理。
+
+### Executive Summary
+
+1. **这些公司至少是三种生意，不应放在一张总榜单里。** Fireworks、Together、硅基流动、趋境和 PPIO 主要争夺 Token / Inference 需求；Baseten、Lepton、Modal、无问芯穹更接近 Serving Platform 或 Compute Control Plane；清程极智、基流科技分别偏系统软件和 AI 集群工程。
+2. **海外头部已经同时完成技术、资本和商业规模验证，中国玩家主要完成了产品与流量验证。** Fireworks 自报年化Revenue run-rate超过10亿美元、日处理超过40万亿Token；Together披露锁定超过500MW Compute Capacity；Baseten披露过去一年Revenue增长20倍、Inference量增长40倍。中国目前最完整的公开财务样本是硅基流动和基流科技，但两者收入性质完全不同。
+3. **Token吞吐量不是Revenue，更不是Gross Profit。** 硅基流动港股申请材料显示，2025年Revenue为人民币5,533万元、整体Gross Margin为-24.0%；其中Public Cloud Gross Margin为-119.0%，On-premises为82.5%。这说明公共Token平台在规模扩张期可能仍是补贴流量，而私有化交付更接近利润池。
+4. **中国玩家的差异化不在“模型更多”，而在国产芯片、异构算力、Private Deployment和工程交付。** 这也是无问芯穹、清程极智和基流科技仍值得进入观察池的原因，即使它们并不是纯粹的Inference Cloud。
+5. **对SenseCore最优策略不是复制一个面向长尾开发者的Public API。** 更现实的定位是“Wholesale Inference Cloud + 国产算力运营底座”：向硅基流动、趋境、PPIO及头部模型公司销售有最低消费承诺的Capacity；与清程极智、无问芯穹合作做Serving优化；与基流科技在集群建设和运营上竞合。
+
+### 一、先拆开：三类收入模型
+
+| 类型 | 客户实际购买什么 | 主要收入单元 | 决定Gross Margin的变量 | 代表公司 |
+|---|---|---|---|---|
+| **Token / Inference Cloud** | 可直接调用的模型Token、Dedicated Endpoint、Reserved Capacity | 元/百万Token、GPU秒、包量合同 | GPU采购/租赁成本、利用率、Batching、Cache命中、模型路由 | Fireworks、Together、硅基流动、趋境、PPIO |
+| **Managed Serving / Compute Control Plane** | 部署、扩缩容、调度、可观测性和跨Cloud运行环境 | Endpoint、GPU时、平台订阅、Enterprise Contract | 软件溢价、跨Cloud调度效率、客户留存；不一定承担全部GPU Capex | Baseten、NVIDIA DGX Cloud Lepton、Modal、无问芯穹 |
+| **AI Infra Software / Cluster Engineering** | 推理引擎、训练优化、集群产品、建设及运营服务 | License、项目交付、设备/集群产品、运维费 | 软件占比、硬件Pass-through、项目周期、应收和客户集中度 | 清程极智、基流科技；海外邻近参照为Anyscale、BentoML |
+
+**结论：** 真正应直接横向比较的是同一收入单元里的公司。把基流科技5.20亿元的集群产品/运营Revenue与硅基流动5,533万元的Cloud/API Revenue直接排序，会得到错误结论：前者大部分是集群产品交付，后者承担持续Token调用成本。
+
+### 二、海外玩家：谁是天花板，谁是同身位
+
+| 公司 | 本质定位 | 资源与产品控制 | 已披露商业信号 | 判断 |
+|---|---|---|---|---|
+| **NVIDIA DGX Cloud Lepton** | 全球GPU供给聚合与Compute Control Plane | 连接NVIDIA Cloud Partners、公有Cloud及本地环境，覆盖Development、Training、Inference | Lepton目前已进入[NVIDIA DGX Cloud产品体系](https://www.nvidia.com/en-us/data-center/dgx-cloud-lepton/)，不再适合作为独立创业公司估值或收入对标 | **最高战略天花板，但不是纯Inference Cloud。** 价值在调度权、生态入口和供给控制 |
+| **Fireworks AI** | AI-native Inference Cloud / Token Factory | Serverless Token、On-demand Dedicated GPU、Reserved Capacity；自研Serving Stack | 2026-07完成15.05亿美元Series D、估值175亿美元；公司自报年化Revenue run-rate超过10亿美元、日处理超过40万亿Token。[公司披露](https://fireworks.ai/blog/series-d-announcement) / [Reuters](https://www.reuters.com/technology/nvidia-backed-startup-fireworks-valued-175-billion-latest-funding-2026-07-16/) | **纯Inference赛道当前最强参照。** 已从“推理优化工具”变成有规模的Cloud |
+| **Together AI** | Open-model Full-stack AI Cloud | Serverless/Dedicated Inference、Fine-tuning、Training、GPU Compute及Kernels/Compilers | 2026-07完成8亿美元Series C，Reuters报道估值83亿美元；公司称已获得超过500MW Compute Capacity承诺。[公司披露](https://www.together.ai/blog/announcing-our-series-c) / [Reuters](https://www.reuters.com/legal/transactional/together-ai-raises-800-million-83-billion-valuation-2026-07-01/) | **比Fireworks更宽。** 同时争夺模型开发、训练和推理工作负载，更像AI-native Cloud |
+| **Baseten** | Enterprise Managed Inference Platform | 客户自带模型；提供打包、优化、Multi-cloud GPU Scheduling、Autoscaling和Observability | 2026-06完成15亿美元Series F、估值130亿美元；公司自报过去一年Revenue增长20倍、Inference量增长40倍。[公司披露](https://www.baseten.co/blog/announcing-our-series-f/) | **更像生产环境PaaS。** 不靠公共Model API获客，Enterprise粘性和软件占比更高 |
+| **Modal（补充）** | Serverless GPU Runtime | 以代码调用GPU，覆盖Inference、Training、Batch和Agent Sandbox，强调0到大规模自动扩缩 | 2025年完成8,700万美元Series B、估值11亿美元。[公司披露](https://modal.com/blog/announcing-our-series-b) | **应加入观察。** 它代表“开发者Runtime吞掉部分GPU Cloud界面”的路径 |
+
+**邻近但不放入核心五家：** Anyscale以Ray为核心，横跨Data、Training和Inference，更偏Distributed AI Platform；BentoML/BentoCloud更偏模型Serving软件；Replicate已在2025年被Cloudflare收购，说明长尾Model API正在被Cloud/Edge平台整合，而不是所有独立平台都能长期存活。
+
+### 三、国内玩家：不能只看Token数字
+
+| 公司 | 主收入/产品层 | 可验证商业化证据 | 强项 | 当前短板 |
+|---|---|---|---|---|
+| **硅基流动 SiliconFlow** | Public Model API、Dedicated/Private Deployment及推理平台 | [港股申请材料](https://www1.hkexnews.hk/app/sehk/2026/108701/documents/sehk26063002928.pdf)：2025年Revenue 5,533万元；Public Cloud占52.9%，On-premises占47.1%；整体Gross Margin -24.0%。2026年4月日均Token吞吐5,785亿、峰值1.0714万亿 | 国内最成熟的公共Token平台、模型目录和开发者分发入口 | Public Cloud Gross Margin -119.0%；算力租赁占成本大头，Token规模尚未证明利润 |
+| **趋境科技 Approaching.AI** | ATaaS、面向头部模型与大客户的高效率Token生产 | 公司与媒体披露日处理达万亿级Token、半年累计融资超过10亿元；尚无审计Revenue和Gross Margin | P/D分离、KV Cache、异构/国产芯片优化；更接近Wholesale Token Factory | 客户集中、资源来源、付费Token占比和合同期限未公开；技术指标多为公司口径 |
+| **PPIO 派欧云** | Distributed Cloud、Serverless GPU、Model API | 公司称2026年日Token调用超过1.2万亿、开发者约57万；此前招股材料相关报道显示，2024年总Revenue约5.58亿元，但AI Cloud仅约1,039万元 | 4,800+边缘节点、低时延分布式资源和开发者入口 | 历史Revenue以Edge Cloud/CDN为主；Token吞吐转化为AI Revenue和利润仍需验证 |
+| **无问芯穹 Infinigence** | 异构AI Cloud、Training/Inference Platform、AgentWorks | 披露累计融资近10亿元；公司称覆盖多种芯片、Token量快速增长，但无审计Revenue | “M模型×N芯片”适配、国产芯片和异构调度，适合政企与国产化迁移 | 更像AI Cloud Operator/Platform，Public Token分发和商业规模证据弱于硅基流动 |
+| **清程极智 Qingcheng.ai** | Chitu推理引擎、Bagualu训练优化、模型评测 | 2025年连续完成两轮亿元级融资；Chitu已Open Source并支持Ascend、MetaX、Hygon等国产芯片 | 系统软件、国产芯片适配和性能优化；可能提高既有GPU池的有效产能 | **不应暂列为Neocloud。** 未披露自持大规模GPU、Token吞吐或Revenue，GTM仍需验证 |
+| **基流科技 Infrawaves** | AI集群产品、建设及运营服务 | [港股申请材料](https://www1.hkexnews.hk/app/sehk/2026/108484/documents/sehk26042906017.pdf)：2025年Revenue 5.20亿元、Gross Margin 21.8%、Adjusted Net Profit 3,112万元；集群产品占Revenue 83.9%，运营服务占16.1% | 万卡集群工程、交付和运营证据最强；Revenue与利润已被审计验证 | 硬件/集群产品Pass-through占比高、客户集中；不是按Token收费的Inference Cloud |
+
+### 四、中外Mapping：最接近，但都不是Exact Match
+
+| 海外参照 | 国内最接近组合 | 相似点 | 关键差距 |
+|---|---|---|---|
+| **Fireworks AI** | 硅基流动 + 趋境 | 高性能Serving、按Token/Capacity变现、面向模型和开发者 | Fireworks的资本规模、海外GPU供给与商业Revenue验证显著领先；国内更依赖低价和国产化 |
+| **Together AI** | 硅基流动 + 无问芯穹 | Open-model Cloud，覆盖模型目录、Inference及部分训练/异构算力 | 国内尚未形成“500MW级供给承诺 + 完整Full-stack Cloud”的单一独立玩家 |
+| **Baseten** | 清程极智 + Cloud/算力渠道 | 自带模型、模型优化、Deployment和Production Serving | 清程偏Engine/Software，缺少Baseten式Enterprise PaaS、Multi-cloud交付和收入验证 |
+| **DGX Cloud Lepton** | 无问芯穹 + PPIO | 聚合异构/分布式资源，提供统一入口和调度 | Lepton背后是NVIDIA生态和全球Cloud Partner网络，国内组合缺少同等芯片与供给控制权 |
+| **没有直接对应** | 基流科技 | 基流位于更底层的Cluster Product/Operation层 | 海外更接近Cluster Systems与Managed Infrastructure公司，而非上述四家Inference软件平台 |
+
+### 五、分赛道位置：不要做一张总排名
+
+- **全球Pure-play Inference参照：** Fireworks居前；Together的产品面更宽；Baseten在Enterprise Custom-model Serving上独立成类。
+- **全球Control Plane天花板：** NVIDIA DGX Cloud Lepton。它的上限不是卖多少Token，而是成为GPU供给和工作负载的路由层。
+- **中国Public Token Platform：** 硅基流动当前产品与开发者心智领先，但审计数字表明Public Cloud经济性仍未成立。
+- **中国Wholesale Token Challenger：** 趋境最值得追踪，尤其是头部模型客户、Reserved Capacity和国产GPU上的有效Token成本。
+- **中国Distributed Inference：** PPIO值得加入核心观察池，但必须把Edge Cloud Revenue与新增AI Revenue拆开。
+- **中国Heterogeneous Cloud：** 无问芯穹的价值主要在多芯片适配和国产化迁移，而非Public API流量。
+- **中国System Software Option：** 清程极智应进入观察池，但暂不与硅基流动、趋境并列为Inference Cloud。
+- **中国Cluster Commercialization：** 基流的审计Revenue最强，却属于更重的Cluster Product/Operation赛道。
+
+### 六、对SenseCore的具体含义
+
+| 公司/类型 | 对SenseCore的首要关系 | 建议打法 |
+|---|---|---|
+| 硅基流动、趋境、PPIO | **Anchor Customer + 潜在渠道控制者** | 提供Take-or-pay、Reserved Capacity和SLA；按“有效Token成本”共同优化，不只卖裸GPU |
+| 头部模型公司 | **直客** | 为稳定基线负载提供Dedicated Cluster/Capacity；允许客户保留模型和流量入口 |
+| 无问芯穹、清程极智 | **技术伙伴 + Control Plane潜在竞争者** | 在国产GPU、Serving Engine和异构调度上合作，但保留资源调度、监控与成本数据主权 |
+| 基流科技 | **集群工程伙伴 + 运营服务竞争者** | 项目制合作建设国产集群；明确划分建设交付、日常运营和客户所有权 |
+| Fireworks、Together、Baseten | **海外Benchmark** | 重点学习合同结构、Dedicated/Reserved产品、Software Margin和Enterprise Deployment，而非复制公共API补贴 |
+
+**SenseCore应自持的四项能力：**
+
+1. **Capacity与SLA：** 国产及存量NVIDIA资源的稳定供给、故障域管理和可承诺可用性。
+2. **成本与Benchmark数据：** 每种模型×芯片×精度×并发下的有效Token成本，而不是只看峰值TPS。
+3. **Enterprise Delivery：** Private Deployment、安全、网络、迁移和专家服务。
+4. **客户合同权：** 通过最低消费、预付款、期限和扩容条款锁住利用率，避免只成为Token Hub可随时替换的GPU批发商。
+
+**适合交给伙伴的能力：** 长尾开发者获客、公共Model Catalog、部分Serving Engine和多模型路由。SenseCore不必在这些层面全面复制硅基流动或Fireworks。
+
+### 七、未来90天应追踪的硬指标
+
+1. **付费Token占比**：剔除免费、内部调用、缓存命中和促销流量后的真实计费量。
+2. **单位经济性**：每百万输出Token Revenue、完整GPU成本、Gross Profit，而非仅披露吞吐。
+3. **供给控制力**：自持、长租、Marketplace临时调度各占多少；合同期限是否匹配客户承诺。
+4. **客户结构**：Top 5客户Revenue占比、模型公司/Token Hub/Enterprise各自贡献及续约率。
+5. **国产化有效产能**：同一模型SLO下，国产GPU可交付Token成本、稳定性和迁移周期。
+6. **收入质量**：Public API、Dedicated Capacity、Private Deployment、Hardware Pass-through和Operation Service分别占比。
+7. **Working Capital**：集群项目应收、预付款和GPU采购/租赁付款周期，防止Revenue增长掩盖现金消耗。
+
+### 八、风险与待验证口径
+
+- Fireworks、Together、Baseten披露的Run-rate、Token量和增速主要来自公司口径，不等同于审计年度Revenue。
+- Token吞吐可能包含免费调用、Batch、Cache、内部测试和低价促销，不可直接推算收入。
+- “融资额/估值高”证明资本可得性，不证明Gross Margin或技术长期领先。
+- 趋境、无问芯穹、清程极智和PPIO的部分性能、吞吐与客户指标尚缺监管文件或第三方Benchmark。
+- “P算力”、PFLOPS、GPU数量及不同精度口径不可直接横比。
+- 基流科技的集群产品Revenue与Token Cloud Revenue性质不同；硅基流动的Public Cloud与On-premises利润结构也必须分开看。
+
+### 最终判断
+
+**国外已经出现三条清晰的成功路径：Fireworks的Inference规模化、Together的Full-stack AI Cloud、Baseten的Enterprise Serving Platform；Lepton则代表NVIDIA将GPU供给入口平台化。中国还没有一家公司完整复制其中任何一条，但已形成组合式对应：硅基流动掌握开发者和Model API入口，趋境争夺Wholesale Token生产，无问芯穹解决异构与国产化，清程极智提供系统软件，基流负责集群工程，PPIO提供分布式资源。**
+
+**对SenseCore而言，真正的机会不是与所有人争同一层，而是占住最难替代的中间层：以可控Capacity、SLA、国产化交付和Enterprise Contract为底座，让上层Token Hub和模型公司成为渠道与Anchor Customer。**
+
+---
+
 ## 2026-08-07｜GPU脱销之后：低价Token与国产化重写AI Cloud回报率
 
 **观察区间：2026-08-01—2026-08-07**
