@@ -4,6 +4,107 @@
 
 ---
 
+# 每周模型趋势周报｜2026-08-14
+
+> 更新窗口：2026-08-07 至 2026-08-14
+
+## 本周结论
+
+**前沿能力榜本周没有出现新的王座更替：Kimi K3 继续是中国开放权重综合第一，Claude Opus 5 继续占据闭源第一。但本期有两件更值得关注的事：第一，按统一的 reasoning / max-effort 独立评测口径校准后，DeepSeek V4 Pro 应排在 GLM-5.2 前面；第二，Google 在 8 月 13 日发布 Gemini 3.7 Flash、Meta 在 8 月 10 日推出单卡可运行的 Muse Glimmer，海外厂商正在同时从“更强的云端 Agent”和“更小的本地 Agent”两端重新发力。**
+
+> **排名口径校准：** 前几期把 DeepSeek V4 Pro 的 High-Effort / 旧评测值与 Max-Effort 混在了一起。本期统一采用各模型可比较的最高 reasoning 档位：Artificial Analysis 对 DeepSeek V4 Pro Max 的公开评测为 **52**，因此其综合位置应高于 GLM-5.2 的 **51**。这不是 DeepSeek 本周刚发布新模型，而是周报数据口径修正。
+
+## Top 11 快速概览
+
+### 中国开放权重 Top 5
+
+| 排名 | 模型 | 正式/权重状态 | AA Intelligence Index | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **Kimi K3** | 2026-07-16；官方 HF 权重已开放 | **57** | —；综合第一，Agent、长周期知识工作和视觉强，但 2.8T 总参数、104B 激活参数使部署成本很高 |
+| 2 | **DeepSeek V4 Pro** | 2026-04-24；官方 HF；MIT | **52（Max）** | ↑；本期按统一 Max-Effort 口径校准至第二，Agent 与推理强，纯文本、成本效率突出 |
+| 3 | **GLM-5.2** | 2026-06-16；官方 HF；MIT | **51** | ↓1；综合仅落后 DeepSeek 1 分，但 40B 激活参数和高吞吐使工程平衡非常强 |
+| 4 | **MiniMax M3** | 2026-06-01；官方 HF | **44** | —；原生图像/视频输入、电脑操作和 23B 激活参数使它仍是多模态效率代表 |
+| 5 | **MiMo-V2.5-Pro** | 2026-04-22；官方 HF；MIT | **42** | —；1M 上下文、MIT 和低 API 成本继续守住性价比席位 |
+
+**Kimi K3 仍然没有被正式开放权重模型击败。** Artificial Analysis 当前给它 57 分，并把它列为开放权重模型第一；但它同时只有约 33 tokens/s，API 价格约为 $3 / $15 每百万输入/输出 token，而且 Kimi K3 License 对商业使用有额外条件。因此，“能力第一”依旧不等于“生产部署第一”。
+
+**DeepSeek V4 Pro 与 GLM-5.2 现在更像两种不同路线，而不是简单的 #2 / #3。** DeepSeek V4 Pro Max 在综合能力上约领先 1 分，并在 Agent、终端与成本敏感推理上很有竞争力；GLM-5.2 则是 MIT 许可证、753B/40B 激活、1M 上下文，并在主流服务商上有非常高的输出吞吐。企业真实选型很可能更看“单位任务成本”和吞吐，而不是 1 分的综合差距。
+
+**Qwen3.8-Max 仍不能进入这个榜。** 截至 8 月 14 日，Qwen 官方 Hugging Face 最近更新仍集中在 Qwen3-ASR、AgentWorld 与 Qwen3.5/3.6 系列，未出现 `Qwen3.8-Max` 可下载权重。因此它仍属于强势的 API / Preview 候选，而不是本周定义下的开放权重模型。只要权重正式落地，它仍是最可能一次性改变 Top 5 的变量。
+
+### 中国以外开放权重 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
+|---:|---|---:|---:|---|
+| 1 | **Inkling**（Thinking Machines） | 2026-07-15 | **41** | —；海外综合第一，1M 上下文、文本/图像/语音输入，Apache 2.0 |
+| 2 | **NVIDIA Nemotron 3 Ultra** | 2026-06-04 | **38** | —；高吞吐、开放训练体系和企业 Agent 工具链仍是主要优势 |
+| 3 | **Mistral Medium 3.5 128B** | 2026-04-29 | **30** | —；较紧凑、工程价值高，但纯能力已经明显落后中国头部 |
+
+**本周海外前三没有换位，但 Meta 重新回到了开放权重牌桌。** 8 月 10 日发布的 **Muse Glimmer** 主打单张消费级 GPU / Mac、PC 上的轻量 Agent 任务。它现在还缺乏足够独立综合评测，因此不应因为“Meta 回归开放”就直接挤进 Top 3；但它代表一个值得跟踪的新方向：美国开放模型不一定继续用超大参数正面追 Kimi，而可能先抢“本地 Agent / 端侧 Agent”市场。
+
+Meta 同时预告会开放更强的 **Muse Spark 1.2** 权重。如果兑现，这比 Glimmer 本身更可能真正改变海外开放 Top 3。此前 Muse Spark 1.1 的闭源/API 版本在 Artificial Analysis 已达到 51 分量级，因此 **Spark 1.2 是否开放、开放到什么程度、许可证如何**，会是下周以后非常重要的观察项。
+
+### 全球闭源 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **Claude Opus 5** | 2026-07-24 | **61** | —；综合智能、复杂 Agent 和长周期交付仍第一 |
+| 2 | **Claude Fable 5** | 2026-06-09 | **60** | —；知识工作和研究能力强，但价格极高且 fallback 使比较更复杂 |
+| 3 | **GPT-5.6 Sol** | 2026-07-09 | **59（Max）** | —；综合第三，编码 Agent、终端、科学与 OpenAI 工具链仍具明显优势 |
+
+**闭源领先仍然存在，但只剩“几分 + 产品系统”的领先，而不是代际碾压。** Kimi K3 的 57 分距离 GPT-5.6 Sol Max 约 2 分、距离 Opus 5 约 4 分。真正更难追的部分仍是闭源厂商提供的安全沙箱、工具执行、企业治理、Agent orchestration 和跨产品数据链路。
+
+Google 本周是闭源阵营最重要的新动作。**8 月 13 日发布 Gemini 3.7 Flash**，重点继续放在 coding 和 business-agent workflow，而不是用一个超大 Pro 旗舰直接争综合第一。它说明 Google 目前的策略更像是在 Flash 系列上快速迭代，把“速度 × 成本 × Agent 完成率”推到生产前沿；截至本期，没有足够独立证据表明 3.7 Flash 已超过 Opus 5 / Fable 5 / GPT-5.6 Sol，因此不进入闭源 Top 3。
+
+## 本周真正发生的变化
+
+1. **中国开放 Top 5 的第二、第三名需要校准。** DeepSeek V4 Pro Max 52、GLM-5.2 51；以后周报会固定注明 reasoning effort，避免把 High / Max / Non-reasoning 混为一个分数。
+2. **Qwen3.8-Max 继续“能力在前、权重在后”。** 它仍可能是中国在线模型最强竞争者之一，但官方 HF 权重未落地，就继续留在榜外观察，不提前给开放权重名次。
+3. **海外开放模型从“大模型追赶”开始分叉到“端侧 Agent”。** Meta Muse Glimmer 的意义不在综合 benchmark，而在单卡运行的产品方向；如果 Muse Spark 1.2 也开放，Meta 才可能真正重新挑战 Inkling / Nemotron。
+4. **闭源竞争开始出现 Flash 化。** Gemini 3.7 Flash 再次证明，Google 并不等下一代 Pro 才更新：低延迟、高吞吐、coding/agent workflow 本身已经成为前沿竞争的一条主赛道。
+
+## 本周其他爆点
+
+### 1. Meta Muse Glimmer：开放权重重新回到“个人设备 Agent”
+
+Meta 8 月 10 日发布 Muse Glimmer，明确定位为能在 **单张 GPU 的 Mac / PC** 上运行的小型 Agent 模型。这不是一个挑战 Kimi K3 综合智力的模型，但它可能影响另一块更大的应用市场：本地代码助手、文件操作、隐私敏感任务、离线 Agent 和企业端侧部署。
+
+**当前判断：值得关注，但不进海外 Top 3。** 原因很简单：权重开放是加分项，不是免评测通行证；等独立 Agent benchmark 和真实开发者 workload 出来后再决定是否升榜。
+
+### 2. Gemini 3.7 Flash：闭源前沿继续从“大而慢”转向“快而能干活”
+
+Google 8 月 13 日发布 Gemini 3.7 Flash，官方与 Reuters 均把 coding、自动化业务流程和 Agent workflow 作为核心定位。这一代 Flash 的战略意义是：**最强模型未必需要在每个请求上调用。** 如果一个 50 分左右、速度更快、成本更低的模型能完成大多数 Agent 子任务，整体系统的经济性可能比单纯追最高 Intelligence Index 更重要。
+
+这也进一步压缩了开放模型的优势窗口：开放权重可以靠低价格吸引开发者，但闭源 Flash 模型如果在规模化服务上把价格和延迟降得足够低，竞争会转向“私有化与可控性”而不是单纯 token 单价。
+
+## 下周重点观察
+
+1. **Qwen3.8-Max 是否正式进入 Qwen 官方 Hugging Face。** 权重一旦落地，立即重新评估中国 Top 5。
+2. **Muse Spark 1.2 是否真的开放权重。** 如果其能力保持或超过 Spark 1.1 的 51 分量级，海外开放榜可能直接洗牌。
+3. **Gemini 3.7 Flash 的独立综合、Agent 和 Coding 评测。** 重点看它是否在单位任务成本上显著优于 3.6 Flash，而不是只看模型分数。
+4. **Kimi K3 的部署生态。** 量化、推理优化和第三方服务速度若明显改善，会缩小它“能力第一、工程成本过高”的短板。
+5. **DeepSeek / GLM / Qwen 下一旗舰。** 中国开放模型之间目前只有 1–6 分级别差距，一次正式发布就可能重排前三。
+
+## 主要来源
+
+- [Kimi K3 — Artificial Analysis](https://artificialanalysis.ai/models/kimi-k3)
+- [Kimi K3 官方 Hugging Face](https://huggingface.co/moonshotai/Kimi-K3)
+- [DeepSeek V4 Pro：Artificial Analysis 发布评测](https://artificialanalysis.ai/articles/deepseek-is-back-among-the-leading-open-weights-models-with-v4-pro-and-v4-flash)
+- [DeepSeek 官方 Hugging Face](https://huggingface.co/deepseek-ai/models)
+- [GLM-5.2 — Artificial Analysis](https://artificialanalysis.ai/models/glm-5-2)
+- [GLM-5.2 官方 Hugging Face](https://huggingface.co/zai-org/GLM-5.2)
+- [MiniMax M3 — Artificial Analysis](https://artificialanalysis.ai/models/minimax-m3)
+- [MiMo-V2.5-Pro — Artificial Analysis](https://artificialanalysis.ai/models/mimo-v2-5-pro)
+- [Qwen 官方 Hugging Face 模型列表](https://huggingface.co/Qwen/models)
+- [Inkling — Artificial Analysis](https://artificialanalysis.ai/models/inkling)
+- [Claude Opus 5 — Artificial Analysis](https://artificialanalysis.ai/models/claude-opus-5)
+- [Claude Fable 5 — Artificial Analysis](https://artificialanalysis.ai/models/claude-fable-5)
+- [GPT-5.6 Sol — Artificial Analysis](https://artificialanalysis.ai/models/comparisons/gpt-5-6-sol-vs-gpt-5)
+- [Reuters：Google 发布 Gemini 3.7 Flash（2026-08-13）](https://www.reuters.com/business/google-unveils-gemini-37-flash-ai-model-coding-agent-workflows-2026-08-13/)
+- [Reuters：Meta 发布 Muse Glimmer 并预告 Muse Spark 1.2 权重（2026-08-10）](https://www.reuters.com/world/china/meta-launches-new-ai-model-zuckerberg-champions-open-weight-push-2026-08-10/)
+
+---
+
 # 每周模型趋势周报｜2026-08-07
 
 > 更新窗口：2026-08-01 至 2026-08-07
@@ -43,7 +144,7 @@
 ### 全球闭源 Top 3
 
 | 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
-|---:|---|---|---:|---|
+|---:|---|---:|---:|---|
 | 1 | **Claude Opus 5** | 2026-07-24 | **61** | —；当前 AA 综合第一，长周期 Agent 和复杂交付强 |
 | 2 | **Claude Fable 5** | 2026-06-09 | **60** | —；与 Mythos 5 同底座，知识工作和研究能力强，但价格与 fallback 是代价 |
 | 3 | **GPT-5.6 Sol** | 2026-07-09 | **59** | —；代码 Agent、终端任务和 OpenAI 产品工具链更均衡 |
