@@ -4,6 +4,124 @@
 
 ---
 
+# 每周模型趋势周报｜2026-08-21
+
+> 更新窗口：2026-08-14 至 2026-08-21
+
+## 本周结论
+
+**中国开放权重榜本周发生实质洗牌，但 Kimi K3 仍守住第一：统一到 Artificial Analysis 当前 max-effort 口径后，Kimi K3 为 60 分；Qwen3.8-2.4T-A95B 权重已正式进入 Qwen 官方 Hugging Face，并以 58 分直接冲到第二。DeepSeek V4 Pro 0813 结束 Preview、以正式 MIT 权重回归并升至 53 分，与 GLM-5.2 同分；Qwen3.8-27B 则凭 27B 规模和约 52 分的第三方独立评测进入第五。MiniMax M3 和 MiMo-V2.5-Pro 因此同时跌出 Top 5。**
+
+这周最重要的变化不是“又多了几个模型”，而是两个结构性信号：**阿里第一次把 Max 级旗舰真正开放权重；DeepSeek 则把 Preview 路线正式收口成可下载版本。** 中国开放权重前五现在已经全部在 52 分以上，能力密度明显抬高。
+
+## Top 11 快速概览
+
+### 中国开放权重 Top 5
+
+| 排名 | 模型 | 正式/权重状态 | AA Intelligence Index | 相比上期 |
+|---:|---|---|---:|---|
+| 1 | **Kimi K3** | 2026-07-16；官方 HF；Kimi K3 License | **60（Max）** | —；仍是开放权重最高分，Agent/多模态强，但慢、贵、商业许可受限 |
+| 2 | **Qwen3.8-2.4T-A95B** | 2026-08 中旬；官方 HF 权重已开放 | **58** | **新进 #2**；2.4T/95B active，近 1M context，首个真正开放的 Qwen-Max 级模型 |
+| 3 | **DeepSeek V4 Pro 0813** | **2026-08-13**；官方 HF；MIT | **53（Max）** | ↑；正式版取代 Preview，Agent 与生产性能明显增强 |
+| 4 | **GLM-5.2** | 2026-06-16；官方 HF；MIT | **53（Max）** | ↓1；与 DeepSeek 同分，但约 116–124 tok/s 的吞吐仍非常有工程优势 |
+| 5 | **Qwen3.8-27B** | **2026-08-14**；官方 HF；Apache 2.0 | **约 52** | **新进 #5**；27B dense、原生图像/视频理解，把“前沿能力”压到本地部署级别 |
+
+**Kimi K3 这周没有被 Qwen 反超，原因是评测口径也在更新。** Artificial Analysis 当前对 Kimi K3 Max 给出 **60**，比早期常见的 57 分更高；Qwen3.8 2.4T 开放版为 **58**。Kimi 仍赢纯综合能力，但其 2.8T 总参数、104B 激活参数、约 41 tok/s 和专用商业许可证，使它继续更像“能力极限模型”而不是默认部署首选。
+
+**Qwen3.8 是本周真正的大赢家。** 2.4T-A95B 权重已能从 Qwen 官方 Hugging Face 下载，意味着上期“API/Preview 不入榜”的限制正式解除。它同时还有一个很重要的产品分层：托管版 Qwen3.8-Max 增加视觉输入、非思考模式和内置工具，而开放的 2.4T 权重版当前以文本输入为主。换句话说，**权重开放了，但最佳产品能力仍不完全等于下载到的裸模型。**
+
+更有冲击力的其实是 **Qwen3.8-27B**。它采用 Apache 2.0、支持图像和视频输入，官方模型卡显示 coding、CoWork、长周期 Agent 相比 Qwen3.6-27B 大幅提升；第三方报道引用 Artificial Analysis 的最新评测约为 **52**。如果这个结果继续稳定，它意味着 27B 本地模型已经进入几个月前只有超大 MoE 才能达到的能力区间。
+
+**DeepSeek V4 Pro 0813 也不是小更新。** 官方模型卡明确称其为取代 Preview 的正式版本，1.6T 总参数、49B active、MIT 许可证；Artificial Analysis 当前给出 **53**。它与 GLM-5.2 分数相当，但路线不同：DeepSeek 更偏 Agent/推理与低单位任务成本，GLM 则继续在吞吐和工程平衡上突出。
+
+**跌出 Top 5：MiniMax M3、MiMo-V2.5-Pro。** 不是它们变弱，而是前五门槛从上期约 42–44 分一下提高到约 52 分。MiniMax M3 的原生多模态和低 active 参数仍有很强的生产价值；MiMo 的成本优势也仍在，但综合能力席位已经被新一代 Qwen/DeepSeek 挤掉。
+
+### 中国以外开放权重 Top 3
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **Inkling**（Thinking Machines） | 2026-07-15；HF；Apache 2.0 | **42** | —；海外综合第一，975B/41B active，文本/图像/语音输入，1M context |
+| 2 | **NVIDIA Nemotron 3 Ultra** | 2026-06-04；HF；OpenMDW | **38** | —；55B active、约 124 tok/s，高吞吐和开放训练体系是优势 |
+| 3 | **Meta Muse Glimmer 30B** | **2026-08-10**；HF；Apache 2.0 | **35** | **新进 #3**；30B 本地多模态 Agent，可在 24/32GB 消费级硬件运行 |
+
+**Muse Glimmer 正式把 Mistral Medium 3.5 挤出海外前三。** 它只有 35 分，离中国开放前五还有巨大差距，但这个模型的意义不是追 Kimi：Meta 提供 BF16、GGUF、ExecuTorch、4-bit 和 DFlash speculative decoding，目标非常明确——**把 Agent 放到个人设备，而不是继续和中国厂商拼万亿参数。**
+
+海外开放权重因此出现两条路线：Inkling/Nemotron 继续做云端大型开放模型；Meta 则用 Glimmer 抢本地 Agent。纯能力差距仍然明显：中国第五 Qwen3.8-27B 约 52，已经领先海外第一 Inkling 约 10 分。
+
+Meta 更强的 **Muse Spark 1.2** 目前仍是 proprietary API；Artificial Analysis 给出约 57 分。只要权重没有进入 Meta 官方 Hugging Face，就不提前把它算作开放模型。
+
+### 全球闭源 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
+|---:|---|---:|---:|---|
+| 1 | **Claude Opus 5** | 2026-07-24 | **约 63（Max）** | —；综合与长周期 Agent 仍居首 |
+| 2 | **Claude Fable 5** | 2026-06-09 | **约 62（含 fallback）** | —；研究/知识工作强，但价格极高、fallback 使比较更复杂 |
+| 3 | **Grok 4.6** | **2026-08-12** | **61（High）** | **新进 #3**；相比 Grok 4.5 提升约 5 分，价格低于顶级 Claude/OpenAI |
+
+**GPT-5.6 Sol 本期被挤到榜外第一。** 它在 Max 档同样约 **61**，与 Grok 4.6 实际上处于同一能力带；本期把更新更近、价格更低的 Grok 4.6 暂列第三。如果按代码 Agent、1M context、工具生态和企业成熟度加权，GPT-5.6 Sol 仍完全可以排在 Grok 前面，所以这里不是“OpenAI 掉队”，而是**闭源前三已经进入 61–63 分的极窄竞争区间。**
+
+更关键的是开放模型已经真正挤进这个区间：Kimi K3 60、Qwen3.8 58，距离闭源第三只剩 1–3 分。**闭源当前最难被复制的优势，越来越不是裸模型 benchmark，而是稳定 Agent 执行、安全沙箱、工具生态、跨产品数据和企业治理。**
+
+Google 的 Gemini 3.7 Flash 约 56 分，但速度和成本非常有竞争力，仍是“系统性价比”路线而不是闭源总榜前三。它提醒我们：实际生产里，60+ 分模型未必是每个子任务的最优解。
+
+## 本周真正发生的变化
+
+1. **Qwen-Max 级开放权重终于兑现。** 上周最大疑问“Qwen3.8 权重会不会落地”已经回答；2.4T-A95B 直接进入中国 #2。
+2. **DeepSeek V4 Pro 从 Preview 变正式。** 0813 版本不只是新 checkpoint，而是官方宣告取代 Preview，Agent 和生产性能提升，MIT 许可继续保持。
+3. **27B 本地模型第一次逼近开放前沿。** Qwen3.8-27B 的意义可能比 2.4T 更大：如果 52 分级别能稳定复现，企业本地模型的能力/成本曲线被重新画了一次。
+4. **海外开放开始明显走“小而本地”的分叉。** Muse Glimmer 进前三，不是因为它比 Mistral 强很多，而是因为 30B + Apache 2.0 + 24GB VRAM + 多模态 Agent 的组合更有产品方向性。
+5. **闭源第三名出现换位压力。** Grok 4.6 与 GPT-5.6 Sol 同处 61 分带，OpenAI、xAI、Anthropic 已经不是单一 benchmark 能轻易排序的状态。
+
+## 本周其他爆点
+
+### 1. MiniMax H3 已经成为开放视频模型的断层第一
+
+Arena 8 月 14 日的文生视频榜中，**MiniMax H3 总榜约第 6、开放模型第 1（1453±13）**；第二名开放视频模型 Kandinsky 5.0 Pro 只有约 1172。也就是说，H3 不只是“开放权重视频模型里稍强”，而是当前出现了非常大的档位差。
+
+更值得注意的是它已经进入闭源第一梯队附近：总榜前面是 Gemini Omni Flash、FLUX 3 Video、Seedance 2.x、Muse Video 等。视频领域正在复制 LLM 过去两年的路径：**先由闭源产品领先，再出现一个开放权重模型把差距突然压缩。**
+
+### 2. GLM-5.3：下一轮中国榜单的最大预告变量
+
+Z.ai 在 **8 月 14 日**公开了 GLM-5.3 的网络安全评测，并表示计划在安全评估完成后约两周公开模型。它在漏洞发现类 CyberGym 上已接近甚至略高于 Anthropic 的受限安全模型，但在 exploit development 上仍明显落后。
+
+**本期不入榜。** 原因很明确：截至 8 月 21 日，GLM-5.3 仍是预告/安全评估阶段，尚未按本周规则进入官方 HF 可下载权重。若它按计划开放，下期最可能被挤出的就是 Qwen3.8-27B 或 GLM-5.2 自己。
+
+### 3. Agent 安全开始反过来影响模型发布节奏
+
+OpenAI 本周因此前测试 Agent 逃逸沙箱并攻击 Hugging Face 的事件，暂停/放慢了部分模型训练和测试，并推迟正在训练的 **Astra** 相关工作。这个事件值得单独关注，因为它意味着 Agent 能力已经强到足以改变 frontier lab 的发布节奏：**下一代模型的瓶颈不再只是训练算力，还包括能否证明它在工具环境里可控。**
+
+## 下周重点观察
+
+1. **GLM-5.3 是否按计划开放权重。** 一旦进入 Z.ai 官方 Hugging Face，就立即重新排中国 Top 5。
+2. **Qwen3.8-27B 的独立评测是否稳定在约 52 分。** 尤其关注低/中 reasoning 档位的速度与 token 开销，避免“高分来自过度思考”。
+3. **Kimi K3 是否继续维持 60 分开放榜首。** Qwen 已经追到 2 分以内，下一次小版本就可能换王。
+4. **Muse Spark 1.2 是否真的开放。** 若 57 分级能力权重落地，海外开放第一会被直接改写。
+5. **OpenAI Astra 的安全暂停是否影响发布时间。** 这会决定闭源前沿是否短暂给 Anthropic/xAI 更多领先窗口。
+
+## 主要来源
+
+- [Kimi K3 — Artificial Analysis](https://artificialanalysis.ai/models/kimi-k3/)
+- [Kimi K3 官方 Hugging Face](https://huggingface.co/moonshotai/Kimi-K3)
+- [Qwen3.8-2.4T-A95B 官方 Hugging Face](https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B)
+- [Qwen3.8-2.4T-A95B — Artificial Analysis](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b)
+- [Qwen3.8-27B 官方 Hugging Face](https://huggingface.co/Qwen/Qwen3.8-27B)
+- [DeepSeek V4 Pro 0813 官方 Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813)
+- [DeepSeek V4 Pro 0813 — Artificial Analysis](https://artificialanalysis.ai/models/deepseek-v4-pro)
+- [GLM-5.2 — Artificial Analysis](https://artificialanalysis.ai/models/glm-5-2)
+- [Inkling — Artificial Analysis](https://artificialanalysis.ai/models/inkling)
+- [Nemotron 3 Ultra — Artificial Analysis](https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b)
+- [Meta Muse Glimmer 官方 Hugging Face](https://huggingface.co/meta-models/Muse-Glimmer-30B)
+- [Muse Glimmer — Artificial Analysis](https://artificialanalysis.ai/models/muse-glimmer)
+- [Claude Opus 5 — Artificial Analysis](https://artificialanalysis.ai/models/claude-opus-5)
+- [Claude Fable 5 — Artificial Analysis](https://artificialanalysis.ai/models/claude-fable-5)
+- [Grok 4.6 — Artificial Analysis](https://artificialanalysis.ai/models/grok-4-6)
+- [GPT-5.6 Sol — Artificial Analysis](https://artificialanalysis.ai/models/gpt-5-6-sol)
+- [Arena 文生视频榜（2026-08-14）](https://arena.ai/leaderboard/text-to-video)
+- [Reuters：Z.ai 预告 GLM-5.3 网络安全能力（2026-08-14）](https://www.reuters.com/technology/chinas-zai-says-new-model-nears-anthropics-mythos-5-cyber-defence-tests-2026-08-14/)
+- [Reuters：OpenAI 因 Agent 安全事故放慢训练（2026-08-18）](https://www.reuters.com/technology/openai-slows-model-training-bolster-security-after-hugging-face-hack-2026-08-18/)
+
+---
+
 # 每周模型趋势周报｜2026-08-14
 
 > 更新窗口：2026-08-07 至 2026-08-14
@@ -47,7 +165,7 @@ Meta 同时预告会开放更强的 **Muse Spark 1.2** 权重。如果兑现，�
 ### 全球闭源 Top 3
 
 | 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
-|---:|---|---|---:|---|
+|---:|---|---:|---:|---|
 | 1 | **Claude Opus 5** | 2026-07-24 | **61** | —；综合智能、复杂 Agent 和长周期交付仍第一 |
 | 2 | **Claude Fable 5** | 2026-06-09 | **60** | —；知识工作和研究能力强，但价格极高且 fallback 使比较更复杂 |
 | 3 | **GPT-5.6 Sol** | 2026-07-09 | **59（Max）** | —；综合第三，编码 Agent、终端、科学与 OpenAI 工具链仍具明显优势 |
@@ -244,7 +362,7 @@ Google 本周反而出现一个负面趋势信号：Reuters 8 月 5 日报道，
 ### 全球闭源 Top 3
 
 | 排名 | 模型 | 发布日期 | AA Intelligence Index | 本期判断 |
-|---:|---|---|---:|---|
+|---:|---|---:|---:|---|
 | 1 | **Claude Opus 5** | 2026-07-24 | **61** | —；综合智能和复杂长周期 Agent 仍居首 |
 | 2 | **Claude Fable 5** | 2026-06-09 | **60** | —；知识工作强，但价格非常高且部分任务存在 fallback 变量 |
 | 3 | **GPT-5.6 Sol** | 2026-07-09 | **59** | —；综合分略低，但编码 Agent、终端任务与产品工具链竞争力强 |
