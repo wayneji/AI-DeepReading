@@ -4,6 +4,244 @@
 
 ---
 
+## 2026-08-21｜Agent工作台吞下Token入口：AI Infra竞争从API转向任务闭环
+
+**观察区间：2026-08-15—2026-08-21**  
+**本期主线：** 本周最重要的变化不是又发布了一个模型，而是Agent入口开始被做成可订阅、可路由、可连接企业数据和可直接承载交付物的“工作操作系统”。阿里云用Coding Plan把多模型、主流Coding Agent和固定月费接在一起；OpenAI把Codex从Coding扩到分析、投研、运营和可分享应用；腾讯Q2数据则首次提供了中国市场“入口增长—Token付费—Cloud增量收入”的财务旁证。对AI Infra而言，竞争单位正在从卡时和每百万Token单价，升级为每个任务、每个席位和每条工作流的风险调整后毛利。
+
+### Executive Summary
+
+1. **Agent入口正成为新的Token分发层，但不是简单的API换皮。** 8月17日更新的阿里云Coding Plan以固定月费聚合千问、GLM、Kimi、MiniMax，并兼容Claude Code、Codex、Cursor、Qwen Code、Qoder等工具；8月18日OpenAI又把Codex扩展至分析、运营、研究、投资等非开发工作。谁掌握入口，谁就能决定模型路由、Token预算和Cloud结算。
+2. **腾讯Q2给出了目前国内最清楚的商业闭环证据，同时证明AI尚未进入轻松收割利润阶段。** Hy3日均Token使用约为preview阶段的7倍，WorkBuddy用户已通过订阅和充值购买Token，Cloud侧也披露MaaS/API/算力需求带来增量Revenue；但若剔除AI产品投入，其Non-IFRS经营利润增速本可由9%提高至19%，说明入口、模型与Infra仍处重投入期。
+3. **海外Neocloud正在从“卖GPU”升级为“Capacity + Token Factory”，但资产与融资压力没有消失。** CoreWeave Q2 Revenue为25.75亿美元、Backlog约1,040亿美元，但Adjusted operating margin由16%降至5%，净利息费用达6.40亿美元；Nebius披露生产Inference工作负载Q2环比超过3倍，并开始用伙伴出资的Asset-light Capacity降低扩张资本负担。
+4. **未来3—12个月，GPUaaS不会被Token取代，而会与Reserved Inference形成同一张资产负债表上的两个利润池。** Agent工作负载带来多步骤、长上下文和突发调用，增加总算力需求；与此同时，入口平台会压低上游Token采购价并要求更强弹性。裸卡价格承压，高SLA连续集群、Provisioned Throughput和可按需回切的推理池将获得溢价。
+5. **SenseCore的最优位置不是长尾Public API，而是Primary Production Cloud与Wholesale Inference。** 它应以头部模型公司、Token Hub和中型AI企业为Anchor客户，用最低消费、Reserved Capacity、Dedicated Endpoint和国产异构优化锁定负载；本周SenseCore及清程极智均没有足以改变AI Infra竞争坐标的新增硬证据。
+
+### 一、关键动态及影响
+
+#### 1. 阿里云Coding Plan：把多模型和Coding Agent变成订阅制Token分发
+
+**【已确认事实】** 阿里云官方文档于8月17日更新Coding Plan：Pro套餐为人民币200元/月，聚合千问、GLM、Kimi、MiniMax等模型，每5小时6,000次、每周45,000次、每月90,000次请求；支持OpenAI及Anthropic兼容协议，并可接入Claude Code、Codex、Cursor、Qwen Code、Qoder等工具。Coding Plan的Key与百炼按量API Key相互独立，且明确禁止用于非交互式批量API调用。[阿里云Coding Plan，更新于2026-08-17](https://help.aliyun.com/zh/model-studio/coding-plan)
+
+这几条限制揭示了真实产品设计：
+
+- 固定订阅锁定的是**交互式Agent入口**，不是无上限的廉价Inference；
+- “请求次数”而非Token数对外呈现，平台在后台吸收上下文长度、模型差异、缓存和路由复杂度；
+- 多模型不是单纯丰富SKU，而是成本控制工具：简单任务可以路由至低成本模型，困难任务才调用高能力模型；
+- OpenAI/Anthropic兼容协议降低迁移成本，也让百炼更接近中立Token Hub，而不仅是Qwen的自营渠道。
+
+**【分析判断】** 阿里正在把Cloud消费包装成开发者席位订阅。用户买的是“把任务做完”的预算确定性；阿里保留模型选择权与单位任务成本差。对硅基流动、趋境、PPIO等独立Token Hub而言，Hyperscaler的竞争已经从API价格延伸到分发入口、账号体系和包月预算。
+
+#### 2. OpenAI Codex：Coding Agent开始变成通用工作的Cloud前端
+
+**【已确认事实】** 8月18日，OpenAI发布Codex面向不同角色、工具和工作流的新能力，包括角色化Plugins、Annotations以及可生成并分享互动网站和应用的Sites预览。OpenAI披露Codex周活用户超过500万，非开发者已约占20%，且增速超过开发者的3倍。[OpenAI，2026-08-18](https://openai.com/index/codex-for-every-role-tool-workflow/)
+
+这意味着Coding Agent的边界正发生两次扩张：
+
+1. 从补全代码扩到执行完整软件工程任务；
+2. 再从软件工程扩到研究、分析、运营、设计和管理交付物。
+
+**【分析判断】** Coding只是最早出现高频、可验证结果的Agent场景。随着Agent能连接企业数据、调用工具并生成可交付结果，Token消耗会从“用户问了多少次”变成“任务链包含多少步”。单个活跃用户可能触发检索、规划、代码执行、模型评估和文件生成等多轮调用，因此Infra需求增长可以显著快于Seat增长。
+
+对中国大厂的参照非常直接：
+
+| 玩家 | 当前入口 | 模型/路由 | Cloud结算闭环 | 未来3—12个月关键变量 |
+|---|---|---|---|---|
+| 阿里 | Qoder、Qwen Code及第三方Coding工具 | Qwen + GLM/Kimi/MiniMax | 百炼Coding Plan/Token Plan/PAI | 订阅留存、请求实际成本、企业席位采购 |
+| 字节 | TRAE、豆包、飞书、Coze | Doubao/Seed + 方舟模型市场 | 火山方舟、Coding Plan、企业GTM | 飞书工作流能否转化为外部Token与Cloud消费 |
+| 腾讯 | WorkBuddy、CodeBuddy、企微/QQ入口 | Hy3 + 多模型TokenHub | Credits、订阅充值、腾讯云MaaS/API | 使用增长能否持续覆盖模型与Capex投入 |
+| 百度 | Comate、搜索/文心、千帆Agent | 文心 + 千帆多模型 | 千帆MaaS、企业项目和Cloud | 高频入口能否形成标准订阅而非项目交付 |
+| OpenAI | Codex、ChatGPT Work | GPT-5.6系列及路由 | 订阅、Credits、API和企业工作区 | 非开发者任务完成率与单位任务毛利 |
+| Anthropic | Claude Code、Claude Enterprise | Claude模型系列 | 订阅、API及合作Cloud | 企业治理、工具连接和高端任务溢价 |
+
+#### 3. 腾讯Q2：闭环成立，但AI利润池仍在建设期
+
+**【已确认事实】** 腾讯8月12日公布Q2结果：Revenue为2,047.9亿元，同比增长11%；Non-IFRS经营利润756.4亿元，同比增长9%。腾讯同时披露，若剔除AI产品相关投入，Non-IFRS经营利润同比增速将为19%；研发支出272.8亿元，同比增长35%，Capex为527.8亿元，同比增长176%、环比增长65%。[腾讯2026年Q2业绩公告](https://www.tencent.com/wp-content/uploads/2026/08/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%B8%83%E4%BA%8C%E9%9B%B6%E4%BA%8C%E5%85%AD%E5%B9%B4%E7%AC%AC%E4%BA%8C%E5%AD%A3%E4%B8%9A%E7%BB%A9.pdf)
+
+腾讯进一步披露：
+
+- Hy3正式版推出后，全渠道日均Token使用量约为preview阶段的7倍；
+- WorkBuddy实现快速用户增长和健康留存，用户通过订阅和充值购买Token的付费意愿较强；
+- WorkBuddy和CodeBuddy出现突破性使用增长；
+- Cloud侧AI需求推动算力、MaaS和API调用，并贡献增量Revenue。
+
+**【分析判断】** 这是目前国内较少见的“产品入口—Token付费—Cloud收入”连续证据，但不能误读为AI已经高利润。恰恰相反，模型训练、推理Capacity和产品补贴正在吞噬短期利润。未来赢家不是Token量最大者，而是能在任务完成率、用户付费和推理成本之间形成正向单位经济性的玩家。
+
+#### 4. 本周中国其他玩家：产品有变化，AI Infra坐标暂无重排
+
+**【已确认事实】** 商汤8月21日发布并开源SenseNova U1.5 Lite正式版，强调原生4K视觉生成、复杂指令和真实视觉交付。[商汤新闻中心，2026-08-21](https://www.sensetime.com/cn/news)
+
+**【口径判断】** 该发布属于模型与上层应用能力，不属于本系列对SenseCore的窄口径——GPU IaaS/MaaS、Token Inference、部署及专家服务——因此不据此上调SenseCore在Cloud AI Infrastructure坐标中的位置。它可能增加集团内部推理需求，但在没有外部付费Token、Capacity合同或Infra Revenue披露前，只能视为潜在需求源。
+
+**【核查结果】** 本观察期内，火山引擎、百度智能云、华为云、SenseCore、并行科技、无问芯穹、硅基流动、趋境、基流科技与清程极智，未发现足以改变主排名的新增官方产能、长期合同、融资或经审计收入披露。没有实质变化不等于业务停滞，而是本周不以产品宣传代替商业证据。
+
+### 二、海外Neocloud：Inference起量，资本纪律成为第二战场
+
+#### 1. CoreWeave：需求确定性极强，财务成本同样真实
+
+**【已确认事实】** CoreWeave 8月11日公布Q2 Revenue 25.75亿美元，同比增长112%；Revenue Backlog约1,040亿美元，且不含Q3初新增的超过250亿美元客户承诺。Adjusted EBITDA为15.10亿美元、Margin 59%，但Adjusted operating income仅1.28亿美元、Margin由上年同期16%降至5%；净利息费用为6.40亿美元，Net loss为6.26亿美元。[CoreWeave Q2官方业绩](https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx)
+
+**【分析判断】** CoreWeave证明了大规模GPU Capacity可以获得长期Backlog，却也说明不能用EBITDA替代资产回报。GPU折旧、融资利息、客户集中和建设兑现速度决定最终利润。对中国独立AI Cloud的启示是：签下长期合同只是第一步，合同价格能否覆盖资金成本、设备残值和SLA责任才是核心。
+
+#### 2. Nebius：Token Factory成为增长层，并尝试降低资产负担
+
+**【已确认事实】** Nebius在Q2股东信中披露，生产Inference工作负载环比超过3倍；Agentic Search、Coding和面向客户的Agent占比上升，单个任务会触发多次模型调用。公司还提出伙伴出资的Asset-light Capacity模式：伙伴持有AI基础设施资产，Nebius提供系统架构、Cloud Platform、服务软件和GTM，以较低资本投入获得平台Revenue。[Nebius Q2股东信，2026-08-12](https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf?cache-buster=2026-08-12T11%3A54%3A46.695Z)
+
+**【分析判断】** 海外Neocloud的下一阶段不是从重资产突然变轻，而是出现三种Capacity并存：
+
+- 自有数据中心：控制力最高，资本最重；
+- Colocation + 自持GPU：部署较快，仍承担硬件融资；
+- Partner-financed Capacity：资本更轻，但需要以软件、架构和GTM证明平台不可替代。
+
+这与SenseCore未来可能联合地方算力、运营商机房和国产芯片伙伴的方向高度相关：真正的“轻资产化”不是简单外采卡，而是保留调度、Serving、客户合同和SLA控制权。
+
+### 三、竞争格局变化
+
+本期不调整此前中国三层排序，但细分赛道的权重发生变化。以下为分析坐标，不是Gartner官方排名。
+
+- **Ceiling：** 阿里云 → 火山引擎 → 腾讯云 → 百度智能云 → 华为云
+- **SenseCore Arena：** 天翼云 → SenseCore商汤大装置 → 金山云 → 并行科技 → 曙光先进计算云 → 首都在线 → UCloud
+- **Chasers & Adjacent：** 硅基流动 → PPIO派欧云 → 无问芯穹 → 趋境科技 → 基流科技 → ZStack
+- **AI Infra基础软件／异构效率观察：** 清程极智，以及无问芯穹、基流科技的软件栈部分
+
+本周变化不在横向名次，而在三个纵向权重：
+
+1. **入口与分发权重上升。** 阿里、腾讯、字节能够用订阅、企业账号和Agent工作流锁住需求；独立Token Hub必须强化中立路由、跨芯片效率和Dedicated Inference。
+2. **Provisioned Throughput权重上升。** Agent流量有基线也有突发，单纯按卡时或按Token零售都难同时保证利用率与SLA。
+3. **资本效率权重上升。** CoreWeave的利息与经营利润率、Nebius的伙伴融资模式，都要求在“资源规模”之外评估资金成本和合同质量。
+
+海外坐标同样保持：
+
+- **天花板：** AWS、Microsoft Azure、Google Cloud；
+- **领先Neocloud：** CoreWeave；
+- **同身位/追赶目标：** Nebius、Lambda、Crusoe；
+- **Inference Platform：** Together AI、Fireworks AI、Baseten、Lepton等。
+
+### 四、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：不会消失，但“裸卡”在价值链中的位置继续下沉
+
+未来3—12个月的核心变化是需求分层，而不是全市场统一涨跌：
+
+| 需求 | 采购方式 | 价格趋势 | 最有利玩家 |
+|---|---|---|---|
+| Frontier训练与超大规模推理 | 长期Dedicated Cluster | 连续大集群仍有溢价 | Hyperscaler、CoreWeave、SenseCore头部资源池 |
+| 稳定生产Inference | Reserved Capacity / Provisioned Throughput | 单Token降价，但SLA与吞吐可溢价 | Managed Inference平台 |
+| Fine-tuning、Batch和成熟模型 | 包年GPU或弹性GPUaaS | 按代际与利用率分化 | 有成熟GPU池和调度能力的AI Cloud |
+| 测试、科研及碎片负载 | Spot/按卡时 | 竞争最激烈 | 聚合云、渠道和区域资源 |
+| 国产化Private Cloud | Capacity + 迁移优化 + 运维 | 软件和服务决定总价 | SenseCore、无问芯穹及异构软件伙伴 |
+
+**结论：** GPU资源脱销只说明某些型号、连续规模和时间窗口稀缺；它不保证所有GPU池都有高毛利。Agent入口扩大总需求，但Hyperscaler会优先内部消化，传给独立AI Cloud的是峰值、第二供应商、国产化和中立Capacity需求。
+
+#### Inference/Token：量增长确定，利润向两端集中
+
+利润更可能向以下两端集中：
+
+- **上端入口：** Codex、Claude Code、WorkBuddy、Qoder、TRAE等控制用户、订阅和默认路由；
+- **下端高效生产：** 掌握连续Capacity、Serving优化、KV Cache、调度和SLA的Managed Inference供应商。
+
+中间的纯Token转售最容易被压缩。因为模型价格持续下降，入口平台可以用多模型路由和未使用额度吸收价差；Infra供应商则可用批处理、量化和高利用率降低成本。缺少入口又缺少成本优势的平台只能卷价格。
+
+对大型模型公司和Token Hub的传导是：
+
+1. Kimi、智谱、DeepSeek等模型公司会获得更多Agent渠道流量，但也被平台要求更低价格、更稳定SLA和更快模型上新；
+2. 硅基流动、趋境、PPIO等中立Token Hub仍有多模型与跨芯片价值，但需要从Public API扩到Dedicated Endpoint、企业私有化和路由优化；
+3. 上游AI Cloud将收到更大但更集中的订单，合同往往附带弹性、峰值保障和单位Token持续降本要求；
+4. 没有最低消费的纯按量Token合同，不足以支持重资产供应商大规模迁移GPU池。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 定位：Primary Production Cloud，而不是大厂入口的缩小版
+
+SenseCore不需要复制豆包、WorkBuddy或Codex的2C/长尾分发。其核心客户应继续是：
+
+- **Anchor层（Inference Capacity的55%—65%）：** 头部模型公司与大型Token Hub。销售12—24个月Take-or-pay、Dedicated Endpoint、Reserved Throughput和超额Token；
+- **Growth层（25%—35%）：** 年GPU/Inference预算约1,000万—8,000万元的AI企业、Coding/搜索/多模态Agent和垂直模型公司。目标是在Multi-vendor结构中拿到50%—60%的Primary Vendor份额；
+- **Ecosystem层（不超过10%）：** 长尾开发者及小B，由硅基流动、趋境、PPIO等渠道承接，SenseCore只做幕后Wholesale Capacity。
+
+#### 2. 产品：用“基线预留 + 峰值弹性”承接Agent负载
+
+Agent流量具有稳定席位基线和任务突发两种属性，建议合同拆成：
+
+- 基础Reserved Capacity或最低月度消费，覆盖固定资产和基线利用率；
+- 峰值按Token或GPU秒计费，并设置SLA分层；
+- 模型切换、量化、国产GPU迁移及Serving优化单独收费；
+- 允许GPUaaS与Inference池在可控时间内双向切换；
+- 以**Risk-adjusted Gross Profit per GPU Hour**决定迁卡，而不是以Token Volume决定。
+
+#### 3. GTM：把阿里/腾讯/字节视为需求塑造者，而不是逐单硬碰的对象
+
+大厂Agent入口会教育市场、形成企业预算，也会内部消化高价值流量。SenseCore更可行的GTM是：
+
+- 向不愿被单一Hyperscaler锁定的模型公司和企业提供中立Capacity；
+- 进入Multi-cloud架构，争取Primary Production工作负载而非全部预算；
+- 与Token Hub形成“前台分发—后台产能”的Wholesale关系；
+- 在国产化项目中把芯片适配、集群稳定性和有效Token成本打包，而非只报价卡时；
+- 对京东、小米等超大型互联网客户，接受自己更可能是专项集群或Secondary Vendor，而不是综合Cloud主供应商。
+
+#### 4. 本周SenseCore信号：模型增强不等于Infra Revenue增强
+
+SenseNova U1.5 Lite正式版可能提升内部多模态推理需求，也可作为Token Plan的新供给。但对SenseCore窄口径，至少要看到以下任一硬指标才上调判断：
+
+- 外部付费Token或Reserved Inference Revenue；
+- 长期Capacity合同及最低消费；
+- 推理池GPU数量、利用率和单位Token成本；
+- 国产万卡集群的实际投产、客户与SLA；
+- GPUaaS转Inference后的Gross Profit改善。
+
+### 六、清程极智固定观察
+
+**【核查结果】** 本周未发现清程极智在Cloud Revenue、可调度算力规模、长期Capacity合同、标杆客户或标准化License方面有新的可验证披露。
+
+因此维持：
+
+- 分类为**AI Infra基础软件／异构算力效率层**；
+- 重点看赤兔Chitu推理引擎、八卦炉训练系统、国产芯片适配、Token生成效率、开源采用和生产级客户；
+- 与无问芯穹、基流科技的软件栈比较；
+- 不进入Neocloud或GPU Cloud排名，直至出现可验证的Cloud收入、调度规模或长期容量合同。
+
+### 七、未来观察指标
+
+1. **Agent入口经济性：** 阿里Coding Plan、腾讯WorkBuddy/CodeBuddy、火山TRAE/Coding Plan的付费用户、续费率、实际请求成本和未使用额度。
+2. **入口到Cloud转化：** Token增长是否对应MaaS/API/Capacity Revenue，而不只是免费或内部调用。
+3. **SenseCore Inference：** Reserved Capacity覆盖率、Take-or-pay比例、每GPU小时Gross Profit、Top 1/Top 3客户集中度。
+4. **GPU池可逆性：** GPUaaS与Inference池互转所需时间、软件改造成本及峰值SLA。
+5. **国产GPU有效产能：** 同模型、同质量、同SLO下的每百万有效Token全成本，不使用峰值PFlops替代。
+6. **CoreWeave资本质量：** Backlog兑现、利息费用、Adjusted operating margin、客户集中及Capex融资成本。
+7. **Nebius模式：** Partner-financed Capacity占比、Token Factory Revenue/毛利及Inference工作负载增速。
+8. **独立Token Hub：** 硅基流动、趋境、PPIO的Dedicated Inference、企业客户留存和Public API Gross Margin。
+9. **清程极智：** 生产级大集群、标准License、付费客户和可审计Revenue。
+10. **竞争坐标触发器：** 只有长期合同、可用Capacity、可验证收入/毛利或大规模生产SLA发生变化，才调整主排名。
+
+### 八、风险与待验证口径
+
+- 腾讯的Token增长和用户付费来自公司披露，但未单独披露WorkBuddy、CodeBuddy、MaaS或AI Cloud Revenue及Gross Margin。
+- “若剔除AI产品投入”的利润增速是管理层提供的补充口径，不等同于一个独立AI业务分部的损益。
+- 阿里Coding Plan按请求次数限制；不同任务可能消耗5—30次以上调用，不能将套餐请求上限直接换算为Token或成本。
+- OpenAI披露的Codex用户与角色结构属于公司运营数据，不能直接推算API Revenue或底层GPU需求。
+- CoreWeave Backlog包含需满足交付与可用性条件的未来承诺，不等同于已确认Revenue；Adjusted EBITDA也未反映全部折旧和利息负担。
+- Nebius的Inference“超过3倍”是工作负载指标而非Revenue增幅，Asset-light模式仍需验证合同控制权、伙伴资本成本与实际毛利。
+- SenseCore官网产品、GPU和算力指标为公司披露；窄口径AI Cloud Revenue、GPUaaS/Token收入及Gross Margin仍未单独公开。
+- 本期中国竞争排序为研究框架，不是Gartner官方Magic Quadrant，也不是审计市场份额排名。
+
+### 本期结论
+
+**Agent正在从模型的“应用层”变成AI Infra的需求操作系统。** 它把Seat、工作流、模型路由、Token和Cloud结算连成闭环：总Token需求会增长，但价格权与用户关系更集中在入口平台；上游只有长期Capacity、Serving效率和生产SLA能够保留利润。
+
+对SenseCore而言，最关键的不是追逐所有Agent入口，而是把入口制造的需求转成可融资、可调度、可盈利的长期生产负载：GPUaaS守住资产利用率，Reserved Inference提高单位GPU贡献，Token Hub负责长尾分发，SenseCore争取成为核心客户的Primary Production Cloud。
+
+### 主要来源
+
+- [阿里云：Coding Plan概述（8月17日更新）](https://help.aliyun.com/zh/model-studio/coding-plan)
+- [OpenAI：Codex for every role, tool, and workflow（8月18日）](https://openai.com/index/codex-for-every-role-tool-workflow/)
+- [腾讯：2026年第二季度业绩公告（8月12日）](https://www.tencent.com/wp-content/uploads/2026/08/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%B8%83%E4%BA%8C%E9%9B%B6%E4%BA%8C%E5%85%AD%E5%B9%B4%E7%AC%AC%E4%BA%8C%E5%AD%A3%E4%B8%9A%E7%BB%A9.pdf)
+- [CoreWeave：2026年第二季度业绩（8月11日）](https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx)
+- [Nebius：2026年第二季度股东信（8月12日）](https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf?cache-buster=2026-08-12T11%3A54%3A46.695Z)
+- [商汤新闻中心：SenseNova U1.5 Lite（8月21日）](https://www.sensetime.com/cn/news)
+- [SenseCore官网：AI Cloud产品与能力](https://www.sensecore.cn/)
+
+---
+
 ## 2026-08-14｜旧GPU续命、Managed Inference起量：AI Cloud进入双利润池阶段
 
 **观察区间：2026-08-08—2026-08-14**  
