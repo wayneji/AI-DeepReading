@@ -4,6 +4,118 @@
 
 ---
 
+# 每周模型趋势周报｜2026-08-28
+
+> 更新窗口：2026-08-21 至 2026-08-28
+
+## 本周结论
+
+**Kimi K3 仍守住中国开放权重第一，但 Top 5 再次洗牌：8 月 26 日，Z.ai 的 GLM-5.3-Flash 与阿里的 Qwen3.8-Flash-Next 都正式进入官方 Hugging Face，并分别以 Artificial Analysis 57、56 分直接冲入第三、第四。更重要的是，两者都不是靠更大的激活规模换分——GLM-5.3-Flash 只有 18B active，Qwen3.8-Flash-Next 更只有 6B active。中国开放模型的主战场正在从“最大模型能力”转向“前沿能力 × 推理效率 × 多模态 × 部署成本”。**
+
+截至本期，中国开放权重前五为 **Kimi K3 60 / Qwen3.8-2.4T-A95B 58 / GLM-5.3-Flash 57 / Qwen3.8-Flash-Next 56 / DeepSeek V4 Pro 0813 53**。GLM-5.2 与 Qwen3.8-27B 因此跌出 Top 5——不是它们退步，而是新模型把门槛再次抬高。
+
+## Top 11 快速概览
+
+### 中国开放权重 Top 5
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index | 相比上期 |
+|---:|---|---|---:|---|
+| 1 | **Kimi K3** | 2026-07；官方 HF；Kimi K3 License | **60（Max）** | —；综合仍第一，Agent/多模态强，但 2.8T/104B active、速度与价格仍偏重 |
+| 2 | **Qwen3.8-2.4T-A95B** | 2026-08-12；官方 HF；Qwen3.8-Max License | **58** | —；近 1M context，能力非常强，但约 22 tok/s，仍是“大而慢”的旗舰路线 |
+| 3 | **GLM-5.3-Flash** | **2026-08-26；官方 HF；MIT** | **57** | **新进 #3**；320B/18B active，原生多模态，约 50 tok/s，价格仅 $0.15/$0.50 |
+| 4 | **Qwen3.8-Flash-Next** | **2026-08-26；官方 HF；Qwen Community 1.0** | **56** | **新进 #4**；125B 主干仅 6B active，文本/图像/视频，约 73 tok/s，极强能力/成本比 |
+| 5 | **DeepSeek V4 Pro 0813** | 2026-08-13；官方 HF；MIT | **53（Max）** | ↓2；仍是强 Agent/推理旗舰，但被新一代 Flash 模型从能力和效率两侧夹击 |
+
+**本周最重要的是 GLM-5.3-Flash。** Z.ai 原本在 8 月 14 日发布 GLM-5.3 时，Hugging Face 仍标记为 “Coming Soon”；8 月 26 日推出的 Flash 版现在已经进入 `zai-org` 官方 Collection，并以 MIT 开放。它不是 GLM-5.2 的简单压缩：320B 总参数、18B active，新底座加入混合 sparse + linear attention、mHC，并使用 30T token 多模态预训练语料。Artificial Analysis 给出 **57 分**，已经高于 GLM-5.2，同时 API 价格约只有 $0.15 / $0.50 每百万输入/输出 token。
+
+这意味着 Z.ai 的路线发生了非常明显的变化：**上一代 GLM-5.x 追求“旗舰规模下的工程平衡”，GLM-5.3-Flash 开始直接追求“前沿能力但只激活十几 B 参数”。** 如果真实业务中的 coding/Agent 完成率能稳定复现，这类模型可能比 700B～2T 级旗舰更具生产价值。
+
+**Qwen3.8-Flash-Next 更激进。** 官方模型卡显示语言主干为 **125B 参数、仅 6B activated**，另有 51B n-gram embedding 和 4B MTP；支持图像与视频输入，原生 262K context、可扩展到 1M。Artificial Analysis 给出 **56 分、约 73 tok/s**，API 约 $0.15 / $0.47。它的综合分只比 2.4T-A95B 低 2 分，却以完全不同的推理经济性运行。
+
+这也是本周真正值得记住的技术趋势：**MoE 已经不只是让“大模型便宜一点”，而是在把 frontier-level 能力压进个位数到十几 B 的 active parameters。** 如果这个方向继续，未来“模型总参数”会越来越不适合作为产品成本的直觉指标。
+
+**跌出 Top 5：GLM-5.2、Qwen3.8-27B。** GLM-5.2 仍约 53 分，与 DeepSeek V4 Pro 实际处于同一能力带；本期把正式更新更近、Agent 路线更强的 DeepSeek 暂列第五。Qwen3.8-27B 约 52 分，则从上期第五跌出。两者仍然非常有价值，尤其 27B 的本地部署意义并没有因为落榜而消失。
+
+### 中国以外开放权重 Top 3
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **Inkling**（Thinking Machines） | 2026-07-15；HF；Apache 2.0 | **约 42** | —；海外综合第一，1M context，文本/图像/语音输入 |
+| 2 | **NVIDIA Nemotron 3 Ultra** | 2026-06-04；HF；OpenMDW | **约 38** | —；55B active，高吞吐、训练透明度与企业 Agent 工具链仍是强项 |
+| 3 | **Meta Muse Glimmer 30B** | 2026-08-10；HF；Apache 2.0 | **约 35** | —；30B 本地多模态 Agent，GGUF/ExecuTorch/4-bit 生态继续完善 |
+
+海外 Top 3 本周没有新的旗舰换位，但**与中国的纯能力差距反而被再次拉大**：中国第五名已经约 53 分，而海外第一 Inkling 仍在 42 分附近。海外当前更有优势的不是最高 intelligence，而是许可证、训练透明度、本地运行和成熟部署栈。
+
+Muse Glimmer 本周继续补齐 GGUF、ExecuTorch 等本地部署链路，说明 Meta 的策略越来越明确：不在超大模型正面对撞中国厂商，而是先把多模态 Agent 压到个人设备。**如果 Muse Spark 1.2 最终真正开放权重，才可能改写海外第一。**截至本期，它仍不满足本周的官方 HF 可下载权重准入条件。
+
+### 全球闭源 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
+|---:|---|---:|---:|---|
+| 1 | **Claude Opus 5** | 2026-07-24 | **约 63（Max）** | —；综合与长周期 Agent 仍第一 |
+| 2 | **Claude Fable 5** | 2026-06-09 | **约 62（含 fallback）** | —；研究/知识工作强，但价格高且比较受 fallback 影响 |
+| 3 | **Grok 4.6** | 2026-08-12 | **61（High）** | —；与 GPT-5.6 Sol 同处 61 分带，但 $2/$6 的价格更有攻击性 |
+
+闭源 Top 3 本周没有新旗舰改写榜单。**GPT-5.6 Sol 仍与 Grok 4.6 大致同处 61 分能力带**；OpenAI 8 月 21 日还把 GPT-5.6 Sol API/credits 价格临时下调超过 20%，说明闭源竞争也在进入价格战，而不是只拼模型分数。
+
+开放与闭源的差距依旧很窄：Kimi K3 60，距离闭源第三只有约 1 分、距离 Opus 5 约 3 分。现在闭源更难被复制的部分仍是**稳定的长周期 Agent 执行、受控工具环境、企业治理、产品级 orchestration 和平台分发**。本周 Grok 4.6 进一步进入 Microsoft Foundry，也说明闭源模型正在通过多云分发把“模型能力”变成企业可直接采购的系统能力。
+
+Google 仍没有靠通用语言模型重返前三，但它在另一个方向有非常重要的更新：Gemini Omni 1.1 Flash。
+
+## 本周真正发生的变化
+
+1. **GLM-5.3 的“Coming Soon”兑现成了真实开放权重。** 8 月 26 日 GLM-5.3-Flash 进入 Z.ai 官方 Hugging Face，MIT，57 分，直接进入中国 #3。
+2. **Qwen 再次展示极强的版本迭代速度。** 2.4T Max 级权重刚开放两周，Qwen3.8-Flash-Next 又以 6B active / 56 分进入 #4；Qwen 现在同时占据中国前五两个席位。
+3. **Top 5 门槛从“52 分左右”抬到“53 分左右”。** Qwen3.8-27B 只过一周就跌出前五，说明当前中国开放模型迭代速度已经快到“优秀模型一周后可能只剩榜外第一”。
+4. **能力榜与部署榜进一步分离。** Kimi K3 仍是能力第一，但 GLM-5.3-Flash、Qwen3.8-Flash-Next 的单位成本和 active parameters 明显更适合大规模 Agent 子任务。
+5. **海外开放权重没有同步追上。** 中国开放前五与海外第一的差距扩大到约 11 分，短期内开放模型的 frontier 仍明显由中国厂商主导。
+
+## 本周其他爆点
+
+### 1. Gemini Omni 1.1 Flash：视频竞争开始转向“可编辑的生产工作流”
+
+Google 在 **8 月 27 日**推出 Gemini Omni 1.1 Flash。相比此前更偏单次生成的路线，这次重点是**延长已有场景、指定首尾帧进行镜头插值、低分辨率快速草稿，以及最高 4K upscale**。它已进入 Google Flow，并通过 API 提供给开发者。
+
+这次更新的意义不是单纯“4K 更清楚”，而是视频模型开始真正像生产工具：先用低成本 360p 快速试构图，再确定镜头，最后 upscale；还可以延展已有片段和控制首尾画面。**视频生成的竞争正在从 demo 画质转向 timeline continuity、镜头控制和迭代成本。**
+
+对 MiniMax H3、Seedance、Kling 等路线来说，这意味着开放模型即便追上单镜头质量，也还要追“完整创作工作流”的差距。
+
+### 2. Anthropic MHS：Agent 开始从软件工具走向真实物理设备
+
+Anthropic 在 **8 月 27 日**开放 Model Hardware Standard（MHS）的研究预览，让 AI Agent 通过统一规范操作显微镜、液体处理设备、机器人手臂和量子实验设备等可编程硬件。它当前是 research preview，尚未 open source，但 Anthropic 明确计划在安全评估后开放标准。
+
+这很像 MCP 的下一步：MCP 让模型连接软件与数据，MHS 试图让 Agent 连接物理设备。**如果这条路线成立，下一阶段 Agent 的衡量标准会从“能不能操作浏览器/IDE”扩展到“能不能安全、可验证地闭环控制现实设备”。** 这会直接影响科学自动化、机器人、先进制造和实验室 AI。
+
+## 下周重点观察
+
+1. **GLM-5.3 是否会再开放非 Flash 旗舰版本。** 当前真正进入 HF 的是 GLM-5.3-Flash；8 月 14 日公布的更强 GLM-5.3 本体仍值得继续区分。
+2. **Qwen3.8-Flash-Next 的第三方 Agent 实测。** 重点不是 56 分，而是 6B active 是否真的能在真实 coding/CoWork workload 中兑现总成本优势。
+3. **Kimi 是否回应 Qwen / GLM 的效率路线。** Kimi K3 仍是第一，但其慢、贵、大的短板越来越明显。
+4. **海外开放权重是否出现 50+ 分新模型。** 如果没有，中国与海外开放前沿的差距可能继续扩大。
+5. **Gemini Omni 1.1 Flash 与 MiniMax H3 的真实制作对比。** 未来视频榜单应更关注编辑、延展、角色连续性和单条可用视频成本，而非只看一次性审美 Elo。
+
+## 主要来源
+
+- [Kimi K3 — Artificial Analysis](https://artificialanalysis.ai/models/kimi-k3)
+- [Kimi K3 官方 Hugging Face](https://huggingface.co/moonshotai/Kimi-K3)
+- [Qwen3.8-2.4T-A95B — Artificial Analysis](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b)
+- [Qwen 官方 Hugging Face](https://huggingface.co/Qwen)
+- [Qwen3.8-Flash-Next 官方模型卡](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen3.8-Flash-Next — Artificial Analysis](https://artificialanalysis.ai/models/qwen3-8-flash-next)
+- [GLM-5.3-Flash 官方发布](https://z.ai/blog/glm-5.3-flash)
+- [GLM-5.3-Flash 官方 Hugging Face](https://huggingface.co/zai-org/GLM-5.3-Flash)
+- [GLM-5.3-Flash — Artificial Analysis](https://artificialanalysis.ai/models/glm-5-3-flash)
+- [DeepSeek V4 Pro 官方 Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
+- [Meta Muse Glimmer 官方 Hugging Face](https://huggingface.co/meta-models/Muse-Glimmer-30B)
+- [Grok 4.6 — Artificial Analysis](https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis/)
+- [OpenAI GPT-5.6 官方发布与 8 月 21 日价格更新](https://openai.com/index/gpt-5-6/)
+- [Google：Gemini Omni 1.1 Flash](https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/)
+- [Google Flow：Omni 1.1 Flash 创作控制](https://blog.google/innovation-and-ai/models-and-research/google-labs/new-creative-controls-google-flow/)
+- [Model Hardware Standard](https://modelhardwarestandard.com/)
+- [Reuters：Anthropic 推出 Model Hardware Standard（2026-08-27）](https://www.reuters.com/technology/anthropic-unveils-new-framework-allowing-ai-agents-operate-physical-devices-2026-08-27/)
+
+---
+
 # 每周模型趋势周报｜2026-08-21
 
 > 更新窗口：2026-08-14 至 2026-08-21
