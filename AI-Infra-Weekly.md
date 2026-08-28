@@ -4,6 +4,209 @@
 
 ---
 
+## 2026-08-28｜资本开始定价Agentic Cloud：AI Infra从扩卡转向可融资的Token产能
+
+**观察区间：2026-08-22—2026-08-28**  
+**本期主线：** 本周两组信号必须放在一起看：阿里完成800亿港元配售，并把资金明确投入全球计算基础设施、超大规模AI数据中心和Agentic Cloud；NVIDIA Data Center单季Revenue达到890亿美元、需求继续加速，但据Reuters转述的WSJ报道，NVIDIA暂停了部分面向小型AI Cloud的收入分成融资安排。前者说明模型、Agent入口、MaaS与Cloud的整合已经进入资产负债表；后者说明“芯片厂支持”不能代替终端客户、合同质量和独立融资能力。未来3—12个月，AI Infra的竞争单位将从GPU数量和标称Token吞吐，升级为可被长期合同覆盖、可度量Gross Profit、可通过SLA审计的生产型Token Capacity。
+
+### Executive Summary
+
+1. **阿里把“模型—Agent入口—Cloud—Capex”闭环写进了融资用途。** 8月26日完成的800亿港元配售中，约60%用于扩大全球计算基础设施，约40%用于超大规模AI数据中心及存储、数据库、高性能网络升级，以支持Agentic Cloud。中国Hyperscaler的竞争已不是单个模型或Coding Plan，而是用资本把Qwen、Qoder/Qwen Code、百炼、钉钉与底层AI Infra连成同一套Portfolio。
+2. **GPU需求仍强，但Neocloud的资本红利开始分层。** NVIDIA Q2 FY2027 Data Center Revenue为890亿美元，同比增长117%；与此同时，可靠报道显示其暂停部分为小型AI Cloud提供信用支持、回租未售Capacity并分享收入的安排。需求景气与融资纪律可以同时成立：有长期客户合同的CoreWeave、Nebius、Lambda、Crusoe仍可扩张，依赖厂商担保和未来利用率假设的尾部玩家将面临更高资本成本。
+3. **Agent入口正在从Coding和知识工作继续进入物理世界。** Anthropic发布Model Hardware Standard研究预览，让Agent通过标准化Driver与MCP操作实验室和制造设备。此类负载不是廉价Public Token API可以完整承接的，而需要长时运行、状态管理、网络隔离、审计、低延迟和故障恢复，利好Dedicated Inference、Private AI Cloud与边云协同。
+4. **中国Cloud竞争开始出现“增长＋利润＋资金”三项同时验证。** 阿里最近季度AI Cloud and Compute Services Revenue为71亿美元、同比增长45%，Cloud adjusted EBITA Margin约12%；百度Q2 AI Cloud Infra Revenue为73亿元、同比增长50%，GPU Cloud Revenue同比增长283%，外部客户千帆Token Revenue增长超过9倍。大厂的优势来自入口、模型、MaaS、GPU Cloud和资本的组合，而不是单点Token低价。
+5. **SenseCore应把“可融资Token产能”作为经营目标，而不是追随大厂扩Capex。** 对头部客户销售12—24个月Take-or-pay和Reserved Throughput；对年预算1,000万—8,000万元的Multi-vendor客户争取Primary Production Cloud；对地方或客户出资的国产集群提供Managed Private AI Cloud。没有最低消费、终端客户可见性和每GPU小时毛利的Token量，不应成为新增资产依据。
+
+### 一、关键动态及影响
+
+#### 1. 阿里：800亿港元把Agentic Cloud从产品叙事变成资本配置
+
+**【已确认事实】** 阿里8月26日完成发行7.1亿股、规模800亿港元的配售。公司披露，净募集资金约60%（478.71亿港元）用于扩大全球计算基础设施，约40%（319.14亿港元）用于加速建设超大规模AI数据中心，并升级存储、数据库和高性能网络，以支持向Agentic Cloud架构的全面升级。[阿里配售完成公告，2026-08-26](https://www.alibabagroup.com/en-US/document-2029365886510432256)
+
+此前8月20日披露的季度结果提供了需求与利润旁证：AI Cloud and Compute Services Revenue达到71亿美元、同比增长45%，为22个季度最高增速；AI相关产品Revenue为18亿美元，连续第12个季度三位数增长；Cloud adjusted EBITA为8.30亿美元、Margin约12%。阿里还披露真武M890已被20多个行业的650多家外部客户采用。[阿里季度业务更新，2026-08-20](https://www.alibabagroup.com/en-US/document-2027233133950140416)
+
+**【分析判断】** 这次融资的战略含义大于资金本身：Qwen模型、Qoder/Qwen Code等Agent入口、百炼MaaS与Token Plan、钉钉企业入口以及GPU/自研芯片Capacity，开始接受同一套资本回报约束。阿里可以用应用和订阅形成需求，用模型路由控制推理成本，再用Cloud合同提高Capacity利用率。
+
+对火山引擎、腾讯云、百度智能云及独立AI Cloud的影响不同：
+
+- 火山引擎拥有豆包、TRAE、飞书和方舟的入口闭环，下一步需要证明外部Revenue、企业客户留存和推理Margin能否与规模匹配；
+- 腾讯已用WorkBuddy、CodeBuddy、TokenHub和企微/QQ形成多入口，当前短板是公开披露的Cloud绝对规模和独立Token经济性；
+- 百度已经给出GPU Cloud与千帆Token增长，但需要把Comate、DuMate、秒哒等入口更稳定地转化为订阅与Cloud Revenue；
+- 独立玩家无法复制大厂资产负债表，必须用中立性、跨芯片效率、客户自有环境和专属SLA建立价值。
+
+#### 2. NVIDIA：需求纪录与融资收紧同时出现
+
+**【已确认事实】** NVIDIA 8月26日公布Q2 FY2027 Revenue为962亿美元，同比增长106%；Data Center Revenue为890亿美元，同比增长117%，环比增长18%；GAAP与Non-GAAP Gross Margin均为75%。Q3指引为1,080亿美元，且未计入来自中国的Data Center Compute Revenue。Vera Rubin已在CoreWeave、Google Cloud、Microsoft Azure、Oracle Cloud和Nebius等伙伴进入量产爬坡。[NVIDIA Q2 FY2027结果，2026-08-26](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/default.aspx)
+
+**【可信报道】** Reuters 8月27日转述WSJ称，NVIDIA暂停了部分新融资计划下的交易。该安排原拟向小型AI Cloud提供信用支持，并在其无法售出Capacity时回租算力；NVIDIA还可能分享超过某一阈值的Cloud Revenue。报道同时称，该模式仍可能调整后恢复，NVIDIA表示扩大算力可获得性的总体商业模式仍在演进。[Reuters，2026-08-27](https://www.reuters.com/business/nvidia-pauses-revenue-sharing-deals-with-ai-cloud-companies-wsj-reports-2026-08-27/)
+
+**【分析判断】** 这不是AI算力需求转弱，而是资本市场开始区分三类Backlog：
+
+1. 终端客户承担最低消费、期限覆盖折旧的长期合同；
+2. 芯片厂、Cloud或融资方提供回购/回租支持的结构化需求；
+3. 基于未来Spot价格和利用率预测的投机性Capacity。
+
+只有第一类最接近可持续经营现金流。第二类能够加速扩张，但必须穿透审视担保、收入分成、客户限制和关联交易；第三类在GPU代际更替或融资利率上升时风险最大。
+
+#### 3. Anthropic：Claude从Coding Agent接口继续伸向物理设备
+
+**【已确认事实】** Anthropic 8月27日发布Model Hardware Standard（MHS）研究预览。MHS通过标准化Driver，让Agent发现并操作显微镜、液体处理器、机器人手臂等可编程设备；可使用MCP等标准协议，且设计为Model-agnostic。Anthropic称其可把部分设备集成从数周或数月压缩至数小时或数分钟，并支持全天候实验、动态调参和部分故障恢复；目前仍处研究预览与安全评估阶段。[Anthropic MHS，2026-08-27](https://www.anthropic.com/news/model-hardware-standard-research-preview)
+
+**【分析判断】** Codex、Claude Code及中国Coding Agent正在向同一方向演进：Agent Harness开始控制浏览器、企业应用、代码环境和物理设备。其Infra需求具有四个新特征：
+
+- 单任务持续时间更长，Token并非均匀到达；
+- 工具调用、图像/传感器数据和状态存储提高非GPU成本；
+- 失败会造成现实损失，因此SLA、审计和权限隔离价值上升；
+- 许多负载必须靠近企业、实验室或工厂，推动Private/Edge Inference。
+
+这会提高总Token需求，但不会平均增加每一家Token Hub的利润。入口平台控制模型路由，生产平台控制有效Token成本，缺少入口和Serving效率的纯转售层仍被压缩。
+
+#### 4. 中国其他核心玩家：大厂Q2数据强化Portfolio差距，本周无新坐标重排
+
+**【已确认事实／跨期对照】** 百度8月18日披露Q2 AI Cloud Infra Revenue为73亿元、同比增长50%；其中GPU Cloud Revenue同比增长283%，进一步快于Q1的184%；外部客户在千帆的Token使用Revenue同比增长超过9倍。上述业务数据来自公司内部管理账目，未经审计，应与法定财务报表口径分开。[百度Q2 2026结果](https://ir.baidu.com/news-releases/news-release-details/baidu-announces-second-quarter-2026-results/)
+
+腾讯Q2披露Cloud Revenue同比增长low-twenties，AI需求同时带动GPU Rental、MaaS、WorkBuddy和CodeBuddy Revenue，但公司仍受Compute约束。这与阿里、百度共同确认了“入口—Token—GPU Cloud”闭环，而不是单独一项模型发布。[腾讯Q2 2026结果演示](https://static.www.tencent.com/website-2026-upload/2Q26-earnings-PPT_20260812_1800-88b183.pdf)
+
+**【核查结果】** 本观察期内，未发现字节/火山引擎、腾讯云、百度智能云、华为云、SenseCore、并行科技、硅基流动、趋境、PPIO、无问芯穹、基流科技和清程极智发布足以改变主排序的新增经审计Revenue、可调度GPU规模、长期Capacity合同或重大融资。没有硬证据时，不用产品宣传机械调整排名。
+
+### 二、竞争格局变化
+
+本期维持此前中国三层坐标，以下为分析框架，不是Gartner官方排名：
+
+- **Ceiling：** 阿里云 → 火山引擎 → 腾讯云 → 百度智能云 → 华为云
+- **SenseCore Arena：** 天翼云 → SenseCore商汤大装置 → 金山云 → 并行科技 → 曙光先进计算云 → 首都在线 → UCloud
+- **Chasers & Adjacent：** 硅基流动 → PPIO派欧云 → 无问芯穹 → 趋境科技 → 基流科技 → ZStack
+- **AI Infra基础软件／异构效率观察：** 清程极智，以及无问芯穹、基流科技的软件栈部分
+
+名次暂不变化，但评价权重发生三项调整：
+
+1. **融资独立性上升。** 芯片厂供货、投资或回租可以加速起量，却不能替代终端合同和正向单位经济性。
+2. **Portfolio闭环上升。** 阿里、字节、腾讯、百度能用模型、Agent/Coding入口、MaaS、GPU Cloud和企业账号互相导流；独立玩家必须证明其跨Cloud与中立价值。
+3. **生产SLA上升。** Agent进入科研和物理设备后，低价Token不再足够，状态、权限、审计、故障恢复和数据位置成为采购条件。
+
+海外坐标也维持：
+
+- **天花板：** AWS、Microsoft Azure、Google Cloud；
+- **领先Neocloud：** CoreWeave；
+- **同身位/追赶：** Nebius、Lambda、Crusoe；
+- **Inference Platform：** Together AI、Fireworks AI、Baseten、Lepton等。
+
+但尾部Neocloud的估值与融资应新增一条扣分项：如果Capacity依赖芯片厂回租、担保或Revenue Share，而没有可穿透的终端Take-or-pay，应降低其可持续Backlog质量。
+
+### 三、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：需求继续增长，资本成本开始决定报价底线
+
+未来3—12个月，GPUaaS不会进入统一价格走势，而会按合同与资产质量分层：
+
+| Capacity类型 | 需求与价格 | 利润决定因素 | 主要受益者 |
+|---|---|---|---|
+| Frontier连续集群 | 仍稀缺、长期合同溢价 | 互联、供电、交付速度、SLA | Hyperscaler、CoreWeave、头部Neocloud |
+| 生产Inference池 | 单Token降价、Reserved Throughput可溢价 | 利用率、Serving效率、峰值保障 | Managed Inference与Primary Production Cloud |
+| 中型客户Multi-vendor | 价格竞争激烈，但主供应商有粘性 | 工作负载迁移成本、专家服务、账期 | SenseCore、并行科技、无问芯穹 |
+| 碎片与长尾GPU | Spot价格承压 | 聚合调度、低获客成本 | 并行科技、区域Cloud、渠道 |
+| 国产Private AI Cloud | 硬件价格不是唯一变量 | 适配、稳定性、Token成本、运营SLA | SenseCore及异构软件伙伴 |
+
+NVIDIA融资安排的暂停会提高部分小型AI Cloud的Weighted Average Cost of Capital。为了覆盖更高利息和更少担保，它们要么提高GPU租价，要么接受更低资产回报，要么延后采购。结果可能不是公开Spot价格立即上涨，而是新Capacity更集中到有长期客户和低成本资本的玩家。
+
+#### Inference/Token：利润池从“每百万Token价差”转向“Capacity合同＋任务SLA”
+
+阿里的Agentic Cloud投入和Anthropic MHS指向同一结果：用户采购的最终对象逐渐从Token变成可完成任务的系统。未来利润更可能分成三层：
+
+1. **入口利润：** Codex、Claude Code、Qoder、TRAE、WorkBuddy、Comate等掌握用户、席位、工作流和默认模型；
+2. **生产利润：** Reserved Capacity、Dedicated Endpoint、KV Cache、批处理、异构调度与低延迟Serving；
+3. **治理与集成利润：** Private Deployment、工具/设备连接、权限、安全、审计和SRE。
+
+纯Public API转售位于中间，最容易被Hyperscaler的Token Plan和模型公司的直销压缩。硅基流动、趋境、PPIO等Token Hub要守住利润，必须扩大Dedicated Inference、跨芯片优化和企业私有化占比，并让客户为SLA与中立路由付费。
+
+对大模型公司的传导同样两面：Agent入口带来更大调用量，但Qwen、Doubao、Hy、文心、GPT与Claude背后的平台会通过路由和套餐压低外部模型采购价。只有拥有强自有入口，或在特定任务完成率上不可替代的模型，才能保留Token溢价。
+
+### 四、对SenseCore的具体传导
+
+#### 1. 不追逐阿里的Capex绝对规模，追逐可融资的合同质量
+
+SenseCore无法也不需要复制800亿港元融资。它更应把每一批新增Capacity对应到：
+
+- 12—24个月Take-or-pay；
+- 覆盖设备折旧与资金成本的最低单价；
+- 可验证终端客户，而非多层转售；
+- 明确的SLA、违约责任和峰值规则；
+- 每GPU小时Risk-adjusted Gross Profit。
+
+若依赖伙伴融资，应保留调度、Serving、客户合同和SLA数据，避免变成只承担运维责任的底层资源方。
+
+#### 2. 中型Multi-vendor客户仍是最现实主战场
+
+对年GPU/Inference预算约1,000万—8,000万元的客户，FastCore/SenseCore、并行科技、无问芯穹等共同入围是常态。SenseCore不应追求100%份额，而应争取：
+
+- 50%—60%的Primary Vendor份额；
+- 核心生产Inference与高SLA训练；
+- 3—12个月Reserved Capacity；
+- 模型部署、性能优化和SRE附加收入。
+
+并行科技更容易获得弹性资源与长尾工作负载，无问芯穹更容易获得异构与国产迁移，SenseCore应占据最难迁移、最影响客户Revenue的Production Pool。
+
+#### 3. 把Agent工作负载产品化为“基线＋峰值＋治理”
+
+建议将产品拆为：
+
+- 基线Reserved Throughput或最低月度消费；
+- 峰值按Token/GPU秒计费，并分层SLA；
+- 长任务的状态保存、Checkpoint、故障恢复与可观测性；
+- 工具、数据和设备连接的专属网络及审计；
+- 国产GPU适配、量化与Serving优化单独收费。
+
+这比单纯报每百万Token价格更能承接Coding、企业Agent和未来物理设备工作流，也更容易形成可融资现金流。
+
+#### 4. 对大厂保持“需求外溢＋中立第二Cloud”的位置
+
+阿里、字节、腾讯和百度的自有入口会优先消化内部Cloud。SenseCore可争取的不是替代其主Cloud，而是：
+
+- 模型公司不愿被单一Hyperscaler锁定的中立Capacity；
+- 大厂或大型企业的Overflow、专项集群和国产化池；
+- Token Hub背后的Wholesale Inference；
+- 客户自出CAPEX、SenseCore负责设计运营的Managed Private AI Cloud。
+
+### 五、清程极智固定观察
+
+**【核查结果】** 本周未发现清程极智在赤兔Chitu推理引擎、八卦炉训练与异构系统、国产芯片/主流模型适配、开源采用、标杆客户、可验证Revenue或长期Capacity合同方面出现新的实质披露。
+
+因此维持原定位：
+
+- 归入**AI Infra基础软件／异构算力效率层**；
+- 主要与无问芯穹、基流科技等软件栈玩家比较；
+- 不因软件能力推断其拥有Cloud Revenue或GPU资源；
+- 只有出现可验证Cloud收入、可调度算力规模或长期容量合同后，才评估进入GPU Cloud竞争序列。
+
+### 六、未来观察指标及风险
+
+1. **阿里资金落地：** 800亿港元中实际进入GPU/自研芯片、AIDC、电力网络与Cloud软件的比例、投产时间、外部客户利用率和增量EBITA。
+2. **Agent入口到Cloud转化：** Qoder/Qwen Code、TRAE、WorkBuddy/CodeBuddy、Comate，以及Codex、Claude Code的企业席位、任务完成率、平均调用成本和Reserved Capacity采购。
+3. **Neocloud融资质量：** 芯片厂担保、回租、Revenue Share和关联采购占比；剔除这些安排后的终端Backlog与经营现金流。
+4. **NVIDIA供需：** Vera Rubin爬坡、NVIDIA Q3指引兑现，以及未计入中国Data Center Compute Revenue对国内GPU供给和国产替代的实际影响。
+5. **百度与腾讯闭环：** 百度GPU Cloud增长的绝对Revenue与Margin、千帆外部Token客户留存；腾讯Cloud low-twenties增长能否在Compute约束缓解后延续。
+6. **SenseCore经营质量：** Take-or-pay覆盖率、Top 1/Top 3集中度、每GPU小时Gross Profit、GPUaaS与Inference池互转时间、国产集群有效Token成本。
+7. **物理Agent负载：** MHS等标准从Research Preview进入生产后，设备控制的边缘部署、网络隔离、责任边界和保险成本。
+
+### 主要风险与口径提示
+
+- 阿里募集资金用途是公司计划，不等于资金已经形成投产Capacity或Revenue；后续需跟踪实际Capex、上线时间与利用率。
+- NVIDIA融资暂停来自Reuters转述WSJ的报道，不是公司监管文件；计划可能调整或重新启动，不能推断为AI需求转弱。
+- NVIDIA Data Center Revenue包括Hyperscaler、Neocloud、企业及网络等多类需求，不能直接等同于GPUaaS市场规模。
+- 百度AI Cloud Infra、GPU Cloud与Token增长来自内部管理口径且未经审计；同比增速不能替代绝对GPU Cloud Revenue与Gross Margin。
+- Anthropic MHS仍是Research Preview；从实验室样例到大规模生产会受到安全、合规、设备协议和责任归属限制。
+- 本文竞争坐标为分析判断，不是Gartner官方Magic Quadrant或Market Share结论。
+
+### 主要来源
+
+- [阿里：完成800亿港元配售及资金用途](https://www.alibabagroup.com/en-US/document-2029365886510432256)
+- [阿里：AI Cloud and Compute Services季度更新](https://www.alibabagroup.com/en-US/document-2027233133950140416)
+- [NVIDIA Q2 FY2027财务结果](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/default.aspx)
+- [Reuters：NVIDIA暂停部分AI Cloud收入分成融资安排](https://www.reuters.com/business/nvidia-pauses-revenue-sharing-deals-with-ai-cloud-companies-wsj-reports-2026-08-27/)
+- [Anthropic：Model Hardware Standard研究预览](https://www.anthropic.com/news/model-hardware-standard-research-preview)
+- [百度Q2 2026结果](https://ir.baidu.com/news-releases/news-release-details/baidu-announces-second-quarter-2026-results/)
+- [腾讯Q2 2026结果演示](https://static.www.tencent.com/website-2026-upload/2Q26-earnings-PPT_20260812_1800-88b183.pdf)
+
 ## 2026-08-21｜Agent工作台吞下Token入口：AI Infra竞争从API转向任务闭环
 
 **观察区间：2026-08-15—2026-08-21**  
