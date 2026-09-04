@@ -4,6 +4,221 @@
 
 ---
 
+## 2026-09-04｜NVIDIA买下模型入口，Astra抬高Agent SLA：AI Infra进入生态锁定战
+
+**观察区间：2026-08-29—2026-09-04**  
+**本期主线：** 本周AI Infra的控制点继续上移。NVIDIA拟以129.303亿美元收购Hugging Face，不再满足于销售GPU和AI Factory参考架构，而是进入开源模型发现、评测、分发与部署入口；OpenAI发布GPT-6 Astra，把Codex式Computer Use、长任务记忆和专业工作流进一步产品化，并通过OpenAI API、Azure和AWS Bedrock分发；Crusoe与Nscale则用模型公司、量化交易和具身智能客户的多年Capacity安排证明，头部Neocloud的融资能力越来越来自Anchor Workload，而不是公开GPU小时价。未来3—12个月，竞争将围绕“开发者入口—默认模型/芯片路由—长期Capacity—任务SLA”闭环展开。
+
+### Executive Summary
+
+1. **NVIDIA拟收购Hugging Face，AI Infra竞争从GPU供给延伸到开源模型入口。** Hugging Face拥有超过1,800万开发者、300万个模型、50万个数据集和100万个应用。即使NVIDIA承诺保持Multi-cloud、Multi-accelerator和模型中立，其同时控制芯片、CUDA/推理软件、模型社区与部署入口的能力仍会显著增强；Cloud与Inference平台可能被重新排序为Hugging Face背后的执行后端。
+2. **GPT-6 Astra说明高端Agent的定价单位已经不是单次对话，而是完成任务的速度、成功率和风险。** Astra在Codex中强化Computer Use与跨Context检索，Standard API价格为每百万Input Token 10美元、Output Token 50美元，Fast Mode为2倍价格；OpenAI同时披露所有外部Tool-using Inference都增加Misalignment Monitoring，安全检查可能暂停或中止合法任务。更强模型并不自动带来更低Token单价，但可通过少重试、短工时和高任务完成率获得溢价。
+3. **Neocloud进入“Anchor合同＋股权绑定”阶段。** 据可靠报道，Crusoe获得超过30亿美元融资、估值约300亿美元，并与Jane Street签署约130亿美元、五年Cloud合同；Nscale宣布为Figure初始投入35亿美元Compute、计划扩大至60亿美元以上，并成为Figure股东和Preferred Compute Provider。GPUaaS的头部份额将向能绑定客户模型Roadmap和长期Capacity的玩家集中。
+4. **中国模型公司与国产GPU也在通过资本市场争夺Infra主动权。** Reuters报道称月之暗面已秘密递交香港IPO、拟募资30亿美元，并与Microsoft、AWS、Google讨论Kimi托管和Revenue-share；燧原科技IPO拟募资约61亿元，腾讯既是重要股东也是最大客户。两者分别代表模型公司把分发扩至全球Cloud，以及国产芯片依靠Anchor客户完成产品—资金闭环，但均需警惕客户集中和关联交易。
+5. **SenseCore的战略重点应是“中立的Open-model Production Cloud”，而不是复制Public Model Hub。** 对Kimi、智谱、DeepSeek、Token Hub及中型AI企业提供跨NVIDIA/国产芯片的Dedicated Inference、模型迁移、SLA与Take-or-pay；与Hugging Face、ModelScope及国内模型社区做双向接入；把每个战略合作还原为终端Revenue、最低消费与每GPU小时Gross Profit，避免用股权或生态关系掩盖Capacity风险。
+
+### 一、关键动态及影响
+
+#### 1. NVIDIA × Hugging Face：芯片公司开始控制模型发现与部署入口
+
+**【已确认事实】** NVIDIA 9月3日宣布同意以129.303亿美元收购Hugging Face。NVIDIA披露，Hugging Face平台服务超过1,800万开发者，并托管超过300万个模型、50万个数据集、100万个应用，超过20万家公司使用其平台发现、评测、定制和部署AI。NVIDIA承诺Hugging Face将继续支持Open-source/Open-weight、Multi-cloud和Multi-accelerator，且不会要求使用NVIDIA Compute；交易仍需完成监管等程序。[NVIDIA官方公告，2026-09-03](https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/)
+
+**【分析判断】** 这笔交易的核心不是社区流量，而是NVIDIA获得一条从模型到Compute的转化漏斗：
+
+1. 开发者在Hugging Face发现和评测模型；
+2. 平台推荐量化、推理Runtime、硬件与Cloud后端；
+3. 模型进入NIM、TensorRT、CUDA或合作Cloud部署；
+4. 使用数据反向帮助NVIDIA判断哪些模型、芯片规格和Serving能力最值得扩产。
+
+即使维持名义中立，默认优化路径、Benchmark设置、Featured模型、部署按钮和托管伙伴排序都可能改变需求分配。Together AI、Fireworks AI、Baseten、Lepton、硅基流动、趋境和PPIO面对的竞争，不再只是某个Inference API，而是GPU厂商直接掌握开发者与开源模型分发入口。
+
+**【待验证口径】** NVIDIA尚未披露交易完成时间、Hugging Face Cloud/Inference Revenue、收购后的默认部署排序、数据隔离规则及对非NVIDIA芯片的长期投入。是否真正保持平台中立，需要用未来12个月的产品行为验证，而不能只依据承诺。
+
+#### 2. GPT-6 Astra：Codex/Computer Use把Token变成任务成本
+
+**【已确认事实】** OpenAI 9月3日发布GPT-6 Astra，先向有限组织开放，随后计划进入ChatGPT、OpenAI API、Microsoft Azure与AWS Bedrock。Astra强化Computer Use、浏览、Coding、科学和专业工作；OpenAI称其在OSWorld 2.0模拟中，相比GPT-5.6 Sol以约少47%的时间获得更高得分，并更新Codex Harness，使Computer Use任务完成速度提高约1.9倍。Codex还加入跨Context窗口的Notes与历史检索，以降低长任务Compaction造成的信息丢失。[OpenAI GPT-6 Astra，2026-09-03](https://openai.com/index/gpt-6-astra/)
+
+API Standard价格为每百万Input Token 10美元、Output Token 50美元；Fast Mode最高约2倍速度、价格为Standard的2倍。Astra进入Codex既有订阅额度，也可额外购买Credits。这一产品结构把模型能力、Agent Harness、订阅、Credits和Cloud渠道放在同一Portfolio中。
+
+**【已确认事实／风险】** OpenAI将Astra列为首个达到Critical Cybersecurity Capability阈值的广泛部署模型，并对所有外部Tool-using Inference增加Misalignment Monitoring。公司同时披露，Astra在对抗性测试中比GPT-5.6 Sol更难通过Chain-of-thought监控，额外安全检查可能放慢、暂停或停止合法任务。[OpenAI Astra安全说明，2026-09-03](https://openai.com/index/safety-overview-gpt-6-astra/)
+
+**【分析判断】** 对AI Infra而言，这带来三项变化：
+
+- 单个任务可能少用Token、少重试，但更高模型单价和更多工具调用使总任务成本未必下降；
+- Long-running Agent需要状态、Checkpoint、浏览器/桌面环境、网络和安全监控，非GPU成本占比上升；
+- 企业客户会同时采购Latency、完成率、权限控制和审计，Provisioned Throughput比最低Public Token价格更重要。
+
+Claude Code、Codex以及中国的Qoder/Qwen Code、TRAE、CodeBuddy、Comate将继续从“模型前端”变成Cloud消费编排器。谁掌握Harness和企业工作区，谁就能决定模型、Token预算与执行后端。
+
+#### 3. Crusoe与Nscale：Neocloud用Anchor客户锁定融资和供给
+
+**【可信报道】** Reuters 9月3日转述Bloomberg称，Crusoe完成超过30亿美元融资、投后估值约300亿美元；同时与Jane Street签署约130亿美元、期限五年的Cloud合同。Crusoe此前披露已签约AI Infrastructure Capacity约4.9GW，项目Pipeline超过40GW，但本次融资和Jane Street合同尚未由Crusoe官方公开确认。[Reuters，2026-09-03](https://www.reuters.com/technology/crusoe-signs-13-billion-ai-cloud-deal-with-jane-street-bloomberg-news-reports-2026-09-03/)
+
+**【公司披露／可靠报道】** Nscale宣布与人形机器人公司Figure签订多年Compute安排，初始投入35亿美元，计划扩大至60亿美元以上；首批GPU目标在2027年下半年于Texas部署，潜在规模最高10万颗NVIDIA芯片。Nscale还将成为Figure股东和Preferred Compute Provider。[Reuters，2026-09-03](https://www.reuters.com/technology/ai-cloud-firm-nscale-commits-compute-worth-35-billion-figures-robotics-ambitions-2026-09-03/)
+
+**【分析判断】** 两类合同的本质不同：Jane Street更接近有现金流能力的终端Anchor Customer；Nscale对Figure的安排同时包含未来Capacity、股权与Preferred Provider，战略协同更强，但也更需要穿透判断谁承担Capex、Take-or-pay和延期风险。
+
+未来Neocloud排名应增加“Backlog Quality”维度：
+
+- 已投产、已付费Revenue；
+- 不可取消或有Termination Fee的最低承诺；
+- 客户信用和集中度；
+- 合同期限与GPU折旧匹配；
+- 股权、担保、回租和Revenue-share剔除后的真实需求。
+
+#### 4. 中国：Kimi争夺全球Cloud分发，国产GPU争夺资本闭环
+
+**【可信报道】** Reuters 9月3日报道，月之暗面已秘密递交香港IPO申请，目标募资约30亿美元；其最新一轮融资估值据称约500亿美元。报道还称，公司正与Microsoft、Amazon和Google讨论Revenue-share，让海外Hyperscaler托管Kimi模型。月之暗面未回应，IPO规模、估值和Cloud合作均可能变化。[Reuters，2026-09-03](https://www.reuters.com/world/asia-pacific/chinese-ai-firm-moonshot-files-confidentially-hong-kong-ipo-sources-say-2026-09-03/)
+
+**【分析判断】** 若合作落地，Kimi将从“国内模型＋阿里算力”进一步转向“全球Cloud分发＋多Cloud Revenue-share”。这会提高Kimi对Inference Capacity和跨区域SLA的议价能力，也让阿里既是投资者、国内Cloud供应商，又要面对海外Cloud成为模型分发渠道的复杂关系。对SenseCore而言，模型品牌强不等于优质客户；只有最低消费、负载可迁移性和每GPU小时毛利决定是否分配稀缺Capacity。
+
+**【已确认事实】** 燧原科技上海STAR Market IPO拟发行4,300万股，募资约61亿元，用于第五、第六代AI芯片及相关软硬件研发。Reuters基于交易所文件报道，其网上发行获得约6,109倍申购；腾讯是重要股东及最大客户。[Reuters，2026-09-02](https://www.reuters.com/world/china/tencent-backed-enflame-ipo-draws-6109-times-online-demand-2026-09-02/)
+
+**【分析判断】** 国产GPU的资本可得性提高，有利于国内AI Cloud降低单一海外供应风险；但“可买到芯片”不等于“可交付有效Token”。未来仍应比较同模型、同精度、同Latency/SLO下的Tokens per Watt、集群稳定性、软件迁移时间和客户实际利用率。
+
+#### 5. 国内大厂Portfolio：产品闭环延续，本周主排序不变
+
+**【核查结果】** 本观察期内，未发现字节/火山引擎、阿里云、腾讯云、百度智能云或华为云发布足以重排总体坐标的新经审计AI Infra Revenue或已投产Capacity。腾讯TokenHub文档继续扩大语言和视觉模型供给，并完善企业版Token Plan接入；阿里百炼继续以Coding Plan和多模型Model Studio承接Qwen及第三方模型。文档更新说明Portfolio在迭代，但不足以单独证明付费Token、Margin或长期Capacity增长。
+
+字节的豆包—TRAE—飞书—火山方舟、阿里的Qwen—Qoder/Qwen Code—百炼—钉钉、腾讯的Hy—CodeBuddy/WorkBuddy—TokenHub—企微/QQ、百度的文心—Comate/DuMate—千帆—搜索/企业入口，仍是国内四套最重要的“入口—模型—Token—Cloud”闭环。NVIDIA收购Hugging Face会促使这些玩家更加重视Model Hub、开源社区和一键部署入口，而不仅是训练更强模型。
+
+### 二、竞争格局变化
+
+以下为分析坐标，不是Gartner官方排名。
+
+#### 中国
+
+- **Ceiling：** 阿里云 → 火山引擎 → 腾讯云 → 百度智能云 → 华为云
+- **SenseCore Arena：** 天翼云 → SenseCore商汤大装置 → 金山云 → 并行科技 → 曙光先进计算云 → 首都在线 → UCloud
+- **Chasers & Adjacent：** 硅基流动 → PPIO派欧云 → 无问芯穹 → 趋境科技 → 基流科技 → ZStack
+- **AI Infra基础软件／异构效率观察：** 清程极智，以及无问芯穹、基流科技的软件栈部分
+
+本期不调整名次，但增加两条评价轴：
+
+1. **Model Distribution Power：** 是否控制模型社区、开发者工具、Coding/Agent入口和默认部署路径；
+2. **Backlog Quality：** 是否有可穿透终端客户、最低消费、期限匹配和真实现金回款。
+
+#### 海外
+
+- **天花板：** AWS、Microsoft Azure、Google Cloud；
+- **开发者与模型控制层：** NVIDIA/Hugging Face、OpenAI/Codex、Anthropic/Claude Code；
+- **领先Neocloud：** CoreWeave；
+- **第二梯队：** Crusoe、Nebius、Lambda；
+- **重点上调观察：** Nscale——获得大额战略Compute承诺，但主要Capacity要到2027年后部署，暂不与已投产规模等同；
+- **Inference Platform：** Together AI、Fireworks AI、Baseten，以及已并入NVIDIA体系的Lepton。
+
+Crusoe因潜在Jane Street五年合同在Commercial Backlog上向CoreWeave靠近，但在未见官方合同、实际投产和Revenue前，不上调为并列第一。NVIDIA/Hugging Face也不是Neocloud，而是新增的模型与部署控制层。
+
+### 三、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：长约获得资源优先权，Spot供给进一步两极化
+
+未来3—12个月最可能出现四类变化：
+
+1. **Anchor客户优先。** 有五年以上合同、强信用和最低消费的客户更容易获得最新GPU、低成本融资和连续集群；
+2. **生态导流优先。** Hugging Face等入口可把热门模型部署流量导向经过优化的GPU与Cloud，降低部分供应商获客成本，也削弱非默认后端；
+3. **股权绑定增多。** 芯片厂、Neocloud、模型/机器人公司交叉持股有助于Capacity规划，但加大客户集中和Circular Financing风险；
+4. **中型市场继续Multi-vendor。** 年GPU预算约1,000万—8,000万元的客户仍会在SenseCore、并行科技、无问芯穹等之间分配负载，竞争核心是Primary Production Pool，而非Vendor List席位。
+
+所以GPUaaS并不会因模型效率提高而萎缩。Astra类Agent减少单任务时间的同时，会扩展可自动化任务范围；真正承压的是没有长约、没有入口、没有Serving差异化的Commodity GPU小时。
+
+#### Inference/Token：高端模型涨价，单位任务成本下降，两者可以同时成立
+
+Astra的10/50美元Standard Token价格明显体现Frontier Capability溢价，Fast Mode再收取2倍价格；但更少重试、更短执行时间和更高完成率可能降低单位任务总成本。未来市场不会只沿着“每百万Token持续下降”单线演进，而会分成：
+
+- 高能力模型按成功率、速度和风险治理获得溢价；
+- 通用与开源模型继续大幅降低Token单价；
+- Agent平台通过模型路由，在两者之间优化每任务Gross Margin；
+- Dedicated Inference通过Capacity承诺、缓存、批处理和量化赚取生产效率利润；
+- 纯Token转售同时受到Hyperscaler套餐、模型直销和NVIDIA/Hugging Face部署入口挤压。
+
+对硅基流动、趋境、PPIO的要求因此更清楚：不仅要聚合模型，还要证明跨芯片部署速度、模型上线时延、Enterprise SLA、单位有效Token成本及Private Deployment Revenue。对大模型公司，进入Hugging Face、ModelScope、Cloud Marketplace和Coding Agent默认路由，比单纯Benchmark排名更直接影响Token分发。
+
+### 四、对SenseCore的具体传导
+
+#### 1. 定位为Open-model Production Cloud
+
+SenseCore不应复制Hugging Face的全球社区，而应成为模型被选中之后的高质量执行后端：
+
+- 对接Hugging Face、ModelScope及国内主流Model Hub；
+- 支持NVIDIA与国产GPU的一致部署接口；
+- 预制Kimi、GLM、DeepSeek、Qwen及主流开源模型的Production Profile；
+- 对外展示同SLO下的有效Token成本、上线时间和稳定性；
+- 提供Dedicated Endpoint、Private Deployment与SRE。
+
+这能把“中立性”转化为产品，而不是停留在不拥有模型入口的弱势描述。
+
+#### 2. 用Backlog Quality管理Anchor Customer
+
+对模型公司、Token Hub和大型Agent客户，统一要求：
+
+- 12—24个月Take-or-pay或最低月度消费；
+- 终端流量与转售边界可见；
+- 峰值、缓存、SLA和超额Token单独定价；
+- 合同覆盖设备折旧、融资成本与违约风险；
+- 股权投资、生态合作与商业Revenue分别核算。
+
+Crusoe/Jane Street模式值得学习的是客户信用与期限，而不是复制高估值；Nscale/Figure模式需要警惕的是股权、未来Capacity与客户承诺混合后可能高估真实Backlog。
+
+#### 3. 把国产GPU资本红利转成有效产能
+
+燧原等国产芯片融资改善会增加可选供给。SenseCore应以生产验证决定采购和合作：
+
+- 主流模型适配时间；
+- 8/64/千卡扩展效率；
+- P/D分离、KV Cache与量化支持；
+- 故障率、恢复时间与可观测性；
+- 每百万有效Token全成本；
+- 客户是否愿意为国产迁移签最低承诺。
+
+清程极智、无问芯穹、基流科技等软件伙伴可帮助完成适配、调度和集群工程，但软件交付规模不能自动计为Cloud Capacity。
+
+#### 4. 中型客户继续争Primary Vendor，不追求单一供应
+
+在FastCore/SenseCore、并行科技、无问芯穹共同供货的Multi-vendor场景中，目标维持：主供应商50%—60%、第二供应商25%—35%、备份10%—20%。SenseCore应优先拿核心Inference、持续训练、状态存储和SRE，而把碎片/短租与实验性异构负载留给更合适的供应商。这样即使份额不是100%，Revenue质量与迁移壁垒仍最高。
+
+### 五、清程极智固定观察
+
+**【核查结果】** 本周未发现清程极智在赤兔Chitu推理引擎、八卦炉训练与异构系统、国产芯片和主流模型适配、开源生态、标杆客户、可验证Revenue/订单、标准化License或长期Capacity合同方面出现足以改变定位的新披露。
+
+维持：
+
+- 分类为**AI Infra基础软件／异构算力效率层**；
+- 与无问芯穹、基流科技的软件栈部分比较；
+- 不进入Neocloud或GPU Cloud排名；
+- 只有出现可验证Cloud Revenue、可调度算力规模或长期容量合同后再评估。
+
+### 六、未来观察指标及风险
+
+1. **NVIDIA/Hugging Face交易：** 监管审批、交割时间、默认Inference后端、非NVIDIA芯片支持、数据使用和Cloud伙伴排序。
+2. **Astra经济性：** Codex与API实际Token消耗、每任务完成时间、重试率、安全监控成本、企业Credits及Azure/AWS流量分布。
+3. **Crusoe合同质量：** Jane Street合同官方确认、Take-or-pay、GPU类型、投产地点、Capex承担方与客户集中度。
+4. **Nscale/Figure：** 35亿—60亿美元究竟是采购承诺、内部Capex还是名义Compute价值；2027年部署能否按期、Figure最低消费与10万GPU的实际规模。
+5. **Kimi商业化：** IPO文件是否公开、拟募资/估值变化、海外Cloud Revenue-share落地、国内外Token Revenue和算力采购成本。
+6. **国产GPU：** 燧原募资落地、腾讯客户集中度、第五/第六代产品量产，以及在主流模型上的有效Token成本。
+7. **国内大厂入口：** 豆包/飞书/火山、Qwen/Qoder/百炼、Hy/WorkBuddy/TokenHub、文心/Comate/千帆的付费用户、企业留存和Cloud转化率。
+8. **SenseCore：** Take-or-pay覆盖率、Top 1/Top 3客户集中度、Inference每GPU小时Gross Profit、国产集群SLA与GPUaaS/Inference互转时间。
+
+### 主要风险与口径提示
+
+- NVIDIA已宣布收购协议，但交易尚未完成；Hugging Face保持中立属于前瞻承诺，需要产品与监管结果验证。
+- OpenAI公布的性能、时间与安全指标主要来自公司评测；不同Harness、工具、Prompt和生产Safeguard会改变结果。
+- Crusoe融资、估值及Jane Street合同来自Reuters转述Bloomberg，尚非公司公告；不应直接计为已确认Revenue。
+- 月之暗面IPO、估值与海外Cloud谈判来自匿名信源报道，规模、时间和合作条款均可能变化。
+- Nscale的10万GPU是潜在规模，首批部署目标在2027年下半年，不计入当前可用Capacity。
+- 燧原IPO热度和募资规模不等于芯片生产能力、软件成熟度或客户多元化。
+- 本文竞争坐标为分析判断，不是Gartner官方Magic Quadrant或Market Share结论。
+
+### 主要来源
+
+- [NVIDIA：拟收购Hugging Face](https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/)
+- [OpenAI：GPT-6 Astra](https://openai.com/index/gpt-6-astra/)
+- [OpenAI：Astra安全说明](https://openai.com/index/safety-overview-gpt-6-astra/)
+- [Reuters：Crusoe融资及Jane Street Cloud合同报道](https://www.reuters.com/technology/crusoe-signs-13-billion-ai-cloud-deal-with-jane-street-bloomberg-news-reports-2026-09-03/)
+- [Reuters：Nscale与Figure Compute安排](https://www.reuters.com/technology/ai-cloud-firm-nscale-commits-compute-worth-35-billion-figures-robotics-ambitions-2026-09-03/)
+- [Reuters：月之暗面IPO及海外Cloud合作报道](https://www.reuters.com/world/asia-pacific/chinese-ai-firm-moonshot-files-confidentially-hong-kong-ipo-sources-say-2026-09-03/)
+- [Reuters：燧原科技IPO](https://www.reuters.com/world/china/tencent-backed-enflame-ipo-draws-6109-times-online-demand-2026-09-02/)
+
 ## 2026-08-28｜资本开始定价Agentic Cloud：AI Infra从扩卡转向可融资的Token产能
 
 **观察区间：2026-08-22—2026-08-28**  
