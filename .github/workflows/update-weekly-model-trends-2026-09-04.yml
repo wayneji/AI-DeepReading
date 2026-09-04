@@ -2,9 +2,10 @@ name: Update weekly model trends 2026-09-04
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - '.github/workflows/update-weekly-model-trends-2026-09-04.yml'
+      - .github/workflows/update-weekly-model-trends-2026-09-04.yml
 
 permissions:
   contents: write
@@ -13,23 +14,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-      - name: Prepend weekly report
-        shell: bash
+      - name: Update weekly-model-trends.md via GitHub API
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          p = Path('weekly-model-trends.md')
-          text = p.read_text(encoding='utf-8')
-          fixed = "# 每周模型趋势周报\n\n> 最新一期始终放在文件顶部。开放权重模型以开发团队官方 Hugging Face 账号与 Collection 中可下载权重为准；排名针对具体模型版本，不按厂商分配席位。\n\n---\n\n"
-          if not text.startswith(fixed):
-              raise SystemExit('Unexpected fixed header; refusing to modify history')
-
-          report = r'''# 每周模型趋势周报｜2026-09-04
+          cat > /tmp/report.md <<'REPORT'
+# 每周模型趋势周报｜2026-09-04
 
 > 更新窗口：2026-08-28 至 2026-09-04
 
@@ -140,31 +131,49 @@ IFM 9 月 3 日发布 K2 Horizon，从 0.9B 到 375B-A23B 共六个模型。与�
 - [IFM K2 Horizon 官方 Hugging Face](https://huggingface.co/IFM)
 - [World Labs：Atlas](https://www.worldlabs.ai/blog/atlas)
 - [Google：Agentic Video Understanding](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/)
-'''
-
-          marker = '# 每周模型趋势周报｜2026-09-04'
+REPORT
+          python3 - <<'PY'
+          import os, json, base64, urllib.request
+          repo = os.environ['GH_REPOSITORY']
+          token = os.environ['GH_TOKEN']
+          path = 'weekly-model-trends.md'
+          url = f'https://api.github.com/repos/{repo}/contents/{path}?ref=main'
+          headers = {
+              'Authorization': f'Bearer {token}',
+              'Accept': 'application/vnd.github+json',
+              'X-GitHub-Api-Version': '2022-11-28',
+              'User-Agent': 'weekly-model-trends-automation',
+          }
+          req = urllib.request.Request(url, headers=headers)
+          with urllib.request.urlopen(req) as r:
+              data = json.load(r)
+          text = base64.b64decode(data['content']).decode('utf-8')
+          sha = data['sha']
+          fixed = '# 每周模型趋势周报\n\n> 最新一期始终放在文件顶部。开放权重模型以开发团队官方 Hugging Face 账号与 Collection 中可下载权重为准；排名针对具体模型版本，不按厂商分配席位。\n\n---\n\n'
+          if not text.startswith(fixed):
+              raise SystemExit('Unexpected fixed header; refusing to modify history')
+          report = open('/tmp/report.md', encoding='utf-8').read().rstrip()
           body = text[len(fixed):]
+          marker = '# 每周模型趋势周报｜2026-09-04'
           if marker in body:
               start = body.index(marker)
               next_sep = body.find('\n---\n\n# 每周模型趋势周报｜', start)
               if next_sep == -1:
-                  body = body[:start] + report.rstrip() + '\n'
+                  body = body[:start] + report + '\n'
               else:
-                  body = body[:start] + report.rstrip() + body[next_sep:]
+                  body = body[:start] + report + body[next_sep:]
           else:
-              body = report.rstrip() + '\n\n---\n\n' + body
-
-          p.write_text(fixed + body, encoding='utf-8')
+              body = report + '\n\n---\n\n' + body
+          new_text = fixed + body
+          payload = json.dumps({
+              'message': 'Update weekly AI model trends report for 2026-09-04',
+              'content': base64.b64encode(new_text.encode('utf-8')).decode('ascii'),
+              'sha': sha,
+              'branch': 'main',
+          }).encode('utf-8')
+          put_url = f'https://api.github.com/repos/{repo}/contents/{path}'
+          req = urllib.request.Request(put_url, data=payload, method='PUT', headers={**headers, 'Content-Type': 'application/json'})
+          with urllib.request.urlopen(req) as r:
+              result = json.load(r)
+          print(result['commit']['sha'])
           PY
-      - name: Commit and push
-        shell: bash
-        run: |
-          git config user.name 'OpenAI Automation'
-          git config user.email 'actions@users.noreply.github.com'
-          git add weekly-model-trends.md
-          if git diff --cached --quiet; then
-            echo 'No content change'
-            exit 0
-          fi
-          git commit -m 'Update weekly AI model trends report for 2026-09-04'
-          git push origin main
