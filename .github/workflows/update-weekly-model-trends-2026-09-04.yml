@@ -1,0 +1,170 @@
+name: Update weekly model trends 2026-09-04
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-weekly-model-trends-2026-09-04.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Prepend weekly report
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('weekly-model-trends.md')
+          text = p.read_text(encoding='utf-8')
+          fixed = "# 每周模型趋势周报\n\n> 最新一期始终放在文件顶部。开放权重模型以开发团队官方 Hugging Face 账号与 Collection 中可下载权重为准；排名针对具体模型版本，不按厂商分配席位。\n\n---\n\n"
+          if not text.startswith(fixed):
+              raise SystemExit('Unexpected fixed header; refusing to modify history')
+
+          report = r'''# 每周模型趋势周报｜2026-09-04
+
+> 更新窗口：2026-08-28 至 2026-09-04
+
+## 本周结论
+
+**这一周同时改写了开放和闭源两端。中国开放权重出现“双 60 分”格局：Z.ai 在 8 月 28 日正式把 GLM-5.3 完整权重放到官方 Hugging Face，Artificial Analysis 当前给 GLM-5.3 Max 与 Kimi K3 Max 都是 60 分；本期沿用“同分时保留在位者、再看多模态覆盖与部署成熟度”的 tie-break，Kimi K3 暂列第一、GLM-5.3 新进第二。闭源端变化更大：9 月 1 日 Claude Fable 5.1 以 66 分登顶，把开放榜首与闭源榜首的综合差距从约 3 分重新拉到约 6 分。**
+
+OpenAI 9 月 3 日发布 GPT-6 Astra，是本周声量最大的模型，但独立综合分目前约 61；它真正领先的是电脑操作、浏览器、专业任务和网络安全，而不是 Artificial Analysis 综合榜。因此本期不因为“新发布”就把它硬塞进闭源前三。
+
+## Top 11 快速概览
+
+### 中国开放权重 Top 5
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index | 相比上期 |
+|---:|---|---|---:|---|
+| 1 | **Kimi K3** | 2026-07-16；官方 HF；Kimi K3 License | **60（Max）** | —；与 GLM-5.3 同分，原生多模态与成熟 Agent 生态暂时保住第一 |
+| 2 | **GLM-5.3** | 2026-08-14 发布；**8 月 28 日官方 HF 权重落地**；自定义 GLM-5.3 License | **60（Max）** | **新进 #2**；753B/40B active，coding、长周期 Agent 和 cyber 能力明显提升 |
+| 3 | **Qwen3.8-2.4T-A95B** | 2026-08-12；官方 HF | **58** | ↓1；旗舰能力仍强，但被 GLM-5.3 完整权重挤到第三 |
+| 4 | **GLM-5.3-Flash** | 2026-08-26；官方 HF；MIT | **57** | ↓1；18B active、1M context，仍是当前最强的效率型开放模型之一 |
+| 5 | **Qwen3.8-Flash-Next** | 2026-08-26；官方 HF；Qwen Community 1.0 | **56** | ↓1；仅 6B active、约 82 tok/s，能力/成本比依旧极强 |
+
+**本周中国榜真正的变化是 GLM-5.3，而不是又一个 Flash 小版本。** 8 月 14 日它先以 API 形式发布，Z.ai 承诺安全评估完成后两周开放权重；8 月 28 日 `zai-org/GLM-5.3` 正式变为可下载仓库。模型与 GLM-5.2 使用相同底座，提升主要来自更强 post-training，却把独立综合分推到了 60。这个结果很重要：**在继续扩大预训练规模之外，强化学习与长周期环境训练本身仍能把同一底座再推一个档位。**
+
+Kimi K3 与 GLM-5.3 当前同为 60 分，本期不把“同分”包装成确定性的王座更替。Kimi 的优势是图像输入、已形成的多模态/Agent 使用经验；GLM-5.3 则在 coding、终端和 cyber 方向非常强，且约 40B active 明显小于 Kimi 的 104B active。另一方面，GLM-5.3 完整版采用自定义许可证，不要与 MIT 的 GLM-5.3-Flash 混为一谈。
+
+**跌出 Top 5：DeepSeek V4 Pro 0813。** 它仍有 53 分、MIT、1M context 和很强的推理/Agent 能力，只是这一周中国开放 Top 5 门槛已经抬到 56 分。一个月前的 53 分旗舰现在只能当“榜外强模型”，这本身就是当前中国开放模型迭代速度最直观的信号。
+
+### 中国以外开放权重 Top 3
+
+| 排名 | 模型 | 权重状态 | AA Intelligence Index | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **Inkling**（Thinking Machines） | 官方 HF；Apache 2.0 | **42** | —；海外综合第一，1M context，文本/图像/语音输入 |
+| 2 | **NVIDIA Nemotron 3 Ultra** | 官方 HF；OpenMDW | **38** | —；55B active，高吞吐、训练透明度和企业 Agent 工具链仍是优势 |
+| 3 | **Meta Muse Glimmer 30B** | 官方 HF；Apache 2.0 | **约 35** | —；30B 本地多模态 Agent，重点仍是单机部署而非绝对 intelligence |
+
+海外正式 Top 3 本周没有换位，但出现了一个非常值得关注的榜外变量：**阿布扎比 IFM 在 9 月 3 日发布 K2 Horizon 六模型家族，最大为 375B-A23B，并同时开放权重、训练代码、训练数据/数据构建方法、中间 checkpoint、日志和评测结果，代码与模型采用 Apache 2.0。** 这比行业通常所说的 open weight 更彻底。
+
+本期暂不让 K2 Horizon 直接进前三，因为还缺乏与 Inkling/Nemotron 同口径的成熟独立综合评测。它现在的意义首先是**把“开放”的标准从可下载权重重新抬到可复现训练生命周期**。如果后续 375B-A23B 的独立能力能稳定进入 40+，海外开放榜会马上重排。
+
+中国与海外开放前沿的纯能力差距仍明显：中国第五约 56，海外第一约 42，相差约 14 分。海外当前更有特色的竞争点依旧是许可证、完整训练透明度、本地运行和企业部署，而不是最高综合智力。
+
+### 全球闭源 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index | 本周判断 |
+|---:|---|---:|---:|---|
+| 1 | **Claude Fable 5.1** | **2026-09-01** | **66（Max，含默认 fallback）** | **新进 #1**；当前独立综合最高，长周期 coding/knowledge work 大幅提升 |
+| 2 | **Claude Opus 5** | 2026-07-24 | **63（Max）** | ↓1；仍是非常强的长周期 Agent 与专业交付模型 |
+| 3 | **Claude Fable 5** | 2026-06-09 | **62（Max，含 fallback）** | ↓1；被 5.1 明显替代，但当前综合分仍高于多数竞争者 |
+
+**闭源领先本周重新扩大。** 上周 Kimi K3 60 距闭源榜首 Opus 5 约 3 分；现在 Fable 5.1 把榜首推到 66，开放榜首与闭源榜首差距扩大到约 6 分。Artificial Analysis 同时指出，Fable 5.1 的评测使用 Anthropic 默认 server-side fallback，约 4% 的输出 token 被路由至其他 Claude 模型，因此这 66 分不能被理解为完全纯粹的单 checkpoint 成绩；但它依旧代表用户实际调用 Fable 5.1 时能够得到的生产系统表现。
+
+**GPT-6 Astra 为什么没有进前三？** OpenAI 9 月 3 日正式发布 Astra，并把它称为自家迄今最强模型。OpenAI 自己公开的同口径 Artificial Analysis 表中，Astra 约 61.2，低于 Fable 5.1 的 65.7、Opus 5 的 63.1 和 Fable 5 的 62.1。独立页面也给 Astra Max 约 61。因此它当前更像一个**专项能力非常强、综合榜暂未夺冠**的新旗舰。
+
+但 Astra 不应被低估：OpenAI 报告它在 OSWorld 2.0、AutomationBench、Terminal-Bench 4.0、浏览器/电脑操作和网络安全任务上出现大幅跃升，并成为 OpenAI 第一个达到其 Preparedness Framework “Critical” 网络安全能力阈值的公开部署模型。换言之，**闭源竞争正在从“谁综合分最高”进一步分裂为知识工作、电脑操作、网络安全和工具执行几个独立战场。**
+
+另外两个闭源强变量：Meta 9 月 2 日发布 **Muse Spark 1.3**，Artificial Analysis 在公开可用的 xhigh 档约 61 分、约 179 tok/s，速度和成本非常有竞争力；Google 同日发布 **Gemini 3.8 Flash**，高 reasoning 约 59 分，继续走低延迟、1M context、多模态 Agent 路线。两者都没有进入本期前三，但都比“只看前三名”更值得产品团队关注。
+
+## 本周真正发生的变化
+
+1. **GLM-5.3 完整权重兑现，开放榜进入双 60 分时代。** Kimi 不再是唯一 60 分开放旗舰，Qwen3.8 被挤到第三。
+2. **DeepSeek V4 Pro 跌出中国 Top 5。** 53 分没有变弱，只是 Top 5 门槛在一个月内抬高到 56 分。
+3. **Claude Fable 5.1 把闭源领先重新拉开。** 66 分比开放榜首高约 6 分，闭源在长周期知识工作上重新建立更清晰的领先。
+4. **GPT-6 Astra 没有“按发布会口径自动登顶”。** 综合分约 61，但电脑操作、专业任务和网络安全的专项跃升很明显；应按能力结构而不是品牌代际判断。
+5. **开放的定义再次升级。** K2 Horizon 不是只给权重，而是连训练数据、代码、中间 checkpoint 和日志一起给出。未来“open weight”与“fully reproducible open source”应该明确区分。
+
+## 本周其他爆点
+
+### 1. World Labs Atlas：世界模型从“生成场景”走向“统一空间模型”
+
+World Labs 在 **9 月 1 日**发布 Atlas，一个从头预训练、原生处理文本、图像、视频与 3D 的 omni world model。它把输入放进显式的 3D spatial context，而不是只把多模态 token 串起来；可以做像素级相机控制、从少量图片重建 3D、生成最长约 1 分钟的 1440p 可控视频、视频重新取景，以及为机器人建立 Real-to-Sim 环境。
+
+这次爆点不在“视频更漂亮”，而在**生成、3D 重建和仿真开始被塞进同一个基础模型**。如果这类 spatial foundation model 能规模化，视频生成、游戏资产、VFX 和机器人模拟会逐渐从几套专用模型合并为一个统一世界模型接口。当前 Atlas 仍是 early access、非开放权重。
+
+### 2. Gemini Agentic Video：视频理解开始按需“看”，而不是整段硬吃 token
+
+Google 9 月 1 日把 agentic video understanding 推到 Gemini 3.7 Flash、3.6 Flash 和 3.5 Flash-Lite。新模式让模型先决定视频中哪些片段值得进一步查看，而不是均匀处理整个视频；Google 报告 token 使用最多降低 **88%**、成本最多降低 **66%**，质量最多提升 **7%**。
+
+这可能比再提高一点视频 benchmark 更重要：**长视频理解真正的瓶颈正在从“模型看不懂”转向“模型有没有必要把每一帧都看完”。** 对会议录像、监控、体育、媒体归档和长视频 Agent 来说，主动检索式视觉推理会直接改变成本曲线。
+
+### 3. K2 Horizon：真正的“全栈开放”重新进入前沿讨论
+
+IFM 9 月 3 日发布 K2 Horizon，从 0.9B 到 375B-A23B 共六个模型。与多数厂商只开放最终 checkpoint 不同，IFM 同时发布训练代码、训练数据或构建配方、中间 checkpoint、配置、日志和评测。最大模型还没拿到足够独立综合分，因此不进正式 Top 3，但它可能是本周对开放生态影响最深的一件事。
+
+## 下周重点观察
+
+1. **Kimi K3 与 GLM-5.3 谁能在同分状态下拉开差距。** 重点看真实 coding Agent、工具调用、速度和单位任务成本，不只看 60 vs 60。
+2. **Qwen / DeepSeek 是否回应 GLM-5.3。** 中国前五已经被压到 56–60 分的窄区间，一次小版本就能换三四个名次。
+3. **Claude Fable 5.1 的 66 分能否在不同 fallback 设置和真实用户工作流中稳定复现。**
+4. **GPT-6 Astra 广泛 API 开放后的独立 Agent 实测。** 特别关注电脑操作和 cyber 的优势是否能转化成更高端到端完成率。
+5. **K2 Horizon 375B 的独立评测。** 如果达到 40+ 且训练透明度保持完整，海外开放 Top 3 会有新的候选。
+
+## 主要来源
+
+- [Kimi K3 — Artificial Analysis](https://artificialanalysis.ai/models/kimi-k3)
+- [Kimi K3 官方 Hugging Face](https://huggingface.co/moonshotai/Kimi-K3)
+- [GLM-5.3 官方 Hugging Face](https://huggingface.co/zai-org/GLM-5.3)
+- [GLM-5.3 — Artificial Analysis](https://artificialanalysis.ai/models/glm-5-3)
+- [GLM-5.3-Flash 官方 Hugging Face](https://huggingface.co/zai-org/GLM-5.3-Flash)
+- [Qwen 官方 Hugging Face](https://huggingface.co/Qwen)
+- [DeepSeek V4 Pro — Artificial Analysis](https://artificialanalysis.ai/models/deepseek-v4-pro)
+- [Claude Fable 5.1 官方页面](https://www.anthropic.com/claude/fable)
+- [Claude Fable 5.1 — Artificial Analysis](https://artificialanalysis.ai/articles/claude-fable-5-1)
+- [OpenAI：GPT-6 Astra](https://openai.com/index/gpt-6-astra/)
+- [OpenAI：GPT-6 Astra Safety Overview](https://openai.com/index/safety-overview-gpt-6-astra/)
+- [Gemini 3.8 Flash 官方发布](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/)
+- [Meta：Muse Spark 1.3](https://research.meta.ai/blog/introducing-muse-spark-1-3)
+- [IFM：K2 Horizon](https://ifm.ai/blog/k2/)
+- [IFM K2 Horizon 官方 Hugging Face](https://huggingface.co/IFM)
+- [World Labs：Atlas](https://www.worldlabs.ai/blog/atlas)
+- [Google：Agentic Video Understanding](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/)
+'''
+
+          marker = '# 每周模型趋势周报｜2026-09-04'
+          body = text[len(fixed):]
+          if marker in body:
+              start = body.index(marker)
+              next_sep = body.find('\n---\n\n# 每周模型趋势周报｜', start)
+              if next_sep == -1:
+                  body = body[:start] + report.rstrip() + '\n'
+              else:
+                  body = body[:start] + report.rstrip() + body[next_sep:]
+          else:
+              body = report.rstrip() + '\n\n---\n\n' + body
+
+          p.write_text(fixed + body, encoding='utf-8')
+          PY
+      - name: Commit and push
+        shell: bash
+        run: |
+          git config user.name 'OpenAI Automation'
+          git config user.email 'actions@users.noreply.github.com'
+          git add weekly-model-trends.md
+          if git diff --cached --quiet; then
+            echo 'No content change'
+            exit 0
+          fi
+          git commit -m 'Update weekly AI model trends report for 2026-09-04'
+          git push origin main
