@@ -4,6 +4,110 @@
 
 ---
 
+# 每周模型趋势周报｜2026-09-11
+
+> 更新窗口：2026-09-04 至 2026-09-11
+
+## 本周结论
+
+**本周最重要的不是又一次“谁多了几分”，而是评测尺度和效率前沿同时变化。Artificial Analysis 在 9 月 7 日升级到 Intelligence Index v4.3，加入更难的 Terminal-Bench v4.0 与 AutomationBench-AA，因此本期分数不能与上周旧口径直接纵向相减。统一到新口径后，中国开放权重仍由 GLM-5.3（45）和 Kimi K3（44）领跑；9 月 10 日刚开放的 DeepSeek V4.1 Flash 得到 40 分，暂列中国第六，没有挤进 Top 5，但以约 190 tok/s、8B 输入激活/16B 输出激活和 MIT 许可证，把“能力接近前沿但推理极轻”的路线又向前推了一大步。**
+
+闭源端则出现实质换位：GPT-6 Astra 的完整独立评测落地后，在 v4.3 以 **53 分与 Claude Fable 5.1 并列第一**，并以更低的单位任务成本形成明显优势。本期因此把 Astra 暂列闭源 #1。海外开放权重也终于换榜：K2 Horizon 375B-A23B 的官方 HF 权重、训练数据/代码和独立估分都已经落地，本期升至海外开放 #1。
+
+## Top 11 快速概览
+
+### 中国开放权重 Top 5
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index v4.3 | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **GLM-5.3** | 2026-08；官方 HF；GLM-5.3 License | **45（Max）** | ↑1；新口径下成为当前开放权重最高分，1M context、40B active，Agent/coding 仍强 |
+| 2 | **Kimi K3** | 2026-07-16；官方 HF；Kimi K3 License | **44（Max）** | ↓1；图像输入、长周期 Agent 依旧强，但速度和单位任务成本偏高 |
+| 3 | **GLM-5.3-Flash** | 2026-08-26；官方 HF；MIT | **42** | —；18B active、1M context、约 70+ tok/s，继续占据能力/成本 Pareto 前沿 |
+| 4 | **Qwen3.8-2.4T-A95B** | 2026-08；官方 HF；Qwen3.8-Max License | **40** | —；旗舰能力强、近 1M context，但 95B active、速度偏慢 |
+| 5 | **Qwen3.8-Flash-Next** | 2026-08-26；官方 HF；Qwen Community 1.0 | **40** | —；6B active、图像/视频输入，仍是极强的低激活参数方案 |
+
+**DeepSeek V4.1 Flash 是本周最大的新变量，但我不因为“新发布”就硬塞进前五。** DeepSeek 在 9 月 10 日正式发布并同步开放 `DeepSeek-V4.1-Flash` 权重：552B MoE，输入阶段仅激活约 8B、输出约 16B，支持 1M context 和原生视觉，MIT 许可证。Artificial Analysis 已完成独立评测：**40 分、约 190 tok/s**，综合分与两款 Qwen 模型处于同一档，但当前 AA 排序仍在它们之后，因此本期暂列中国 #6。
+
+V4.1 Flash 真正的冲击在效率。DeepSeek 官方表示其 KV cache 相比上一代只需要约 1/4 HBM、1/8 SSD；公司还宣布 **9 月 14 日起 V4 Pro 请求将临时路由到 V4.1 Flash，直到 V4.1 Pro 上线**。这意味着 DeepSeek 自己已经把 Flash 从“便宜副型号”提升为主力生产模型。下一轮真正可能冲击前三的，不是 V4.1 Flash 本身，而是同架构放大后的 V4.1 Pro。
+
+**本周还有一个必须说明的口径变化：** 上期的 60、58、57 等分数来自上一版指数；v4.3 增加更难的 coding/agent 测试后，分数整体重标定。GLM-5.3 从旧口径 60 到新口径 45，并不代表模型一周内“退步 15 分”。以后周报会优先保持同一指数版本内横向比较。
+
+### 中国以外开放权重 Top 3
+
+| 排名 | 模型 | 发布/权重状态 | AA Intelligence Index v4.3 | 本周判断 |
+|---:|---|---|---:|---|
+| 1 | **K2 Horizon 375B-A23B**（IFM / MBZUAI） | 2026-09-03；官方 HF；Apache 2.0 | **34（当前估分）** | **新进 #1**；权重、训练数据、代码、中间 checkpoint 与日志一起开放，开放程度最高 |
+| 2 | **Inkling**（Thinking Machines） | 2026-07；官方 HF；Apache 2.0 | **32（xhigh）** | ↓1；1M context、文本/图像/语音输入仍很完整 |
+| 3 | **NVIDIA Nemotron 3 Ultra** | 2026-06；官方 HF；OpenMDW | **23** | ↓1；综合分下降主要来自新评测口径，高吞吐与企业部署仍是优势 |
+
+**K2 Horizon 从“值得观察”升级为正式榜首候选。** IFM 官方 Hugging Face 已提供 375B-A23B 权重，Apache 2.0，并同时给出预训练/中训练数据、训练代码和相关资源；Artificial Analysis 当前给出约 **34 分估值**。虽然它还不是完整 API 实测，因此这个第一名要带星号看，但至少已经同时满足“官方可下载权重 + 独立第三方能力估计”两个条件。
+
+海外开放模型与中国前沿仍有明显能力差距：GLM-5.3 为 45，K2 Horizon 当前约 34，差约 11 分。但海外这一侧正在形成与中国不同的竞争优势——**Apache 2.0、训练全栈透明和可复现性**。如果 K2 后续完整实测能维持 34+，它会比此前 Inkling/Nemotron 更有生态影响力。
+
+### 全球闭源 Top 3
+
+| 排名 | 模型 | 发布日期 | AA Intelligence Index v4.3 | 本周判断 |
+|---:|---|---:|---:|---|
+| 1 | **GPT-6 Astra** | 2026-09-03 | **53（Max）** | **新进 #1（并列）**；与 Fable 5.1 同分，但 AA 报告单位任务成本约低 60% |
+| 2 | **Claude Fable 5.1** | 2026-09-01 | **53（Max，含默认 fallback）** | ↓1；知识工作/长周期 Agent 顶级，但价格高且约 4% 输出 token 使用 fallback |
+| 3 | **Claude Opus 5** | 2026-07-24 | **51（Max）** | ↓1；仍是最稳定的专业交付和 Agent 模型之一 |
+
+**Astra 本周从“发布声量大、独立综合分未完成”变成了真正的闭源榜首。** Artificial Analysis 9 月 9 日完成评测后，Astra Max 与 Fable 5.1 同为 53，并在 Coding Agent Index 同样并列领先；AA 估算 Astra 在 Intelligence Index 上每项任务成本约只有 Fable 5.1 的 40%，Coding Agent 约为其 60%。因此本期用成本作为同分 tie-break，把 Astra 暂列第一。
+
+这也修正了上期一个重要判断：上周我们基于当时尚未完成的评测，把 Astra 放在前三之外；**本周新证据足以改变排名。** 这正是周报应当追踪的变化，而不是固守发布当天的结论。
+
+同一 v4.3 口径下，闭源榜首 53 vs 开放榜首 GLM-5.3 的 45，差距约 **8 分**。相比“开放模型已经只差两三分”的阶段，新的 harder-agent/coding 口径重新显示出闭源系统在复杂工具执行和长周期工作上的优势。
+
+## 本周真正发生的变化
+
+1. **评测口径升级。** Artificial Analysis v4.3 把 Terminal-Bench 升到 v4.0，并用 AutomationBench-AA 替换旧银行工具测试；本周以后必须避免直接拿旧 60 分和新 45 分做纵向比较。
+2. **DeepSeek V4.1 Flash 正式开放，但暂未进 Top 5。** 它与 Qwen 两款模型同处 40 分带，真正领先的是约 190 tok/s、MIT、1M context 和极低 KV-cache 成本。
+3. **GPT-6 Astra 完成独立评测后升到闭源并列第一。** 这是本周最大的闭源排名变化。
+4. **K2 Horizon 进入海外开放榜首。** 分数目前仍是估值，但开放栈远比多数 open-weight 模型完整。
+5. **“最强模型”与“最佳生产模型”继续分离。** GLM-5.3/Kimi 追能力极限；GLM-5.3-Flash、Qwen3.8-Flash-Next、DeepSeek V4.1 Flash 则正在争 Agent 子任务的吞吐、成本和缓存效率。
+
+## 本周其他爆点
+
+### 1. ChatGPT Images 2.5：文生图竞争从“一张图好不好看”转向连续编辑
+
+OpenAI 在 **9 月 8 日**发布 ChatGPT Images 2.5，并在 API 提供 **GPT-Image-2.5 Flare** 与 **Sunburst**。Flare 主打更快生成，OpenAI 称相较 Images 2.0 延迟最高降低约 50%；Sunburst 主打更高编辑精度。更重要的是产品层加入了 Sketch、图片内评论和更稳定的多轮编辑一致性。
+
+这次值得关注的不是单纯画质升级，而是**图像模型正在变成真正的交互式设计工具**：用户可以先画草图、再局部批注、再连续修改，而不是每次从一段 prompt 重新抽卡。模型仍为闭源/API；截至本期，第三方图像榜尚未形成足够稳定的 2.5 排名，因此不提前宣称它已经拿下图像总榜第一。
+
+### 2. Mercury 2.5：扩散语言模型第一次真正逼近“生产级高速 LLM”
+
+Inception 在 **9 月 8 日**发布 Mercury 2.5，继续走 diffusion LLM 路线。官方公布输出速度约 **1,107 tok/s**，并称相较 Mercury 2 intelligence 提升约 40%，能力接近 GPT-5.6 Luna、Gemini 3.5 Flash-Lite、Claude Haiku 4.5 等成本优化型前沿模型。
+
+Mercury 2.5 不是开放权重，也不是综合榜前沿，因此不进入 Top 11；但它值得放进“爆点”，因为它说明**非自回归/扩散式文本生成已经从研究 novelty 进入真实搜索、语音和代码产品的低延迟工作负载。** 如果下一代 Mercury 在保持 1000+ tok/s 的同时继续提升复杂推理，传统逐 token 自回归推理的速度优势边界会受到真正挑战。
+
+## 下周重点观察
+
+1. **DeepSeek V4.1 Pro。** DeepSeek 已官方确认 V4 Pro 将从 9 月 14 日起路由到 V4.1 Flash，直到 V4.1 Pro 发布；新 Pro 是最可能改变中国前三的下一变量。
+2. **DeepSeek V4.1 Flash 的真实 Agent 总成本。** 重点看 190 tok/s、1M context 和压缩 KV cache 在真实 coding/多工具 workflow 中是否兑现，而不只看 token 单价。
+3. **K2 Horizon 的完整独立实测。** 当前 34 分仍是估值；一旦有标准 API/harness 实测，海外开放前三可能再次调整。
+4. **GPT-6 Astra 与 Fable 5.1 的真实企业工作流。** 两者综合和 Coding Agent 同分，真正差异将落到成本、可靠性、工具生态和安全限制。
+5. **GPT-Image-2.5 的第三方图像/编辑榜。** 重点看 Sunburst 的编辑一致性是否能把 OpenAI 从“生成强”进一步推到“连续设计 workflow 强”。
+
+## 主要来源
+
+- [Artificial Analysis Intelligence Index v4.3](https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3)
+- [DeepSeek V4.1 Flash 官方发布](https://www.deepseek.com/en/news/deepseek-v4-1-flash/)
+- [DeepSeek V4.1 Flash 官方 Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash)
+- [DeepSeek V4.1 Flash — Artificial Analysis](https://artificialanalysis.ai/models/deepseek-v4-1-flash)
+- [GLM-5.3 — Artificial Analysis](https://artificialanalysis.ai/models/glm-5-3)
+- [Kimi K3 — Artificial Analysis](https://artificialanalysis.ai/models/kimi-k3)
+- [GLM-5.3-Flash — Artificial Analysis](https://artificialanalysis.ai/models/glm-5-3-flash)
+- [Qwen3.8 2.4T A95B — Artificial Analysis](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b)
+- [Qwen3.8-Flash-Next — Artificial Analysis](https://artificialanalysis.ai/models/qwen3-8-flash-next)
+- [IFM 官方 Hugging Face（K2 Horizon）](https://huggingface.co/IFM)
+- [K2 Horizon 375B-A23B — Artificial Analysis](https://artificialanalysis.ai/models/k2-horizon-375b-a23b)
+- [GPT-6 Astra — Artificial Analysis](https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra)
+- [Claude Fable 5.1 — Artificial Analysis](https://artificialanalysis.ai/articles/claude-fable-5-1)
+- [OpenAI：ChatGPT Images 2.5](https://openai.com/index/introducing-chatgpt-images-2-5/)
+- [Inception：Mercury 2.5](https://www.inceptionlabs.ai/blog/introducing-mercury-2-5)
+
+---
+
 # 每周模型趋势周报｜2026-09-04
 
 > 更新窗口：2026-08-28 至 2026-09-04
@@ -272,7 +376,7 @@ Anthropic 在 **8 月 27 日**开放 Model Hardware Standard（MHS）的研究�
 
 **Muse Glimmer 正式把 Mistral Medium 3.5 挤出海外前三。** 它只有 35 分，离中国开放前五还有巨大差距，但这个模型的意义不是追 Kimi：Meta 提供 BF16、GGUF、ExecuTorch、4-bit 和 DFlash speculative decoding，目标非常明确——**把 Agent 放到个人设备，而不是继续和中国厂商拼万亿参数。**
 
-海外开放权重因此出现两条路线：Inkling/Nemotron 继续做云端大型开放模型；Meta 则用 Glimmer 抢本地 Agent。纯能力差距仍然明显：中国第五 Qwen3.8-27B 约 52，已经领先海外第一 Inkling 约 10 分。
+海外开放权重因此出现两条路线：Inkling/Nemotron 继续做云端大型开放模型；Meta 则用 Glimmer 抢本地 Agent。纯能力差距仍然明显：中国第五 Qwen3.8-27B 约 52，已经领先海外第一 Inkling约 10 分。
 
 Meta 更强的 **Muse Spark 1.2** 目前仍是 proprietary API；Artificial Analysis 给出约 57 分。只要权重没有进入 Meta 官方 Hugging Face，就不提前把它算作开放模型。
 
