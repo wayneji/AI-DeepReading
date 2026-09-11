@@ -4,6 +4,96 @@
 
 ---
 
+## 2026-09-11｜Codex变成Cloud Runtime：Agent执行环境重写Token与GPU利润池
+
+> **事实窗口：** 2026年9月5日—11日。文中“已确认”指公司公告、官方产品资料或监管披露；“可信报道”指Reuters等可靠媒体但尚未获交易主体完整确认；“分析判断”不等同于公司指引或Gartner结论。
+
+### 核心结论
+
+1. **模型入口正在吞并AI Infra控制面。** OpenAI于9月10日把支撑Codex的harness、长会话、工具调用、多Agent编排和sandbox封装成Agents API；模型公司由出售Token进一步进入“任务运行时”。未来3—12个月，Cloud竞争单位将从GPU实例或单次API调用，升级为可持续数小时甚至数天的受治理执行环境。
+2. **Token价格继续透明化，但“安全执行的任务”出现新溢价。** Agents API本身不另收费、按Token与工具计费，意味着基础Token仍承受降价压力；企业真正愿意支付的增量将转向sandbox、权限、数据连接、审计、恢复、任务SLA和结果可追责。
+3. **Agent安全已成为AI Cloud的生产指标，而非模型公司的附属合规项。** Anthropic 9月10日披露的滥用案例显示，多Agent可持续运行漏洞研究、攻击编排与规避检测。Inference SLA因此必须同时约束身份、secret、网络出口、工具权限与人工确认，不能只承诺Latency和Availability。
+4. **Neocloud融资从“有GPU就能借钱”转向“先有许可、租约和担保”。** Reuters 9月8日的分析显示，AI相关债务发行膨胀的同时，债权人正在提高收益率并设置更严格提款条件。CoreWeave、Lambda、Nebius、Crusoe、Fluidstack等公司的分水岭将是可交付Capacity、Anchor合同和资本成本，而非公布的GPU数量。
+5. **SenseCore的机会是Secure Agent Infrastructure，而不是复制Public Token Hub。** 最有价值的产品组合应是Dedicated Inference＋隔离执行环境＋企业数据连接＋审计控制，并以Reserved Capacity/Take-or-pay承接基线负载、弹性池承接Agent突发并发。
+
+### 关键动态及影响
+
+#### 1. OpenAI将Codex harness产品化：模型公司直接进入Cloud Runtime
+
+**已确认事实：** OpenAI于9月10日发布Agents API public beta。开发者可在一次API调用中指定模型、工具和运行环境；OpenAI托管Codex harness，并支持长会话上下文压缩、Tool Search、并行工具调用与subagents。执行环境既可使用OpenAI hosted sandbox，也可运行在客户自有基础设施，并首批集成Blaxel、Cloudflare、Daytona、DigitalOcean、E2B、Modal、Oracle、Runloop和Vercel。API不收额外平台费，按所用Token与工具计费。[OpenAI：Agents API（2026-09-10）](https://openai.com/index/introducing-the-agents-api/)
+
+**影响：** 这是比单一Coding Agent功能更新更重要的portfolio变化。Codex不再只是开发者入口，而成为可嵌入其他产品的Agent Control Plane；sandbox伙伴获得流量，但也可能被标准化为可替换的执行资源。Together AI、Fireworks AI、Baseten、Modal及国内Token Hub如果只提供模型API或Serving，价值层会受到上下夹击：上层被模型厂的harness控制，下层被GPU和推理芯片标准化。
+
+同日OpenAI推出ChatGPT Work Data agent，可连接Redshift、BigQuery、Databricks、Snowflake、ClickHouse等企业数据源，并把分析结果转成Dashboard与行动；ChatGPT for Financial Services又把模型、行业数据、权限和工作成果打包。两项产品共同证明，企业入口不是“聊天框”，而是**数据语义＋Agent Runtime＋最终交付物**。[OpenAI：Data agent（2026-09-10）](https://openai.com/index/put-data-to-work/) [Reuters：ChatGPT for Financial Services（2026-09-10）](https://www.reuters.com/business/openai-launches-chatgpt-financial-services-industry-2026-09-10/)
+
+#### 2. Claude Code与Codex的下一轮竞争，是治理能力而非仅代码榜单
+
+**已确认事实：** Anthropic在9月10日发布Threat Intelligence报告，披露攻击者使用Claude构建持续运行的漏洞研究与攻击编排工作流；报告描述了并行工作流、共享工具和跨会话持久记录。Anthropic还指控包括阿里、Moonshot和DeepSeek在内的中国主体通过违规账户或路由方式提取Claude能力；相关归因来自Anthropic单方调查，被点名企业的完整回应尚不充分，因此应视为**公司披露/待交叉验证指控**，不能当作监管定论。[Anthropic报告（2026-09-10）](https://www.anthropic.com/threat-intelligence-report-september-2026) [Reuters核对报道（2026-09-10）](https://www.reuters.com/legal/litigation/anthropic-disrupts-russian-chinese-ai-campaigns-targeting-its-claude-models-2026-09-10/)
+
+**分析判断：** Codex与Claude Code的产品竞争将扩展为：谁能让Agent在最小权限下连续工作、正确恢复、留下完整审计证据，并在异常行为发生前阻断。模型能力仍是入口，但企业采购会把“每任务成功率、越权率、恢复时间、人工复核成本”纳入统一SLA。安全控制还会增加推理以外的CPU、内存、存储和网络消耗，使Agent Cloud的成本结构不同于传统Token API。
+
+#### 3. 中国大厂的闭环正在成形，但缺少可验证的Agent Runtime开放层
+
+**已确认的存量变化：** 字节跳动7月底整合豆包与飞书产品团队，并合并飞书商业化与火山引擎GTM，方向是把模型、办公入口、企业销售和Cloud交付放入同一闭环；阿里云Coding Plan则以固定订阅聚合千问及多家第三方模型，并兼容主流Coding工具。前者更接近“自有入口拉动火山引擎Token”，后者更接近“多模型订阅入口拉动百炼与阿里云”。[阿里云Coding Plan文档](https://help.aliyun.com/zh/model-studio/coding-plan) [36氪：字节整合报道（2026-07-29）](https://36kr.com/p/3400118301352327)
+
+**本周核验结果：** 截至9月11日，未见腾讯云、百度智能云、华为云发布足以改变上述竞争排序、且能由官方材料交叉验证的新Agent Runtime产品；因此不以旧新闻制造“本周更新”。腾讯的混元＋微信/企微/腾讯会议＋云、百度的文心＋搜索＋千帆、华为的盘古＋昇腾＋华为云，均拥有入口和基础设施，但下一项关键证据应是：能否像Agents API一样把长会话、sandbox、工具、权限、计费和可观测性封装成标准开发接口。
+
+**分析判断：** 字节整合会把飞书企业工作流优先导向豆包与火山引擎，减少独立GPU Cloud直接触达终端客户的机会；阿里通过Coding Plan和多模型策略争夺开发者，再由百炼、数据库、安全与ECS承接企业扩容。腾讯和百度若停留在Agent Builder或MaaS控制台，可能有模型调用量，却较难掌握任务级SLA和工具执行利润池。
+
+#### 4. 推理硬件走向异构，但NVIDIA仍在控制互连标准
+
+**已确认事实：** d-Matrix 9月10日宣布其Raptor推理芯片将采用NVIDIA NVLink Fusion接入NVIDIA数据中心系统，目标场景包括Coding assistant、Chatbot和Voice Agent；兼容机架预计2027年提供。[Reuters：d-Matrix/NVLink Fusion（2026-09-10）](https://www.reuters.com/business/media-telecom/chip-startup-d-matrix-use-nvidia-chip-linking-tech-ai-servers-2026-09-10/)
+
+**影响：** 专用推理芯片会扩大低成本Token供给并压缩纯GPU推理租赁的单位收入，但NVIDIA正把价值从单一GPU延伸到rack、互连和生态标准。对中国市场的映射是：国产芯片并非只要完成模型适配，还必须证明跨卡互连、KV Cache、P/D分离、调度和故障恢复能够在生产SLO下持续交付有效Token。
+
+#### 5. Neocloud资本纪律上升，政府信用可能成为新变量
+
+**可信报道：** Reuters 9月8日援引Goldman Sachs称，2026年截至8月初AI相关债务发行接近5,000亿美元，占高评级债务发行约五分之一；部分项目融资已要求先取得许可和租约方可提款，Galaxy为CoreWeave Helios扩建发行的35亿美元债券收益率约10%。这些数字来自Reuters Breakingviews引用的机构资料，属于市场分析口径，并非各公司统一审计口径。[Reuters Breakingviews（2026-09-08）](https://www.reuters.com/commentary/breakingviews/ai-construction-crunch-widens-credit-fault-lines-2026-09-08/)
+
+**可信报道、尚未确认交易：** Reuters 9月10日转述《华尔街日报》称，美国国防部正讨论向Fluidstack提供约50亿美元贷款，用于强化数据中心供应链；国防部与Fluidstack当时未回应。这不能计入已签融资或Backlog。[Reuters：Fluidstack贷款洽谈（2026-09-10）](https://www.reuters.com/technology/pentagon-talks-lend-5-billion-ai-cloud-startup-fluidstack-wsj-reports-2026-09-10/)
+
+**分析判断：** CoreWeave、Lambda、Nebius、Crusoe与Fluidstack仍受益于Hyperscaler和模型公司的外采需求，但“控制多少GPU”不再足够。未来融资会更看重：电力接入日期、设备交付、租约期限、客户信用、最低消费、建设里程碑和技术代际残值。政府贷款或担保可能降低少数公司的资金成本，从而扭曲纯商业竞争。
+
+### 竞争格局变化
+
+| 层级 | 代表公司 | 本周位置变化 | 未来3—12个月决定性能力 |
+|---|---|---|---|
+| 模型＋Agent入口＋Runtime | OpenAI/Codex、Anthropic/Claude Code | OpenAI通过Agents API显著前移至Cloud控制面 | Harness、sandbox、权限、审计、长任务恢复和企业数据连接 |
+| 中国一体化Portfolio | 火山引擎＋豆包＋飞书；阿里云＋千问/Qoder＋钉钉；腾讯云、百度智能云、华为云 | 字节、阿里的闭环方向继续领先；本周无硬证据改变排序 | 开放Agent Runtime、任务计费、跨模型治理、企业GTM转化率 |
+| Neocloud/GPU Capacity | CoreWeave、Lambda、Nebius、Crusoe、Fluidstack | 资本成本与交付门槛上升；Fluidstack出现潜在政策资金变量 | 可交付MW/GPU、Anchor合同、融资成本、客户集中度、推理软件栈 |
+| Inference Cloud/Token Hub | Together AI、Fireworks AI、Baseten、硅基流动、趋境、PPIO | 受上层harness和下层异构芯片双向挤压 | 有效Token成本、任务成功率、模型路由、Reserved Inference、渠道控制 |
+| AI Infra基础软件／异构效率 | 清程极智、无问芯穹、基流科技等 | 清程极智本周无改变分类的硬证据，仍不列入Neocloud/GPU Cloud排名 | 跨芯片SLO、集群效率、标准产品收入、可验证客户与长期订单 |
+
+这一变化也修正了Gartner式Cloud AI Infrastructure坐标的使用方法：IaaS规模、GPU数量和地域覆盖仍重要，但Agent时代还必须新增“安全执行面”维度。没有任务隔离、身份治理和恢复能力的GPU Cloud，即使卡很多，也可能只是上游Capacity供应商。
+
+### 对GPUaaS与Inference/Token的影响
+
+1. **GPUaaS：利用率仍是底座，但收入占比面临下沉。** Agent负载具有长会话、突发并发和大量工具等待，最优架构不是持续占满高端GPU，而是Reserved GPU/Inference基线＋弹性Token＋CPU sandbox＋状态存储。只卖卡时的供应商无法获取后面三层收入。
+2. **Inference价格：形成“两端压缩、中间扩张”。** 开源模型、专用推理芯片和多模型路由压低基础Token价格；模型公司免费提供harness又压缩独立编排层；但安全sandbox、企业数据连接、审计、低失败率和任务恢复形成新的Managed Inference利润池。
+3. **计费单位：从每百万Token向每任务/每会话迁移。** 短期仍会以Token和工具费核算底层成本，企业合同则更适合按成功任务、并发Agent、运行时长和SLA收费。供应商必须同时记录Token、GPU秒、sandbox时长、工具调用与人工复核成本。
+4. **Token Hub：模型数量不再是充分差异化。** 真正壁垒将是Policy-aware Routing：在价格、质量、地区、数据合规和安全策略之间动态路由，同时保持会话状态与审计链完整。
+5. **大模型公司：入口优势扩大，资本负担也加重。** 一旦模型厂运营harness和sandbox，就要承担更长会话、峰值容量、安全事故和恢复责任；这为能提供白标Dedicated Inference及隔离运行环境的中立Cloud留下空间。
+
+### 对SenseCore的具体传导
+
+1. **把“Primary Production Cloud”升级为“Secure Agent Production Cloud”。** 对中型Multi-vendor客户，SenseCore不应只争三分之一GPU份额，而应拿下保存状态、连接企业数据、执行工具的核心生产池。竞争指标从卡价改为任务成功率、P95完成时间、越权阻断率、恢复时间和完整审计率。
+2. **推出可销售的Agent Runtime基础SKU。** 最小产品应包括隔离sandbox、镜像与依赖管理、secret vault、出网Allowlist、人工确认策略、会话Checkpoint、Token/GPU/工具统一计量，以及NVIDIA与国产GPU的模型Serving配置。它可以与客户自有Agent平台或飞书、钉钉、企微生态对接，不需要自建通用办公入口。
+3. **合同结构采用“基线＋突发＋治理”。** 基线Inference池使用Take-or-pay/Reserved Capacity；突发Agent并发使用弹性价格；sandbox、安全审计和专家服务单列收费。这样既能提高GPU利用率，又避免Token降价把全部工程价值吞掉。
+4. **与Token Hub合作，但保留任务和成本可见性。** 对硅基流动、趋境、PPIO等Anchor客户，可提供Wholesale Inference与Dedicated Capacity；合同应保留终端负载类型、SLO、利用率和续约可见性，防止SenseCore退化为不可见的低毛利GPU供应商。
+5. **国产化从“能跑”升级到“安全可运营”。** 可与无问芯穹、清程极智、基流科技等在模型适配、异构调度与集群工程上合作，但以同一任务、同一SLO下的有效Token/卡/日、故障恢复和隔离开销验收。清程极智仍属于AI Infra基础软件／异构算力效率层；本期未发现其Cloud收入、可调度算力规模或长期容量合同的新证据，不上调至GPU Cloud竞争序列。
+
+### 未来观察指标及风险
+
+- **Agents API商业化：** OpenAI hosted sandbox占比、合作sandbox流量、单任务Token/工具/运行时成本，以及是否推出按会话或任务的正式价格。
+- **Codex vs Claude Code：** 企业越权率、人工确认次数、长任务恢复率、第三方安全评测与事故披露，而非只看SWE-bench类榜单。
+- **中国Portfolio闭环：** 豆包—飞书—火山引擎、千问/Qoder—钉钉—阿里云是否披露付费席位向MaaS/Inference Revenue转化的可验证指标；腾讯、百度、华为是否发布标准Agent Runtime接口。
+- **GPUaaS与Token：** 同模型同SLO下的有效Token成本、Reserved Inference利用率、sandbox与CPU成本占任务TCO的比例，以及国产卡在长Agent任务中的稳定性。
+- **Neocloud资本：** CoreWeave、Lambda、Nebius、Crusoe、Fluidstack的债务利率、建设提款条件、电力与许可进度、Anchor客户集中度和GPU残值假设。
+- **清程极智固定观察项：** Chitu与八卦炉的公开版本、国产芯片/主流模型适配、规模集群数据、开源采用、标杆客户、可验证收入/订单和产品标准化；没有实质变化不机械展开。
+- **主要风险：** Agent安全事故可能延缓企业部署；模型厂的Runtime捆绑可能挤压独立AI-native Infra；Token降价快于Serving效率提升；融资收紧导致Neocloud延迟交付；国内厂商披露口径不统一，容易把测试算力、交付卡数和持续Cloud Revenue混为一谈。
+
+---
+
 ## 2026-09-04｜NVIDIA买下模型入口，Astra抬高Agent SLA：AI Infra进入生态锁定战
 
 **观察区间：2026-08-29—2026-09-04**  
