@@ -4,6 +4,60 @@
 
 ---
 
+## 2026-09-18｜GPU现货涨价，Token工厂上移：从可交付容量到Agentic系统利润池
+
+> **观察区间：** 2026年9月12—18日（截至北京时间9月18日约17时）。「已确认」为公司公告或产品资料所述事实，公告中的性能和合同口径仍属公司自报；「可信报道」为Reuters核验但未取得完整合同的消息；「分析判断」为情景推演，不等同于公司指引或Gartner结论。
+
+### 核心结论
+
+1. **GPUaaS与Token价格不能再用同一条曲线预测。** Reuters 9月17日报道Nebius将从10月1日起上调部分NVIDIA GPU按需价格17%—21%，但大客户长约仍有折扣。这只证明特定现货SKU的供需紧张，不证明所有GPU合同、Public Token API或Inference毛利同步上涨。[Reuters，2026-09-17](https://www.reuters.com/technology/nebius-hikes-ai-cloud-prices-again-demand-computing-power-soars-2026-09-17/)
+2. **Neocloud开始同时争夺「电力—训练—生产推理」三段价值。** Crusoe 9月17日公告Series F预计总额39亿美元、投后估值309亿美元，明确是*initial closing*；它自报超过6GW签约总容量、其中1GW已交付运营、超过1,400亿美元跨业务合同总价值，以及Managed Inference超过1亿美元已签约ARR。这四个指标口径互不相同，不可相加或当作当期收入。[Crusoe公告，2026-09-17](https://www.crusoe.ai/resources/newsroom/crusoe-announces-series-f-funding)
+3. **国内Agentic Infra竞争从GPU数量延伸到互联、CPU沙箱和KV记忆层。** 华为9月17日公布昇腾960超节点、鲲鹏超节点和OceanStor M900；960芯片的部分版本计划在2027年就绪，设计上限不能算作今天已上线的Cloud Capacity。[华为公告，2026-09-17](https://www.huawei.com/cn/news/2026/9/hc-wang-keynote)
+4. **对SenseCore，最有价值的客户合同是训练与Inference生产共同锁定。** 中型Multi-vendor客户可以把弹性GPU交给数家Cloud，但把核心模型、持续Token负载和故障恢复交给一个Primary Production Cloud；应以有效Token成本、SLO和最低消费争取该席位，而非单纯跟随现货卡时提价。
+
+### 关键动态及影响
+
+**1｜海外：Crusoe获得从模型训练到生产Serving的完整负载。** 9月15日，Crusoe与Perplexity公告多年合作：Perplexity在Crusoe的GB300 NVL72集群训练，并通过其Managed Inference提供生产服务；双方未披露合同金额、最低消费或独占性。[联合公告，2026-09-15](https://www.crusoe.ai/resources/newsroom/crusoe-perplexity-partnership) 9月17日的融资公告进一步披露超过1亿美元*已签约*Managed Inference ARR，以及超过6GW*签约*容量、1GW*已运营*容量；性能「首Token快9.9倍、吞吐5倍」系公司相对vLLM的测试声明，尚不能据此外推所有模型、硬件和SLO。**分析判断：** Perplexity这类客户若把训练、微调与推理逐步放在同一Cloud，会提高模型迁移成本，并让Neocloud分享原本由独立Token Hub获取的Serving工程收入。
+
+**2｜海外：现货有提价权，融资依然沉重。** 据Reuters 9月17日报道，Nebius部分GPU的按需挂牌价将上调17%—21%，多月大规模预留集群有承诺折扣；CoreWeave同日宣布拟发行30亿美元可转债、附最高5亿美元增购权，并设最多3,500万股的ATM售股安排——「拟发行／授权」不等于资金全部到账。CoreWeave称Q3一组短期算力合同的年化单价约4,000万美元/MW，签约电力规模约4.2GW；该批合同报价不能推算全公司已实现收入或每MW利润。[Reuters：Nebius，2026-09-17](https://www.reuters.com/technology/nebius-hikes-ai-cloud-prices-again-demand-computing-power-soars-2026-09-17/) [Reuters：CoreWeave，2026-09-17](https://www.reuters.com/legal/transactional/coreweave-launches-3-billion-convertible-debt-sale-2026-09-17/) **分析判断：** Lambda与Nebius、CoreWeave、Crusoe一样要证明MW按期上电、GPU可用、合同可提款；仅有Backlog或建设规划不足以证明资产回报率。
+
+**3｜中国：华为把Agent执行开销纳入硬件Portfolio。** 华为9月17日发布昇腾960超节点设计，单个超节点上限4,096卡、1PB HBM；同时介绍最多4,096节点、256TB统一内存的鲲鹏超节点，以及面向KV Cache的OceanStor M900。华为称十万级Agent沙箱启动相对其选用的传统服务器方案快30倍、密度高25%，并披露CANN开源社区与PyTorch适配进展；这些都是厂家指标，需要在客户真实工作负载复测。华为还披露910C超节点已部署超1,000套，但不得把未来960设计、百万卡理论扩展上限与现有运营容量混算。[华为公告，2026-09-17](https://www.huawei.com/cn/news/2026/9/hc-wang-keynote) **分析判断：** 这使华为云的盘古＋昇腾＋鲲鹏＋存储组合，在国产化Agent项目上更像完整系统供应商，而非单一GPU竞品。
+
+**4｜入口之争仍在，但本周不制造虚假新品。** 字节的豆包—飞书—火山引擎协同仍是模型、办公入口、企业GTM与MaaS串联的关键变量；7月的整合来自[36氪报道](https://36kr.com/p/3400118301352327)，不能写成9月新公告。阿里以千问/Qoder、[Coding Plan](https://help.aliyun.com/zh/model-studio/coding-plan)、钉钉和百炼连接开发者与企业；腾讯以混元、CodeBuddy、企微和腾讯云争取业务流量；百度以文心、Comate、搜索和千帆争取代码及检索场景。本窗口未核实足以重排上述四家份额的统一新指标。海外Codex的[Agents API](https://openai.com/index/introducing-the-agents-api/)和Claude Code则展示两种可参照路径：模型能力通过编程入口、工具执行、长任务与企业治理带动底层推理；不要把某个模型榜单或席位数直接当成Cloud收入。
+
+### 竞争格局变化
+
+| 竞争层 | 主要玩家与本期变化 | 判断依据／缺口 |
+|---|---|---|
+| 全栈入口＋Cloud | 火山引擎、阿里云、腾讯云、百度智能云；华为云强化国产系统栈 | 比拼模型／Coding Agent／企业入口到MaaS、GPU Cloud的转化，缺统一可比付费Token与任务毛利披露 |
+| 全球Neocloud | Crusoe、CoreWeave、Nebius；Lambda继续观察 | Crusoe新增可核验的Perplexity训推合作和合同化Inference口径；Nebius现货提价；CoreWeave融资仍待执行 |
+| 独立中国GPU Cloud | SenseCore、并行科技、无问芯穹等在中型Multi-vendor客户重叠 | 看同SLO生产份额、已交付Capacity和Reserved合同，不把全部HPC或规划容量视作AI收入 |
+| Token Hub／AI-native Infra | Together AI、Fireworks AI、Baseten；硅基流动、趋境、PPIO | 既可能成为Neocloud的Anchor客户，也可能因自建Serving争取同一利润池；需核验终端付费Token及毛利 |
+| AI Infra基础软件／异构效率层 | 清程极智（Qingcheng.ai）、基流科技等；无问芯穹同时有Cloud层业务 | 清程的赤兔Chitu、八卦炉和国产适配保留固定观察；本期未见可核验Cloud收入、可调度规模或长期容量合同，不进入Neocloud排名 |
+
+这里的Gartner或Cloud AI Infrastructure坐标是比较框架，不是Gartner发布的本周排名。尤其要区分：「签约GW」「已运营GW」「云上可售GPU」「已签约ARR」「已确认Revenue」。
+
+### 对GPUaaS与Inference/Token的影响
+
+- **GPUaaS：** 未来3—12个月，供不应求的可用GPU现货可能维持溢价；长约价、旧卡、国产卡和地域/网络条件则会分化。Nebius的17%—21%是部分按需SKU的未来价格调整，不能机械套用SenseCore全部库存。利润须扣除设备折旧、电力、融资、网络和空置。
+- **Inference/Token：** 高端GPU每小时价格上涨与每百万有效Token价格下行可以并存，因为量化、批处理、KV复用、P/D分离及异构卡提高产出。利润池从裸Token逐步转向Reserved Throughput、模型Serving调优、任务SLA、Agent沙箱与数据治理；若吞吐改善小于卡价和资本成本涨幅，Managed Inference毛利反而下滑。Crusoe的合同化Inference披露提供方向，但不是行业毛利的证明。
+- **大模型公司与Token Hub：** Perplexity—Crusoe模式表明模型公司可把训练与生产推理绑定给一个上游，同时保留自有用户入口；硅基流动、趋境等需要证明跨Cloud/国产芯片路由和客户关系，而不是只做低价模型API。Codex、Claude Code等Coding Agent提高工具等待、CPU沙箱和记忆存储占比，最终应按完成任务总成本比较，而非只看Input/Output Token报价。
+
+### 对SenseCore的具体传导
+
+1. **按可交付生产负载而非卡数抢Primary Vendor。** 对年GPU预算数千万元的Multi-vendor客户，以一个模型在真实并发和P95时延下的「有效Token／卡／日、每百万有效Token成本、故障恢复时间」做并行科技、无问芯穹和Hyperscaler同场验收；目标是核心推理与训练池，不要求客户排除其他供应商。
+2. **把合同拆成基线、突发与系统软件。** 基线用6—12个月Reserved Capacity及Take-or-pay覆盖折旧；突发GPU/Token按浮动价；迁移、KV/Serving优化、沙箱与SRE明确交付及收费。仅当客户有持续生产负载与可测SLO时，才将GPUaaS升级为Wholesale Inference。
+3. **国产化拿「有效供给」验证。** 对华为昇腾等芯片及清程极智Chitu、无问芯穹的异构栈，在同模型、同量化质量、同SLO下测试Token效率、故障率和CPU/存储附加成本；不凭宣传的峰值FP8或集群理论上限确定采购。对客户自有CAPEX的项目，另报Managed Private AI Cloud，避免占用脱销的存量GPU。
+4. **控制资本与渠道风险。** 新增GPU投资应关联可执行的最低消费、上电日和客户信用；与Token Hub合作时保留终端工作负载/SLO及续约可见性，避免提供低毛利匿名Capacity却把客户入口拱手让人。
+
+### 未来观察指标及风险
+
+- Nebius 10月1日新价实际适用SKU、长期折扣与续约率；CoreWeave可转债实际完成条款、4.2GW的上电进度；Crusoe剩余融资交割、6GW中已运营比例、1亿美元合同化Inference ARR兑现成收入与毛利的节奏。
+- 华为960芯片2027年就绪与云上商用进度、M900在真实Agent负载的KV命中率、国产芯片跨模型的稳定吞吐；字节、阿里、腾讯、百度的Coding Agent付费席位向企业MaaS与Token收入转化是否有可审计披露。
+- 清程极智Chitu/八卦炉的开源版本、客户部署、可验证订单和标准化收入；仅有实验性能不改变其软件层分类。
+- **主要风险：** 合同总价值与已确认收入混淆；现货提价掩盖折扣与资金成本；Vendor benchmark不等于生产SLO；模型入口捆绑使中立Cloud失去客户；国产化迁移增加隐性工程开销；Token降价快于实际Serving降本。
+
+---
 ## 2026-09-11｜Codex变成Cloud Runtime：Agent执行环境重写Token与GPU利润池
 
 > **事实窗口：** 2026年9月5日—11日。文中“已确认”指公司公告、官方产品资料或监管披露；“可信报道”指Reuters等可靠媒体但尚未获交易主体完整确认；“分析判断”不等同于公司指引或Gartner结论。
