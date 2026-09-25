@@ -4,6 +4,182 @@
 
 ---
 
+## 2026-09-25｜阿里补齐芯片闭环，Claude锁定生态预算：AI Cloud进入合同兑现期
+
+> **观察区间：** 2026年9月19—25日  
+> **口径说明：** “已确认事实”指公司公告、官方产品页或监管申报；“可信报道”指可靠媒体对公司材料或知情人士的报道；“分析判断”是本周报推演；“待验证口径”不作为排名和收入依据。
+
+### 一、核心结论
+
+1. **阿里把模型、芯片、超级节点和长期数据中心容量放进了同一个AI Infra Portfolio，但规划不等于当期供给。** 9月22日云栖大会披露的5万亿—10万亿参数模型方向、真武V900芯片、最高50万芯片集群及2032年超过20GW的数据中心容量目标，显示阿里希望同时控制Token需求入口和底层成本曲线；但V900计划到2027年一季度才量产并商业发布，20GW是2032年目标，不能直接计入当前GPUaaS供给或Revenue。
+
+2. **Claude Marketplace把“模型承诺消费”升级成生态采购货币。** Anthropic允许企业用部分既有承诺额度购买Cursor、Snowflake、Harvey等Claude-powered软件，并把插件、Agent、服务伙伴集中到统一入口。模型公司由Token供应商进一步变成预算分配者；未来最强的入口不是最低价API，而是能够把企业承诺预算、Agent工作流和Cloud消耗闭环的平台。
+
+3. **Anthropic与Akamai的七年、116亿美元Cloud合同，说明模型公司正在主动做多供应商和资本绑定。** 这笔合同把Akamai带入需要重点观察的AI Cloud供应层，也再次验证长期Capacity、预购部件和股权／权证绑定正在替代纯现货GPU租赁。不过116亿美元是多年合同总值，不是已确认Revenue；相关Capex、上线进度和扩容条件决定真实利润。
+
+4. **Nscale的IPO数据与Oracle项目的电力争议共同提醒：Neocloud竞争的核心已经从Backlog规模转向“按时交付多少可用MW”。** Nscale披露超过1,030亿美元签约总值的同时，2026年上半年Revenue为1.406亿美元、净亏损10.2亿美元、最大客户占Revenue 52%。另有可信报道指Oracle相关Project Jupiter可能因电力延迟一年，而Oracle称进度仍按计划。合同、融资和GW规划必须按供电、客户集中度、取消条款及交付里程碑折价。
+
+5. **对SenseCore，最有价值的位置不是再造一个Public Token Marketplace，而是成为可兑现的中立Production Cloud。** 应用跨芯片Serving、Reserved Inference、明确电力与交付责任的Take-or-pay合同，争取中型Multi-vendor客户的Primary Production Pool；同时通过Codex、Claude Code及国内Coding Agent/企业入口承接稳定负载，而不是只争卡时单价。
+
+### 二、关键动态及影响
+
+#### 1. 阿里：从Qwen入口一路下沉到芯片与20GW容量
+
+**已确认事实／公司口径：** 9月22日，阿里在云栖大会披露：正在开发5万亿—10万亿参数级模型，当前Qwen 3.8 Max为2.4万亿参数；平头哥推出真武V900，阿里称其性能为前代M890的约3倍，并称相关集群可扩展至50万颗芯片；V900计划于2027年一季度量产并商业发布。阿里同时提出到2032年全球数据中心容量超过20GW的目标。以上参数和性能主要来自公司披露，尚不是第三方基准或已交付规模。[Reuters，2026-09-22](https://www.reuters.com/business/retail-consumer/alibaba-plans-ai-model-with-5-trillion-10-trillion-parameters-unveils-new-chip-2026-09-22/)
+
+**分析判断：** 这不是单一芯片发布，而是阿里把四个原本可分开采购的环节绑成一个Portfolio：
+
+- Qwen和Coding/Agent产品制造Token需求；
+- 阿里云MaaS与企业客户承接分发；
+- 自研芯片和超级节点压低边际计算成本；
+- 20GW长期容量为模型迭代和Cloud销售准备资产底座。
+
+未来3—12个月，对外竞争的重点不会是V900马上替代NVIDIA，而是阿里能否用自研芯片、Qwen和Cloud合约组成更低的端到端任务成本。若V900如期商业化，阿里云可以对部分内部模型与企业Inference采取Portfolio定价：模型价格看似更低，利润在Cloud、专有容量和企业套件中回收。这会压缩只卖GPU卡时或单一Token转售的独立供应商空间。
+
+**待验证口径：** V900量产良率、实际集群规模、支持的模型和框架、每瓦有效Token、外部客户可用时间、20GW中已锁定电力和已开工比例。任何一项未披露，都不应转化为当前产能排名。
+
+#### 2. Claude Marketplace：承诺消费从模型额度变成生态预算
+
+**已确认事实：** Anthropic于9月23日发布Claude Marketplace，整合插件／Connectors、Agent与合作产品、服务伙伴；公司称生态已有2,000多个插件和Connectors。企业可以使用部分既有Anthropic承诺消费额度采购CrowdStrike、Cursor、Harvey、Legora、Lovable、Snowflake等Claude-powered产品，服务伙伴包括Accenture、BCG和Deloitte；开发者则通过MCP和Agent Skills接入。[Anthropic官方，2026-09-23](https://claude.com/blog/claude-marketplace)
+
+**分析判断：** Claude Marketplace的关键不是应用商店数量，而是预算控制权。企业已经承诺给模型公司的钱，现在可以沿着模型—Agent—软件—服务继续流转，减少重新立项和采购摩擦。由此出现三个变化：
+
+- **Coding Agent成为Cloud分发器。** Claude Code或Cursor选择的模型、上下文策略和执行环境，会决定Token流向以及后端Inference需求。
+- **Token价格的重要性下降。** 企业愿意为任务完成率、治理、插件、审计和服务伙伴付费，利润池从每百万Token转向席位、工作流、Marketplace分成和Committed Spend。
+- **独立Token Hub被迫证明增量价值。** 仅做多模型API聚合将更容易被模型厂商的原生入口替代；真正有防御力的是跨模型路由、私有部署、企业治理和显著更低的有效任务成本。
+
+与Codex的共同趋势是：Coding Agent不再只是IDE插件，而是长期运行、可调用工具和Cloud资源的执行平面。差异在于本周Anthropic把采购预算和合作伙伴市场显式绑定；Codex更强调统一Agent runtime、任务执行和开发工作流。二者最终都在争夺“谁决定一次任务调用什么模型、消耗哪一朵Cloud”。
+
+#### 3. Anthropic—Akamai：Anchor合同把CDN/边缘Cloud拉进AI容量市场
+
+**已确认事实／可信报道：** 9月24日，Akamai与Anthropic签署七年、116亿美元Cloud服务协议。Reuters报道，配套权证最高可使Anthropic取得Akamai约5%股权，其中约2%与初始承诺相关，余下约3%取决于最高再扩展90亿美元；Akamai预计初始Capex约55亿美元，并在2026年增加约17亿美元资本开支以预购内存等部件。[Reuters，2026-09-24](https://www.reuters.com/technology/akamai-anthropic-sign-116-billion-cloud-services-deal-2026-09-24/)
+
+**分析判断：** 这笔交易有三层含义：
+
+1. Anthropic继续分散单一Cloud和单一区域的容量风险；
+2. Akamai把全球边缘节点、网络和Cloud资产向大模型训练／Inference供给扩展，成为CoreWeave、Lambda、Nebius、Crusoe之外的新观察对象；
+3. 模型公司的长期消费承诺正在成为基础设施融资工具，而权证让客户同时分享供应商升值。
+
+但不能把合同总值除以七年就当作年Revenue。真实确认取决于设备上线、最低消费、扩容选择权、服务验收与会计口径；Akamai能否把传统网络优势转化为高密度AI集群的稳定性和Gross Margin，仍需验证。
+
+#### 4. Nscale与Project Jupiter：TCV、GW和Revenue之间需要一座“交付桥”
+
+**已确认事实：** Nscale在IPO申报相关披露中称，2026年上半年Revenue为1.406亿美元，去年同期为1,040万美元；净亏损10.2亿美元，去年同期净亏损3.689亿美元；公司披露超过1,030亿美元总签约价值、14个运营区域和超过10GW电力Pipeline，最大客户占上半年Revenue 52%，并拥有31亿美元可转债，其中包括NVIDIA的10亿美元。[Reuters据IPO文件，2026-09-18](https://www.reuters.com/technology/ai-cloud-firm-nscale-files-us-ipo-2026-09-18/)
+
+**可信报道且存在争议：** Reuters于9月24日报道，Oracle相关Project Jupiter可能因电力获取延迟约一年，并涉及不可抗力和付款节奏讨论；Oracle表示项目仍按计划推进，Blue Owl也称承诺不变。因此，当前只能确认存在供电与合同风险争议，不能确认项目已经违约或取消。[Reuters，2026-09-24](https://www.reuters.com/business/energy/oracle-blue-owl-project-delay-sends-ripples-through-ai-financing-sources-say-2026-09-24/)
+
+**分析判断：** 市场将越来越要求Neocloud披露下面这条桥：
+
+> Contracted Value → 已取得融资 → 已锁定电力 → 已部署GPU → 已验收容量 → Revenue → 经营现金流
+
+CoreWeave、Lambda、Nebius、Crusoe和Nscale都可以拥有强需求与大Pipeline，但估值和融资成本将更多取决于这条桥的转化率。Nscale的客户集中度和亏损不是需求不足的证据，却说明单一Anchor客户、建设周期和资本成本可以吞噬名义Backlog的质量。
+
+### 三、竞争格局变化
+
+| 层级 | 本周变化 | 3—12个月含义 |
+|---|---|---|
+| 模型／Agent入口 | Claude把Committed Spend开放给软件与服务伙伴；阿里继续用Qwen、Coding和企业入口制造需求 | 入口掌握工作负载分配权，模型额度逐渐成为企业AI采购货币 |
+| Hyperscaler全栈 | 阿里强化“模型—MaaS—芯片—超级节点—数据中心”闭环 | 对外Token低价可由Cloud和基础设施利润补贴，独立玩家更难在单点价格上竞争 |
+| 新型Cloud／Neocloud | Akamai获得Anthropic七年Anchor合同；Nscale公开TCV、Revenue、亏损和客户集中度 | 排名标准从规划GW与Backlog转向可交付MW、合同质量、融资成本和客户分散 |
+| AI-native Inference | Token Hub面对模型原生Marketplace与Agent入口上移 | 硅基流动、趋境、PPIO等需要用多模型路由、企业私有化和成本效率证明不可替代性 |
+| 中国独立GPU Cloud | 本周未见改变并行科技、无问芯穹、SenseCore相对位置的可验证新增规模 | 中型客户的Multi-vendor竞争继续，胜负取决于谁拿到Primary Production Pool |
+| AI Infra基础软件／异构效率 | 清程极智本周未见可验证Cloud收入、可调度规模或长期容量合同新增披露 | 仍与无问芯穹、基流科技等在软件栈、异构适配和集群效率维度比较，不进入Neocloud/GPU Cloud排名 |
+
+中国大厂方面，截至9月25日，本周只有阿里出现足以改变Portfolio判断的新增硬信息。字节跳动此前对豆包、飞书、火山引擎产品与GTM整合的方向仍然重要，但本周未见新的可验证容量、Token Revenue或合同指标；腾讯、百度和华为亦未出现足以重排本周坐标的一手披露。它们下一阶段仍需用“入口带来的付费Token、企业续费、专属Capacity和自研芯片有效产能”证明闭环，而不是只发布模型或Agent功能。
+
+海外方面，CoreWeave、Lambda、Nebius与Crusoe本周未出现足以改变相对排序的新披露；但Akamai的进入和Nscale的申报数据抬高了比较门槛。未来不应只问谁拥有更多GPU，而应同时问：客户是否Take-or-pay、供电是否无条件落实、上线是否按月验收、合同是否可取消、Anchor客户占比多高。
+
+### 四、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：现货仍有价值，但大额利润先被长期合同锁定
+
+- 模型公司会继续使用Multi-cloud，但新增大规模Capacity更倾向七年合同、预购部件、最低消费和股权／权证绑定。
+- Hyperscaler的自研芯片把部分内部Inference从公开GPU市场移走，同时也可能以更低价格释放模型服务；独立GPUaaS必须依靠中立性、稀缺GPU、区域合规和交付速度守住溢价。
+- 电力与建设延迟会使“可立即交付的连续集群”继续具有现货溢价；但未落实电力的远期Pipeline会被资本市场折价。
+- 旧GPU并不会因V900等新芯片发布立刻失效。只要模型适配、利用率和单位有效Token成本仍有竞争力，A100/H系列及国产成熟卡仍可服务Fine-tuning、Batch Inference和弹性池。
+
+#### Inference/Token：价格战继续，利润池向承诺预算和任务SLA上移
+
+公开API的每百万Token价格仍会下降，但这不等于行业利润消失。利润更可能集中在：
+
+1. Committed Spend和Reserved Capacity；
+2. Coding Agent、企业Agent及Marketplace入口；
+3. Private Deployment、审计、权限与数据治理；
+4. 端到端任务成功率和Latency SLO；
+5. 跨芯片Serving、缓存、批处理与调度带来的成本差；
+6. 集成商和服务伙伴掌握的实施与续费关系。
+
+对大模型公司，掌握入口者可以用低Token价格换取更大的生态预算；对Token Hub，风险是被模型公司的原生Marketplace和Cloud渠道绕过。Token Hub若要保持价值，必须向“多模型治理＋企业结算＋跨Cloud调度＋私有Inference”升级，而不是停留在API转售。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 把“可兑现Capacity”做成产品，而不是销售承诺
+
+SenseCore应为每个Dedicated或Reserved集群给出可审计的交付表：
+
+- 已落实电力与机柜；
+- 芯片到货和网络验收日期；
+- 可用GPU比例、故障恢复时间和训练有效率；
+- 模型上线时间、吞吐和P95/P99 Latency；
+- 延期的价格Step-down、客户退出权和替代Capacity。
+
+Oracle项目争议说明，电力与建设责任一旦模糊，合同价值会迅速折价。SenseCore可以反过来把“已上电、已验收、可迁移”变成高质量Revenue的证明。
+
+#### 2. 面向中型Multi-vendor客户争夺Primary Production Pool
+
+对年GPU Cloud预算1,000万—1亿元的客户，客户仍会保留并行科技、无问芯穹等第二和第三供应商。SenseCore不应以100%份额为目标，而应锁定：
+
+- 核心训练和稳定生产Inference；
+- 最严格SLA与数据治理的工作负载；
+- 12—36个月Reserved Capacity或Take-or-pay；
+- 跨NVIDIA与国产芯片的迁移服务；
+- 按有效Token、吞吐或任务SLO结算的增值部分。
+
+并行科技可以承接弹性和长尾GPUaaS，无问芯穹承接异构适配；SenseCore要成为最难迁移的生产主池。
+
+#### 3. 接入Agent入口，但不要复制Claude Marketplace
+
+SenseCore缺少全球模型品牌和大规模软件生态，直接复制Marketplace会分散资源。更实际的打法是：
+
+- 为Codex、Claude Code及国内Coding Agent提供Dedicated Inference、数据驻留和企业私有环境；
+- 与硅基流动、趋境、PPIO等Token Hub做Wholesale Capacity和流量溢出合作；
+- 为大型企业提供模型可替换的Agent runtime底座，避免绑定单一模型；
+- 把专家服务、国产迁移和Serving优化写入长期容量合同。
+
+这样，Agent平台掌握上层入口，SenseCore掌握生产SLA和底层成本，双方都有明确分工。
+
+#### 4. 用四项指标管理利润池
+
+SenseCore内部不应只看GPU利用率和卡时Revenue，还应固定跟踪：
+
+| 指标 | 目的 |
+|---|---|
+| 每GPU日有效输出Token／完成任务数 | 衡量Serving优化是否创造真实产能 |
+| 每MW已验收Annualized Revenue与Gross Profit | 把电力、资产和合同兑现连接起来 |
+| Reserved/Take-or-pay占可售Capacity比例 | 衡量现金流和融资质量 |
+| Top 5客户占比及最大客户退出压力测试 | 避免Anchor客户反向控制价格和资本开支 |
+
+### 六、未来观察指标及风险
+
+1. **阿里兑现度：** V900是否在2027年一季度按期商业发布；首批外部客户、支持模型、每瓦Token和实际集群规模。
+2. **Claude Marketplace转化：** 有多少Committed Spend流向第三方产品，Marketplace是否抽成，Cursor等伙伴是否获得增量席位与Token使用。
+3. **Akamai合同质量：** 初始容量何时上线、最低消费和扩容条件、116亿美元中可取消／可选择部分、Capex与Gross Margin节奏。
+4. **Nscale申报：** IPO正式文件中的运营MW、未交付TCV、客户集中度、资本化利息、现金需求与Anthropic合同履约条件。
+5. **Neocloud电力风险：** Project Jupiter实际交付时间，以及CoreWeave、Lambda、Nebius、Crusoe等项目是否出现类似供电、建设或融资延迟。
+6. **中国大厂闭环指标：** 豆包／飞书／火山引擎、阿里Qwen／Coding／Cloud、腾讯混元／企业入口、百度文心／千帆的付费Token、企业续费和专属Capacity，而非单纯调用量。
+7. **清程极智固定观察池：** 赤兔、八卦炉的主流模型与国产芯片适配、生产集群效率、开源活跃度、标杆客户、可验证订单与标准化产品。未出现Cloud收入、可调度算力规模或长期容量合同前，不进入GPU Cloud竞争序列。
+8. **主要风险：** 模型参数和芯片性能采用公司口径；合同总值不等于Revenue；电力Pipeline不等于已交付MW；Token低价可能来自补贴和Portfolio交叉定价；监管、出口限制与国产芯片供应链仍可改变交付计划。
+
+### 结论
+
+本周真正的变化不是又多了一颗芯片、一个Marketplace或一份巨额合同，而是AI Infra竞争的计量单位正在统一：
+
+> 上层看谁控制企业承诺预算与Agent入口，下层看谁能把合同按时变成可用MW和有效Token。
+
+阿里展示的是全栈Portfolio对成本和入口的控制；Anthropic展示的是模型公司对生态预算和Cloud采购的控制；Nscale与Project Jupiter则展示了从合同到交付之间的巨大风险。对SenseCore而言，最可持续的策略是保持模型与芯片中立，用真实可交付Capacity、跨芯片Serving和Production SLA成为客户Multi-vendor架构中的Primary Production Cloud。
+
+---
+
 ## 2026-09-18｜GPU现货涨价，Token工厂上移：从可交付容量到Agentic系统利润池
 
 > **观察区间：** 2026年9月12—18日（截至北京时间9月18日约17时）。「已确认」为公司公告或产品资料所述事实，公告中的性能和合同口径仍属公司自报；「可信报道」为Reuters核验但未取得完整合同的消息；「分析判断」为情景推演，不等同于公司指引或Gartner结论。
