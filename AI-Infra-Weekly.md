@@ -4,6 +4,225 @@
 
 ---
 
+## 2026-10-02｜模型公司变成超级租户：5,180亿美元承诺重写AI Infra利润池
+
+> **观察区间：** 2026年9月26日—10月2日  
+> **口径说明：** “已确认事实”指公司公告或正式产品材料；“可信报道”指可靠媒体取得的申报材料或知情人士信息；“公司口径／待验证”不直接计入收入、容量和排名；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **模型公司正在从Cloud大客户变成AI Infra“超级租户”和融资主体。** Reuters看到的Anthropic保密IPO材料显示，其未来十年AI基础设施承诺至少5,180亿美元，约80%不可取消或不论使用量均须支付。模型能力、Token收入和长期算力租约由此被锁在同一张资产负债表上；未来竞争不只看模型份额，还要看每一美元Committed Capacity能否转化为付费Token和现金流。
+
+2. **GPU与专用芯片的利润池开始向融资结构迁移。** Broadcom同意向Anthropic提供最高420亿美元融资，支持其五年TPU租赁承诺；Amazon又被报道拟把约80亿美元NVIDIA Grace Blackwell芯片装入SPV后回租。芯片商、Hyperscaler和Neocloud不再只卖算力，也在提供贷款、租赁、担保和资产证券化。合同覆盖、GPU残值和违约追索将直接决定资本成本。
+
+3. **腾讯被报道通过Oracle在东南亚租用约10万颗先进AI芯片，显示中国大厂正在形成“境内国产化＋境外先进算力”的双轨Portfolio。** 该五年、约70亿美元交易尚未获腾讯或Oracle确认，不能视作已交付容量；但如果属实，将显著增强腾讯海外训练与Inference能力，也说明出口限制并未消除高端算力需求，而是改变了算力所在地、合同结构和数据治理边界。
+
+4. **CoreWeave推出Forge并引入面向Agent工作负载的NVIDIA Vera CPU，表明Neocloud正从GPU资源商上移为“训练—评测—Inference—Agent观测”平台。** Claude Code同时通过Mods开放工具调用、权限和界面扩展，Claude for Government则把Coding Agent、预算管理与合规采购放进统一入口。未来Agent负载不仅消耗GPU，也会显著消耗CPU、存储、Sandbox、网络和Observability。
+
+5. **SenseCore应借鉴长期合同与软件上移，但不能复制海外模型公司的超大杠杆。** 最优位置仍是中立的Primary Production Cloud：用可验收Capacity、跨芯片Serving、Reserved Inference和有限的软件附加值锁定中型Multi-vendor客户。清程极智与国家超算互联网的合作可作为国产Token效率层的潜在伙伴，但在出现可验证Cloud收入、调度规模或长期容量合同前，仍不进入Neocloud/GPU Cloud序列。
+
+### 二、关键动态及影响
+
+#### 1. Anthropic的5,180亿美元承诺：模型公司开始承担基础设施久期风险
+
+**可信报道，来源为尚未公开的IPO材料：** Reuters于9月29日报道，Anthropic计划未来十年通过六家合作伙伴投入至少5,180亿美元建设AI基础设施，约80%的承诺不可取消或必须不论使用量支付。其中包括Google至少1,111亿美元、Amazon 1,100亿美元、Microsoft 314亿美元的长期基础设施义务，以及约1,612亿美元与Broadcom相关的设备租赁义务。Anthropic同时称正在由纯Cloud模式转向Dedicated Data Center和直接租赁芯片。[Reuters，2026-09-29](https://www.reuters.com/business/anthropics-518-billion-ai-buildout-hinges-largely-deals-that-cannot-be-canceled-2026-09-29/)
+
+**必须严格区分：**
+
+- 5,180亿美元是未来十年的合同或租赁承诺，不是已发生Capex，也不是Cloud厂商已确认Revenue；
+- “80%不可取消”来自Reuters看到的保密申报材料，正式公开文件仍需核对；
+- xAI相关最高845亿美元NVIDIA算力安排据报道大部分可提前90天取消，与Google、Amazon、Microsoft和Broadcom义务的合同质量不同；
+- Anthropic判断“算力而非需求将成为主要约束”属于公司假设，不代表未来利用率一定达到预期。
+
+**分析判断：** 这组数字第一次较完整地揭示模型公司与AI Infra的双向锁定：
+
+> Cloud锁定模型客户的最低消费，模型公司锁定Cloud的未来容量，芯片商再用融资锁定设备销售。
+
+当Claude的实际Token增长高于最低承诺，长期合同会形成成本优势和供给壁垒；若增长不及预期，未使用Capacity将变成刚性成本，并可能被低价释放到Inference市场。未来Token价格因此可能呈现“两头挤压”：前端模型厂商为填满承诺容量继续降价，后端Cloud供应商却因电力、融资和折旧压力要求更长的Take-or-pay。
+
+#### 2. Broadcom融资与Amazon SPV：芯片从设备变成金融资产
+
+**可信报道：** Reuters于10月1日援引Anthropic IPO材料称，Broadcom同意提供最高420亿美元融资，约可覆盖Anthropic五年1,252亿美元TPU算力租赁承诺的三分之一；债务工具可能转换为Anthropic股权。Anthropic同时提示，Broadcom既供应硬件、又出租设备和提供融资，可能造成定价、供给与利益冲突。[Reuters，2026-10-01](https://www.reuters.com/business/broadcom-lend-anthropic-up-42-billion-lease-its-chips-filing-says-2026-10-01/)
+
+**可信报道、尚未获公司确认：** Reuters于10月2日转述FT称，Amazon正研究把约80亿美元NVIDIA Grace Blackwell芯片转入SPV，由外部投资者出资并向Amazon回租；相关芯片已安装或正在安装于美国五个州十余个数据中心，Amazon可能持有SPV最高10%股权。[Reuters，2026-10-02](https://www.reuters.com/business/retail-consumer/amazon-seeks-offload-8-billion-nvidia-chips-investors-ft-reports-2026-10-02/)
+
+**分析判断：** GPU融资正在接近飞机、服务器租赁和基础设施项目融资的混合形态，但尚未成为标准化资产类别。金融机构真正关心的不是理论十年寿命，而是：
+
+- 是否有不可取消的Anchor客户合同；
+- 芯片在三至四年后的二手残值；
+- 设备能否跨客户、跨Cloud重新部署；
+- 电力、机房和网络是否与设备同步交付；
+- 芯片厂商或Cloud是否提供回购、补足或性能担保。
+
+这会把Neocloud分成两类：一类以客户合同和现金流融资，另一类主要依赖GPU抵押和远期估值融资。前者资本成本更低，也更可能穿越硬件代际。
+
+#### 3. 腾讯海外算力：双轨Portfolio可能成为中国大厂的标准形态
+
+**可信报道、待双方确认：** Reuters于10月1日转述FT称，腾讯与Oracle签订其最大海外租赁协议，在东南亚多个Oracle数据中心取得约10万颗中国境内无法获得的先进AI芯片，合同期五年、估值约70亿美元，预付款约30%。Reuters无法独立核实，腾讯和Oracle未立即回应。[Reuters，2026-10-01](https://www.reuters.com/world/china/chinas-tencent-leases-100000-chips-oracle-accelerate-ai-push-ft-reports-2026-10-01/)
+
+如果报道准确，这不是简单的“海外租卡”，而是腾讯Portfolio的关键补丁：
+
+- 境内继续推进混元、企业入口、腾讯云MaaS和国产芯片适配；
+- 境外用Oracle承接先进NVIDIA训练、全球产品和对延迟／性能敏感的Inference；
+- 预付＋五年租赁将供应确定性置于现货价格之上；
+- 工作负载、训练数据和模型权重如何跨境，将成为合同价值的实际约束。
+
+**分析判断：** 未来3—12个月，阿里、腾讯、字节和百度的差距不能只用境内GPU数量衡量，而要看“全球可调用有效算力”。阿里已经公开芯片—Cloud—Qwen—Agent全栈路线；腾讯若完成此次海外容量锁定，将缩小高端训练供给差距；字节依靠豆包、飞书和火山引擎的入口—Token闭环仍具最强流量转化潜力；百度的竞争点仍是文心／千帆、企业客户和自有AI Infra能否形成可验证的付费Token增长。本周除腾讯报道外，未见足以改变字节、百度、华为相对排序的新一手容量或Revenue披露。
+
+#### 4. CoreWeave Forge：Neocloud开始吞并MLOps和Agent控制面
+
+**已确认事实／公司口径：** CoreWeave于9月30日推出Forge，把Weights & Biases Models、OpenPipe的Post-training能力、marimo Notebook和CoreWeave自身服务放入同一环境，覆盖训练、实验跟踪、评测、Agent Trace、Registry和Inference；CoreWeave ARIA Coding Agent同时进入GA。公司称平台保持模型、框架和Cloud开放。[CoreWeave官方，2026-09-30](https://www.coreweave.com/news/coreweave-forge-launches-turning-the-ai-loop-production-run-into-a-better-model-and-agent)
+
+CoreWeave同日宣布提供NVIDIA Vera CPU，定位Agentic workload中的CPU密集环节，并继续把Vera Rubin NVL72、存储、网络和软件层组合销售。[CoreWeave官方，2026-09-30](https://investors.coreweave.com/news/news-details/2026/CoreWeave-to-Offer-NVIDIA-Vera-the-First-CPU-Built-for-AI-Agents/default.aspx)
+
+**分析判断：** CoreWeave正尝试回答Neocloud最难的问题：当GPU供给不再稀缺时，客户为什么不迁移？Forge的答案是把实验数据、模型版本、评测、生产Trace和Post-training闭成循环，使切换Cloud不再只是搬容器和权重，而要搬走学习历史与工作流。
+
+这会给Lambda、Nebius、Crusoe和国内独立GPU Cloud带来压力。单纯提供更便宜卡时只能获得弹性池；要成为Primary Production Cloud，必须至少拥有：
+
+1. 生产级模型Registry与部署；
+2. 训练和Inference统一观测；
+3. Agent Sandbox、Trace和评测；
+4. 成本／性能路由；
+5. 专家服务和SLA。
+
+但CoreWeave的“开放”仍需验证：W&B能否真正保持Cloud-agnostic、Forge的软件Revenue与Gross Margin、客户是否接受把生产Trace留在同一Neocloud，均未披露。
+
+#### 5. Claude Code与政府入口：Coding Agent变成预算、权限和工具调用的Control Plane
+
+**已确认事实：** Anthropic于10月1日发布Claude Code Mods，允许TypeScript函数在工具调用、权限请求和界面事件前后运行，可重写Prompt、阻止或重试工具调用、脱敏输出并加入企业审计；Mods随插件分发，企业管理员可控制Marketplace和加载顺序。Anthropic明确提示Mods拥有与Claude Code相同的本机权限，且不在Sandbox内，存在供应链风险。[Anthropic官方，2026-10-01](https://claude.com/blog/claude-code-mods)
+
+9月30日，Claude for Government正式GA，提供FedRAMP High环境、Claude Code、预算上限、按部门分配和审计；政府机构可直接与Anthropic签约，无需单独建立Cloud关系。[Anthropic官方，2026-09-30](https://claude.com/blog/claude-for-government-is-now-generally-available)
+
+**分析判断：** Codex、Claude Code以及中国Coding Agent的竞争单位已经由“代码补全质量”转向：
+
+> 模型能力 × 工具生态 × 权限控制 × 长任务可靠性 × 预算与采购入口。
+
+谁控制Agent运行时，谁就决定调用哪个模型、在哪朵Cloud运行、消耗多少Token以及如何计费。Cloud供应商若只在后台提供GPU，可能获得Revenue却失去客户数据、续约权和软件利润；若像CoreWeave一样上移控制面，又会与模型公司和开发工具正面竞争。
+
+#### 6. 清程极智：出现实质产业合作，但分类仍不变
+
+**已确认事实：** 国家超算互联网于9月22日宣布与清程极智达成战略合作，合作方向包括加速卡底层协同、大模型适配与能效、大规模并发推理时延、词元生产价值基线、国产MaaS/AaaS标准化和行业复制；涉及赤兔推理引擎、AI Ping评测路由和八卦炉系统软件栈。[国家超算互联网，2026-09-22](https://www1.scnet.cn/home/news/200484.html)
+
+这项消息此前未纳入9月25日周报，故本期补充。它比一般生态签约更有价值，因为合作对象拥有跨区域算力和运营入口，方向也直接指向Token生产与标准化。
+
+**但仍需严格限制结论：**
+
+- 公告未披露合同金额、已上线卡数、客户名单或长期最低消费；
+- “战略合作”不等于清程极智拥有或运营Cloud Capacity；
+- 官方性能描述仍需在统一模型、芯片、SLO和并发条件下复核；
+- 未披露可验证Revenue前，不能将其与并行科技、SenseCore或Neocloud横向排名。
+
+因此，清程极智仍归入“AI Infra基础软件／异构算力效率层”，主要与无问芯穹的软件和异构能力、基流科技的集群工程与运营能力比较。
+
+### 三、竞争格局变化
+
+| 层级 | 本周变化 | 竞争含义 |
+|---|---|---|
+| Frontier Model／Agent入口 | Anthropic披露巨额长期算力义务；Claude Code开放Mods并进入政府采购 | 模型公司同时成为最大算力买方、渠道商和Agent Control Plane |
+| Hyperscaler | Google、Amazon、Microsoft通过长期合同锁定Anthropic；Amazon研究GPU SPV回租 | Cloud利润与融资、股权和分销绑定，单纯比较公开GPU价格意义下降 |
+| 中国大厂 | 腾讯被报道锁定Oracle东南亚先进芯片；阿里全栈路线进入兑现期 | 中国市场形成境内国产化与境外高端算力双轨，数据与合规成为有效容量折扣项 |
+| Neocloud | CoreWeave以Forge、ARIA、Vera CPU上移全AI Loop | GPUaaS向Managed AI Platform演进，软件黏性和Production SLA成为第二壁垒 |
+| Token Hub／Inference Cloud | 模型公司直接掌握企业和政府预算入口 | 硅基流动、趋境、PPIO等必须强化多模型治理、私有化、路由和单位有效Token成本 |
+| 异构效率软件 | 清程极智接入国家超算互联网合作生态 | 有望放大国产算力适配与Token标准化，但尚无Cloud规模与Revenue证据 |
+
+海外核心公司中，CoreWeave本周在Portfolio上有明确跃迁；Lambda、Nebius、Crusoe未出现足以改变相对排序的新一手披露。未来对它们的比较应从GPU型号和规划GW扩展到软件Attach Rate、已验收MW、Anchor客户集中度、合同不可取消比例和融资追索结构。
+
+### 四、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：价格将分化为“有合同的资产”和“无合同的库存”
+
+- 有不可取消Anchor合同、已落实电力和可迁移硬件的集群，可以获得更低融资成本并维持Capacity溢价。
+- 只有远期Pipeline或GPU抵押、缺乏终端负载的项目，会被要求更高利率、厂商担保或更短折旧。
+- 腾讯式海外租赁会增加区域性GPU需求，但数据跨境和出口限制会让“名义10万卡”折算为更少的有效可用容量。
+- 模型公司为了填满刚性租约，可能向API、Coding Agent和Marketplace倾斜补贴，压低公开Token价格；反过来又提高高SLA Dedicated Capacity的价值。
+- CPU、存储、网络和Sandbox将成为Agentic GPU Cloud的新瓶颈。只报GPU利用率将低估整套系统成本，也无法解释Agent任务毛利。
+
+#### Inference/Token：利润池向任务闭环和容量套利迁移
+
+未来Token供给将出现三类利润池：
+
+1. **模型品牌利润：** Frontier模型、Claude Code、Codex和企业入口控制需求；
+2. **容量与Serving利润：** Reserved Inference、跨芯片优化、KV Cache、P/D分离、批处理和SLA；
+3. **工作流利润：** 插件、Mods、Marketplace、Agent评测、治理和专家服务。
+
+Token Hub若只做API转售，会同时受到模型原生渠道和Hyperscaler Marketplace挤压。仍有价值的Token Hub必须能聚合不同模型与Cloud、管理企业结算和权限、在价格与Latency之间实时路由，并承接Private Deployment。对大模型公司而言，长期不可取消算力会强化低价倾销和套餐化动力；对Cloud而言，利润更依赖Reserved Capacity和长期合同，而非按需API毛利。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 借鉴Anchor融资，但设置负债上限
+
+SenseCore可以用12—36个月Take-or-pay、预付款和设备融资匹配新增产能，但不应在客户尚未验证前承担十年级不可取消义务。每个扩容项目至少应满足：
+
+- Anchor客户覆盖主要折旧和融资成本；
+- 电力、设备和客户上线里程碑同步；
+- 最大客户退出后仍可向第二客户迁移；
+- 国产GPU残值按保守情景测算；
+- 合同明确延期、性能不足和监管变化的责任。
+
+#### 2. 把Primary Production Cloud从口号变成产品包
+
+针对年GPU Cloud预算1,000万—1亿元的Multi-vendor客户，SenseCore应提供统一产品：
+
+- Dedicated训练池＋Reserved Inference池；
+- NVIDIA与国产芯片之间的模型迁移；
+- Token吞吐、Latency、可用性和恢复时间SLA；
+- Registry、评测、Trace和成本归因；
+- 按有效Token或任务SLO计费的专家优化；
+- 客户保留第二、第三供应商时的跨Cloud容灾方案。
+
+目标不是消灭并行科技和无问芯穹，而是拿下客户最稳定、最难迁移的50%—60%核心生产负载。
+
+#### 3. 对Agent入口采取“合作优先、有限上移”
+
+SenseCore没有必要完整复制Claude Marketplace或CoreWeave Forge，但必须拥有不被降格为裸GPU供应商的最小控制面：
+
+- 接入Codex、Claude Code及国内Coding Agent的Dedicated执行环境；
+- 提供Sandbox、数据驻留、审计和生产权限隔离；
+- 与硅基流动、趋境、PPIO合作承接流量峰值和Wholesale Inference；
+- 保留终端客户可见性、SLA数据和续约参与权；
+- 将Serving优化产生的成本节省按共享收益计价。
+
+#### 4. 把清程极智纳入国产Inference验证池，而非Cloud竞标池
+
+可与清程极智设计小规模、可复核的Chitu／AI Ping验证：
+
+- 固定模型、芯片、输入输出长度与并发；
+- 同时记录TTFT、TPOT、有效Token/卡/日、能耗和故障率；
+- 对比SenseCore现有Serving栈及无问芯穹方案；
+- 只有性能增益在生产流量持续兑现，才进入标准产品；
+- 商业合作应以软件许可、按节省分成或联合交付为主，不让其未经验证占用稀缺GPU。
+
+#### 5. 新增四项经营指标
+
+| 指标 | 管理意义 |
+|---|---|
+| 不可取消Capacity义务／未来24个月保守Gross Profit | 控制杠杆与需求错配 |
+| 已签约、已上电、已验收Capacity的转换率 | 防止用Pipeline替代交付 |
+| 软件与专家服务Attach Rate | 判断是否摆脱Commodity GPUaaS |
+| 每GPU日有效Token及每任务总成本 | 把模型、CPU、存储和网络统一计量 |
+
+### 六、未来观察指标及风险
+
+1. **Anthropic合同公开化：** 正式IPO文件是否确认5,180亿美元总额、80%不可取消比例、各Cloud最低消费和终止条款。
+2. **Broadcom融资：** 420亿美元设施的利率、担保、转换价格、Restricted Cash和违约加速条款。
+3. **Amazon GPU SPV：** 是否正式设立、债务成本、NVIDIA或Amazon担保、芯片折旧与回租期限。
+4. **腾讯海外算力：** 腾讯或Oracle是否确认；10万颗芯片的型号、所在区域、交付节奏、数据边界和实际利用率。
+5. **CoreWeave软件兑现：** Forge付费客户、软件Revenue、W&B云中立性、ARIA生产使用量以及Vera CPU相对传统CPU的任务成本。
+6. **Coding Agent入口：** Claude Code Mods和Codex企业控制面的插件生态、长任务成功率、安全事件、每席位Token消耗和Cloud分布。
+7. **中国大厂Portfolio：** 豆包—飞书—火山引擎、Qwen—阿里云、混元—腾讯云、文心—千帆的付费Token、企业续费、Reserved Capacity与自研芯片有效产能。
+8. **清程极智：** 与国家超算互联网合作是否产生上线集群、标准化MaaS/AaaS、付费客户和可验证订单；赤兔、八卦炉在国产芯片上的生产基准是否可复现。
+9. **主要风险：** 保密申报材料可能调整；媒体报道的腾讯与Amazon交易尚未获当事方确认；公司性能和“开放平台”表述未经独立验证；GPU融资高度依赖残值、利率和Anchor客户信用；出口管制与数据跨境规则可能使名义容量无法转化为有效供给。
+
+### 结论
+
+本周AI Infra竞争的核心不再是“谁能买到更多GPU”，而是：
+
+> 谁能用可信需求签下长期容量，谁能用金融结构降低资本成本，谁又能通过Agent入口把容量稳定转化为付费Token。
+
+Anthropic展示了模型公司作为超级租户的规模与风险；Broadcom和Amazon展示了芯片金融化；腾讯的海外租赁报道展示了中国大厂的双轨供给；CoreWeave则展示了Neocloud向软件与Agent控制面上移。SenseCore最可行的路径，是保持模型和芯片中立，以保守融资、可验收Capacity、跨芯片Serving和最小必要控制面，成为中型客户Multi-vendor架构中的Primary Production Cloud。
+
+---
+
 ## 2026-09-25｜阿里补齐芯片闭环，Claude锁定生态预算：AI Cloud进入合同兑现期
 
 > **观察区间：** 2026年9月19—25日  
