@@ -4,6 +4,231 @@
 
 ---
 
+## 2026-10-09｜Google把Workspace变成Agent Cloud，Firmus IPO撤回：入口闭环与资本纪律同时收紧
+
+> **观察区间：** 2026年10月3—9日  
+> **口径说明：** “已确认事实”指公司公告、官方产品页或监管文件；“可信报道”指可靠媒体取得的交易或融资信息；“公司口径／待验证”不直接计入收入、容量与排名；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **Google正在把Workspace、企业数据、Coding、持续运行Agent和Cloud计费收敛为一个入口。** 10月8日发布的Gemini Agent可以跨Gmail、Drive、Docs、Sheets、Calendar、Microsoft 365和Slack执行任务，支持多Agent编排、持续数小时或数日的Cloud执行、模型路由与成本控制。竞争单位由“哪个模型更强”上移为“谁掌握企业上下文、权限、预算和任务闭环”。
+
+2. **中国侧已经出现按Agent工作负载销售Token的清晰产品形态。** 腾讯云现行Hy Token Plan以混元模型服务Coding Agent、多步工具调用和文档自动化，兼容Claude Code、Codex CLI、Cursor等工具，并用包月积分而非裸Token API销售。它不是完整企业Agent入口，但验证了Token价格将被套餐、并发、缓存和可用工具重新包装。
+
+3. **Firmus撤回约50亿美元IPO，是Neocloud资本纪律的重要分水岭。** 市场并未否定AI Infra需求，而是拒绝用远期规划、创新估值指标和近乎无瑕的执行假设替代已上线MW、客户合同与现金流。Lambda同时被报道寻求最高40亿美元融资，说明资本仍然可得，但将更集中到有Anchor客户、Backlog质量和可交付记录的公司。
+
+4. **Inference利润池继续向软件和利用率优化集中。** Nebius收购Inferize并纳入Token Factory，目标是缩短大模型冷启动、降低为流量峰值预留GPU造成的“idle GPU tax”。对Neocloud而言，每张卡能否快速加载模型并交付有效Token，开始比单纯拥有多少GPU更接近Gross Margin本质。
+
+5. **SenseCore应从“核心生产池”进一步升级为“Agent Production Cloud”，但保持资本克制。** 应围绕持续任务、Sandbox、权限、Trace、跨芯片Serving和成本归因建立最小控制面；同时只为有Take-or-pay和可复用负载的客户扩容。清程极智本周没有新增可验证Cloud收入或容量，继续放在AI Infra基础软件／异构效率层。
+
+### 二、关键动态及影响
+
+#### 1. Google：一个Agent同时吞下工作入口、模型路由与Cloud消耗
+
+**已确认事实／公司口径：** Google Cloud于10月8日发布Gemini Agent，定位为企业工作的统一Agent。它可以回答问题、完成知识工作、生成内容、编写并运行代码；直接嵌入Gmail、Drive、Docs、Slides、Sheets、Chat和Calendar，也可通过Microsoft 365、Slack、命令行和第三方应用使用。任务在Cloud中持续运行，保留统一记忆和上下文，可动态创建临时子Agent，并具有模型选择、Smart Routing、实时Spend Cap、身份、权限、Sandbox和网络治理。[Google Cloud官方，2026-10-08](https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026)
+
+Google称，过去一年已有接近500家Google Cloud客户各自处理超过1万亿Token，近80%的Google Cloud客户使用其AI产品，接近90%的Fortune 100使用Gemini Enterprise。上述数字为公司口径，未披露付费Token比例、Revenue、折扣或客户去重方法，不能直接转化为市场份额。
+
+**分析判断：** Google的新产品形态比单一Coding Agent更接近“企业Agent OS”：
+
+- Workspace和企业系统提供长期上下文；
+- Gemini Agent掌握任务拆解、模型选择和工具调用；
+- Google Cloud承接持续执行、存储、网络和结算；
+- Smart Routing把不同模型的能力和成本隐藏在统一体验之后；
+- 权限、身份和Spend Cap把AI从个人工具推入正式采购。
+
+这会压缩三类独立玩家的空间：只提供模型API的Token Hub、只做单点Agent的SaaS，以及只卖GPU的Cloud。它们若不能嵌入企业系统、承接合规部署或显著降低任务成本，就可能被Google的Portfolio定价吸收。
+
+#### 2. Codex、Claude Code与Gemini Agent：三种入口路径开始分化
+
+当前全球Coding/Agent产品大致形成三条路线：
+
+| 路线 | 主要入口 | Infra控制点 | 优势 | 风险 |
+|---|---|---|---|---|
+| Codex | 开发者、代码仓库、Cloud任务 | Agent runtime、Sandbox、代码评审与模型能力 | 开发工作流深、任务自动化强 | 需要持续扩大企业系统与业务场景入口 |
+| Claude Code | CLI／桌面／Cloud session、Plugins与Mods | 工具调用、权限、长上下文、Marketplace | 可定制性强，企业控制面快速完善 | Mods拥有本机权限，供应链和治理成本上升 |
+| Gemini Agent | Workspace、企业数据、跨设备统一入口 | 身份、上下文、模型路由、Spend Cap与Google Cloud | 系统记录和分发优势最强 | 产品复杂度高，跨模型“中立性”需验证 |
+
+**分析判断：** 未来赢家未必产生最多Token，而是能以最低总任务成本完成更多可审计工作。Coding Agent只是最早形成稳定使用频次的一类工作负载；当同一Agent进入邮件、文档、表格、审批和数据分析，Token消耗会从研发预算扩展到企业整体软件和Cloud预算。
+
+对Cloud厂商，这意味着Agent产生的不只是GPU需求，还包括：
+
+- CPU与Sandbox执行；
+- 向量、对象与临时存储；
+- 跨系统网络调用；
+- 身份、权限与审计日志；
+- 长任务重试和状态保存；
+- 多模型路由、缓存和成本治理。
+
+因此，单卡利用率无法完整衡量Agent Cloud的经济性。
+
+#### 3. 腾讯Hy Token Plan：从API单价转向Agent套餐
+
+**已确认事实，现行官方产品口径：** 腾讯云TokenHub的Hy Token Plan基于混元模型，面向Coding Agent、文档自动化和多步工具调用，兼容OpenClaw、Claude Code、OpenCode、Cline、Cursor、Kilo Code和Codex CLI等工具。产品采用Lite、Standard、Pro、Max四档包月积分，现行标价分别为28元、78元、238元和468元；官方文档明确禁止将套餐API Key用于自动化脚本、自定义应用后端或非交互式批量调用，并按套餐动态限制并发。[腾讯云官方文档](https://cloud.tencent.com/document/product/1823/130060)
+
+**分析判断：** 这组产品规则非常重要，因为它揭示中国Token市场的下一阶段：
+
+1. 用户购买的是Agent使用权和预算可控性，不是抽象的百万Token；
+2. 套餐通过并发、积分、工具范围和交互方式管理成本；
+3. 同一入口可以路由混元和第三方模型，TokenHub获得分发权；
+4. 禁止批量API说明低价套餐仍需与生产级Inference隔离，不能用零售价格推算企业Token成本。
+
+腾讯尚未像Google一样拥有统一的企业Agent OS，但Hy Token Plan、TokenHub、CodeBuddy／WorkBuddy、混元和腾讯云已经具备Portfolio拼图。未来判断其竞争力的关键，不是套餐标价，而是付费席位、积分消耗率、缓存命中、企业续费，以及有多少工作负载升级为Dedicated或Reserved Inference。
+
+#### 4. Firmus撤回IPO：规划GW不再自动获得Neocloud估值
+
+**已确认事实与可信报道：** 澳大利亚AI数据中心运营商Firmus于10月9日撤回约50亿美元IPO，转向私募融资。Reuters称，投资者担忧其高负债、有限的AI数据中心交付记录、关键合作伙伴退出以及快速上升的估值。Firmus目前有墨尔本和新加坡两个租赁上线数据中心，并计划在亚太再建五个；其拟议股权估值一度达到约306亿美元，接近8月融资估值的三倍。[Reuters，2026-10-09](https://www.reuters.com/world/asia-pacific/australian-nvidia-backed-ai-data-centre-operator-firmus-shelves-ipo-2026-10-08/)
+
+**分析判断：** Firmus并不证明AI数据中心需求见顶，而是证明公共市场开始要求“交付桥”：
+
+> 规划MW → 已锁定电力 → 已融资 → 已安装GPU → 已验收Capacity → 客户使用 → Revenue → Free Cash Flow
+
+任何一环依赖未签合作、非常规估值口径或近乎完美的建设进度，都会提高资本成本。CoreWeave、Nebius、Crusoe、Lambda和Nscale未来的分化，将更多取决于这条桥的转换率，而非发布会上的GW和Backlog总额。
+
+#### 5. Lambda融资与Neocloud两极化
+
+**可信报道、尚未完成交易：** WSJ于10月6日报道，Lambda寻求最高40亿美元的新一轮融资，由Blackstone和Coatue领投，投前估值约145亿美元，并计划之后推进IPO。融资规模和条款尚未由Lambda正式确认，不能计入已获得资本。[WSJ，2026-10-06](https://www.wsj.com/tech/ai/ai-neocloud-lambda-is-raising-4-billion-in-final-round-before-planned-ipo-568182f9)
+
+Lambda与Firmus的对照说明资本市场正在两极化：
+
+- 有已运行Cloud、明确Anchor客户和成熟GPU运营能力的Neocloud仍能争取大额资金；
+- 主要价值来自未来建设、合作意向和估值创新的项目更难进入公开市场；
+- NVIDIA持股或供应关系可以改善技术与融资可见性，但不能替代客户现金流；
+- 最终估值会落到可交付MW、合同不可取消比例、客户集中度和Gross Margin。
+
+#### 6. Nebius Token Factory：收购推理软件，把“冷启动税”变成利润
+
+**补充更新，公告日期为10月1日、上期未展开：** Nebius收购Inference优化公司Inferize，并将团队和技术纳入Nebius Token Factory。公司称该技术可缩短大型模型加载和弹性扩容时间，降低流量峰值或模型更新时保持闲置GPU的成本。交易金额未披露，技术性能也尚无独立基准。[Nebius官方，2026-10-01](https://nebius.com/newsroom/nebius-acquires-inferize-to-strengthen-nebius-token-factorys-production-inference-stack)
+
+这是一个小交易，却指向大趋势：Inference Cloud的核心资产不只是GPU，而是把需求波动转换为高利用率的系统软件。Nebius此前已通过Eigen AI、Clarifai相关团队和Token Factory向这一层积累；CoreWeave则通过W&B、OpenPipe、Forge和ARIA形成另一条全栈路线。两者都在尝试把Cloud Capacity转化为更高价值的Token生产。
+
+#### 7. 中国大厂与清程极智：本周排序变化有限
+
+截至10月9日，除Google全球入口升级和腾讯现行Token套餐外，本周未见字节、阿里、百度、华为发布足以改变AI Infra排序的新增容量、付费Token或重大长期合同数据：
+
+- **字节：** 豆包—飞书—火山引擎的入口与GTM整合逻辑继续成立，但缺少本周新增的付费Token、企业续费或Reserved Capacity披露。
+- **阿里：** Qwen—Qoder—阿里云—自研芯片的全栈Portfolio进入兑现阶段，观察重点仍是真武V900量产、Agent付费和Cloud拉动。
+- **腾讯：** Hy Token Plan提供了Agent套餐化的硬产品证据；此前海外先进算力租赁仍待公司确认。
+- **百度：** 文心／千帆的促销和模型更新不足以改变格局，仍需披露企业付费、Inference增长和Coding／Agent入口转化。
+- **华为：** 国产AI Infra系统能力仍具战略性，但本周没有改变排名的新一手运营指标。
+- **清程极智：** 未见国家超算互联网合作之后新增合同金额、上线规模、可验证Revenue或长期容量承诺；继续归入AI Infra基础软件／异构算力效率层，不进入Neocloud或GPU Cloud排名。
+
+### 三、竞争格局变化
+
+| 层级 | 本周变化 | 未来3—12个月影响 |
+|---|---|---|
+| 企业Agent入口 | Google推出统一Gemini Agent，连接Workspace、第三方系统与Cloud执行 | Hyperscaler可用入口补贴模型和Token，企业Agent成为新Cloud控制面 |
+| Coding Agent | Codex、Claude Code与Gemini形成开发者入口、可定制入口和企业系统入口三条路线 | 竞争从代码基准转向长任务成功率、权限、生态和单位任务成本 |
+| 中国Token Hub | 腾讯Hy Token Plan按Agent场景、积分和套餐销售 | Token单价透明度下降，席位、并发和工作流成为新的定价单位 |
+| Neocloud资本 | Firmus撤回IPO；Lambda寻求新融资 | 资本向已交付Capacity和高质量Anchor合同集中 |
+| Inference Cloud | Nebius收购Inferize强化Token Factory | 冷启动、弹性扩容和有效Token/GPU成为软件利润池 |
+| 异构效率软件 | 清程极智无新增可验证规模 | 分类不变，继续与无问芯穹、基流科技按软件、适配和集群效率比较 |
+
+### 四、对GPUaaS与Inference/Token的影响
+
+#### GPUaaS：供给价值由“有没有卡”转向“能否承接完整Agent任务”
+
+- Agent工作负载同时需要GPU、CPU、Sandbox、存储、网络和审计，GPU卡时将只是整套Bill of Materials的一部分。
+- Hyperscaler可把Workspace、模型、Cloud和安全打包，用Portfolio毛利压低显性GPU或Token价格。
+- 独立GPUaaS仍有中立性、稀缺Capacity和交付速度优势，但必须提供Production SLA与跨Cloud迁移。
+- Firmus事件会提高新项目融资门槛，使已上电、已验收集群的现货价值上升，同时压低只有远期规划的项目估值。
+- Lambda若完成融资，将扩大高端Neocloud供给；若融资条款依赖高成本资本或单一客户，其报价空间反而可能受限。
+
+#### Inference/Token：公开单价让位于有效任务成本
+
+腾讯的积分套餐和Google的Smart Routing指向同一结果：客户越来越难用单一“每百万Token价格”比较服务。真正的成本公式变成：
+
+> 模型Token＋缓存未命中＋工具调用＋Sandbox时长＋CPU／GPU执行＋存储／网络＋失败重试＋治理成本。
+
+这会带来四个变化：
+
+1. Public API继续降价，但高并发、生产SLA和Dedicated Capacity维持溢价；
+2. Token Hub需要提供账单拆解、路由透明和跨模型治理，否则只是不可解释的套餐中间层；
+3. Inference软件通过降低冷启动、闲置GPU和失败重试直接创造Gross Margin；
+4. Coding Agent和企业Agent会成为长期Token需求的最好预测变量，比注册用户或单次调用量更有价值。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 从Primary Production Cloud升级为Agent Production Cloud
+
+SenseCore不必复制完整Workspace，但必须覆盖生产Agent的最低闭环：
+
+- 长任务Sandbox与状态保存；
+- 代码、数据和工具权限隔离；
+- Registry、Trace、评测与成本归因；
+- NVIDIA和国产芯片之间的模型迁移；
+- GPU、CPU、存储和网络的统一SLA；
+- 任务失败后的重试、回滚和人工接管。
+
+这能让SenseCore在客户Multi-vendor架构中拿到最难迁移的生产池，而不是只成为突发GPU供应商。
+
+#### 2. 推出企业版Reserved Token／Agent Capacity，而非零售低价套餐
+
+可面向年GPU Cloud预算1,000万—1亿元的客户，设计三层产品：
+
+| 产品 | 合同方式 | 目标负载 |
+|---|---|---|
+| Elastic GPU Pool | 按需／短期Reserved | 开发、测试、峰值与Overflow |
+| Reserved Inference Pool | 12—36个月最低消费 | 稳定API、企业Agent和Token Hub |
+| Agent Production Pool | Capacity＋任务SLA＋专家服务 | 核心Coding、数据分析和业务Agent |
+
+计费可以同时给出GPU卡时、有效Token和任务SLO，避免客户只用公开Token价格压价。
+
+#### 3. 建立Inference利用率软件的Buy／Build／Partner机制
+
+Nebius收购Inferize说明，小型系统软件团队可以直接改善Cloud毛利。SenseCore应对每项能力做统一评估：
+
+- 冷启动和模型加载；
+- P/D分离与KV Cache；
+- Continuous Batching；
+- 多租户调度；
+- 跨芯片路由；
+- Agent Sandbox和Trace。
+
+内部能力不足时，可与清程极智、无问芯穹等合作或采购，但必须用生产基准和节省分成定价，不能用宣传性能决定长期绑定。
+
+#### 4. 用Firmus事件校准扩容与融资
+
+任何新增AIDC或GPU项目都应通过四道门：
+
+1. 已落实电力和交付日期；
+2. Anchor客户合同覆盖主要折旧；
+3. 最大客户退出后的替代负载；
+4. 延迟、降价和国产迁移压力测试。
+
+不应以远期GPU需求预测替代Take-or-pay，也不应以集团品牌替代项目现金流。对SenseCore而言，少量高质量、可复用Capacity优于大规模未锁定供给。
+
+#### 5. 固定跟踪五项经营指标
+
+- Agent Production Pool的Reserved／Take-or-pay占比；
+- 每GPU日有效Token和每成功任务总成本；
+- 冷启动、空闲预留和失败重试造成的GPU损耗；
+- 软件与专家服务Attach Rate及对应Gross Profit；
+- 已签约→已上电→已验收→Revenue的Capacity转换率。
+
+### 六、未来观察指标及风险
+
+1. **Google入口转化：** Gemini Agent的GA范围、付费席位、实际任务时长、每客户Token和Google Cloud增量Revenue。
+2. **模型路由透明度：** Smart Routing使用哪些模型、是否优先Google自有模型、企业能否设定成本和数据边界。
+3. **腾讯Agent套餐：** Hy Token Plan订阅数、积分消耗率、缓存命中、企业续费以及向Dedicated Inference升级的比例。
+4. **Firmus后续融资：** 私募规模、估值折价、关键数据中心合作是否恢复、已上线MW和客户合同。
+5. **Lambda融资：** 40亿美元轮次是否完成、资本成本、资金用于已签客户还是先建库存、NVIDIA关系是否影响采购和定价。
+6. **Nebius Token Factory：** Inferize集成后的冷启动、GPU利用率、Token Gross Margin和付费客户规模。
+7. **Codex／Claude Code：** 长任务成功率、企业权限、Sandbox成本、插件安全事件和Cloud分布。
+8. **中国大厂Portfolio：** 豆包—飞书—火山引擎、Qwen—Qoder—阿里云、混元—TokenHub—腾讯云、文心—千帆的付费Token、续费和Reserved Capacity。
+9. **清程极智：** 赤兔、八卦炉、AI Ping是否出现可复现生产基准、标杆客户、标准化合同和可验证Revenue。
+10. **主要风险：** Google客户与Token数字为公司口径；Firmus和Lambda融资信息受市场波动影响；腾讯套餐价格不能外推生产API成本；Nebius收购条款和技术增益未披露；Agent权限扩大可能带来新的安全与合规负债。
+
+### 结论
+
+本周同时出现了AI Infra竞争的两面：
+
+> 上层，Google把企业入口、模型路由和Cloud消耗收进一个Agent；下层，资本市场开始拒绝没有交付桥的Neocloud估值。
+
+腾讯说明中国Token竞争也在从API单价转向Agent套餐；Nebius说明Inference利润来自减少每张GPU的闲置时间。SenseCore的最优选择不是追随Hyperscaler建设全套办公入口，也不是继续做裸GPU资源商，而是用资本克制、跨芯片Serving、Agent生产SLA和可验证的Token效率，成为中型Multi-vendor客户最难替换的Primary Production Cloud。
+
+---
+
 ## 2026-10-02｜模型公司变成超级租户：5,180亿美元承诺重写AI Infra利润池
 
 > **观察区间：** 2026年9月26日—10月2日  
