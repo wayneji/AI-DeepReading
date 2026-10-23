@@ -4,6 +4,208 @@
 
 ---
 
+## 2026-10-23｜OpenAI借Google Cloud卖Codex，豆包2.0打通四个入口：AI Infra进入分发与交付兑现战
+
+> **观察区间：** 2026年10月17—23日  
+> **口径说明：** “已确认事实”指公司公告、官方产品页或监管文件；“公司口径”保留原始统计边界，不直接等同于Revenue、付费Token或市场份额；“可信报道”指可靠媒体取得的交易或项目消息；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **OpenAI进入Google Cloud Model Garden，标志着模型公司正从“绑定一家Cloud”转向“占据所有企业采购入口”。** Google Cloud客户可以通过Marketplace购买OpenAI模型与Codex工作流，用既有Cloud承诺抵扣消费，并在统一身份、审计和数据边界下运行。OpenAI仍称Microsoft是其主要Cloud伙伴，但模型分发已明显多Cloud化。未来竞争不只是模型API价格，而是谁控制企业合同、账单、身份和Agent运行时。
+
+2. **Google Cloud正在把“竞争对手模型”变成自己的Cloud Revenue与客户锁定工具。** 它不必要求客户只用Gemini，只要第三方模型调用仍消耗Google Cloud承诺、经过Google治理层并带动数据、网络、存储和执行环境，Google就能在模型选择权开放的同时保住Control Plane。这会迫使AWS、Azure及中国大厂把MaaS从模型货架升级为跨模型采购与Agent运行平台。
+
+3. **豆包2.0是字节跳动迄今最完整的“模型—消费入口—Coding入口—企业入口—Cloud”联动。** 新模型同时进入豆包App、火山方舟API与TRAE，官方还以飞书客服Agent展示多技能、拉群、派单和回访闭环。火山引擎称豆包大模型日均Token使用量较推出初期增长超500倍、2.0 Token定价较同能力头部模型低约一个数量级；这些是公司口径，尚不能等同于付费Token、Revenue或Gross Margin，但足以确认字节正在用低价模型和多入口扩大推理需求。
+
+4. **Nscale同时出现450亿美元级潜在订单与电力延期，说明Neocloud真正稀缺的不是合同Headline，而是按期通电、融资并验收的Capacity。** 路透社称Nscale正与Anthropic讨论第二个约450亿美元项目，但交易仍在谈判；与此同时，Microsoft因英国项目并网延期退出租约。AI Infra资本市场将继续下调“规划MW”和“潜在合同”的权重，提高已通电MW、取消条款、客户预付款和项目融资确定性的权重。
+
+5. **SenseCore应将自身定位从“有GPU的独立Cloud”升级为“模型中立的Production Capacity与Agent Runtime”。** 最有价值的不是复制豆包、Codex或Claude Code入口，而是让国内外模型、Coding Agent和Token Hub都能在同一安全底座上获得Reserved Inference、跨芯片Serving、私有网络与生产SLA。清程极智本周没有出现改变分类的新增硬证据，继续归入AI Infra基础软件／异构算力效率层。
+
+### 二、关键动态及影响
+
+#### 1. OpenAI进入Google Cloud：模型分发从API直销变成Cloud承诺消费
+
+**已确认事实。** 10月21日，Google Cloud与OpenAI分别宣布，OpenAI的GPT-6 Astra、GPT-6.1 Sol和GPT-6 Luna开始面向部分企业客户进入Google Cloud Model Garden Private Preview；客户可以把本地Codex CLI和Desktop工作流连接至Google Cloud的Gemini平台进行Inference。相关消费通过Google Cloud Marketplace结算，进入统一账单，可消耗客户既有Google Cloud Commitments，并计入跨模型的Flexible Savings Plans。[Google Cloud，2026-10-21](https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-brings-openai-models-to-customers)
+
+Google Cloud称，第三方模型请求将经过隔离网关，支持统一身份、VPC Service Controls与审计日志；OpenAI则确认，模型和Codex Agent工作流将进入Model Garden，未来还会进入Google Antigravity与Gemini Agent，同时强调Microsoft仍是其主要Cloud伙伴。[OpenAI，2026-10-21](https://openai.com/index/openai-models-google-cloud/)
+
+**分析判断。** 这笔合作改变了三层竞争关系：
+
+| 层级 | 过去的主导逻辑 | 新的主导逻辑 |
+|---|---|---|
+| 模型公司 | 直接API、独家Cloud合作、Developer Credits | 多Cloud上架，尽可能占用客户既有Cloud预算 |
+| Hyperscaler | 用自研模型锁定AI工作负载 | 同时分销竞争模型，以账单、治理和数据底座锁定客户 |
+| 企业客户 | 逐家签模型合同、分别处理安全与账单 | 在一个Cloud Commit内动态选择模型与Agent |
+
+对OpenAI而言，进入Google Cloud降低了企业采购摩擦并扩大Codex分发；对Google而言，即使客户选择OpenAI而非Gemini，仍可能带动Google的Marketplace、数据、网络、安全与执行环境收入。模型公司的“Cloud中立”与Hyperscaler的“模型中立”正在同时发生。
+
+#### 2. Codex与Claude Code：模型、Harness和Cloud开始解耦
+
+**已确认事实。** Google Cloud明确支持本地Codex CLI与Desktop工作流调用其平台中的OpenAI模型；同时，其Model Garden已覆盖多家闭源和开源模型。豆包2.0官方材料则强调Doubao-Seed-2.0-Code可在Claude Code等常见IDE工具环境中调用，并与TRAE和火山方舟Coding Plan联动。[Google Cloud，2026-10-21](https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-brings-openai-models-to-customers) [火山引擎，访问于2026-10-23](https://developer.volcengine.com/articles/7610285824933445675)
+
+**分析判断。** Coding Agent不再是“一个产品绑定一个模型绑定一个Cloud”的简单关系，而是逐步拆成：
+
+1. **入口／Harness：** Codex、Claude Code、TRAE、Cursor、Qoder等；
+2. **模型层：** OpenAI、Claude、Gemini、Qwen、Doubao、DeepSeek等；
+3. **Agent Runtime：** 沙箱、Browser、MCP、凭证、网络和任务队列；
+4. **Inference与Capacity：** Hyperscaler、Neocloud、Token Hub和企业私有集群；
+5. **采购与治理：** Marketplace、Commitment、身份、审计与数据边界。
+
+谁掌握入口，不一定独占Token；谁拥有GPU，也不一定控制终端客户。未来利润更可能集中在能够同时完成模型路由、治理、执行和Capacity承诺的Control Plane。
+
+#### 3. 豆包2.0：字节第一次把四类入口做成可观察闭环
+
+**已确认事实。** 火山引擎发布Doubao-Seed-2.0系列，包括Pro、Lite、Mini和Code四档，并上线方舟API；个人用户可在豆包App使用，开发者可在TRAE与Coding Plan中使用Code模型。官方还展示了豆包2.0在飞书中构建客服Agent，完成对话、工具调用、拉群求助、预约上门与回访。[火山引擎，访问于2026-10-23](https://developer.volcengine.com/articles/7610285824933445675)
+
+| 入口 | 产品形态 | 对AI Infra的传导 |
+|---|---|---|
+| 消费入口 | 豆包App“专家”模式 | 高频任务与多模态请求形成弹性Token需求 |
+| Coding入口 | TRAE＋Doubao-Seed-2.0-Code＋Coding Plan | 长上下文、工具调用和持续任务拉动高并发Inference |
+| 企业入口 | 飞书Agent与工作流 | 身份、消息、文档、审批和人工接管进入生产闭环 |
+| Cloud入口 | 火山方舟API与模型套餐 | 把入口流量转为MaaS、Token和底层GPU消费 |
+
+**公司口径／待验证。** 火山引擎称日均Token使用量自豆包大模型推出以来增长超500倍，且2.0在相近能力下Token价格降低约一个数量级。由于未披露基期绝对量、付费比例、客户集中、缓存Token占比与Gross Margin，本期只把它视为规模和定价方向，不用于Revenue或市场份额排名。
+
+**分析判断。** 字节的优势不是单点Benchmark，而是能在豆包、TRAE、飞书与火山引擎之间形成“获客—任务—Token—Cloud”的自增强回路。未来3—12个月，阿里、腾讯、百度若只提供模型API而没有高频入口和企业工作流，MaaS会更容易被低价化；若能把Qoder／钉钉、WorkBuddy／微信生态、文心／搜索与Cloud治理打通，则仍可用入口和企业关系抵消模型价差。
+
+#### 4. Nscale：450亿美元谈判与电力延期同时出现
+
+**可信报道。** 路透社10月19日称，Nscale正与Anthropic讨论第二份约450亿美元的AI Cloud交易，拟在西弗吉尼亚Monarch园区建设第二座设施，可能提供460MW并采用NVIDIA Vera Rubin；谈判仍在进行，Anthropic未即时回应，条款可能变化，不能计入已签Backlog。[Reuters，2026-10-19](https://www.reuters.com/technology/nscale-anthropic-talks-45-billion-cloud-computing-deal-bloomberg-news-reports-2026-10-19/)
+
+同一报道指出，Microsoft因电网连接延期、供电可能推迟至2030年代，退出Nscale英国旗舰数据中心的一项租约。Reuters Breakingviews进一步指出，Microsoft与Anthropic合计约占Nscale未来合同的85%，部分项目合同允许客户在严重建设延误时退出；该文为评论分析，不是公司指引。[Reuters Breakingviews，2026-10-19](https://www.reuters.com/commentary/breakingviews/nscale-setback-lights-up-weak-spots-ai-rollout-2026-10-19/)
+
+**分析判断。** 这再次证明Neocloud的商业链条必须逐环兑现：
+
+> 客户意向 → 可执行合同 → 项目融资 → 电力并网 → 机房建设 → GPU交付 → 集群验收 → Revenue确认。
+
+任何一环失败，Headline Backlog都可能无法转化为现金流。未来市场会更看重按站点拆分的已通电MW、GPU到货、验收日期、取消赔偿和客户预付款，而不是把全部潜在合同等价相加。
+
+### 三、竞争格局变化
+
+| 公司／阵营 | 本周可验证变化 | 竞争含义 | 当前判断 |
+|---|---|---|---|
+| Google Cloud | 上架OpenAI模型与Codex工作流，纳入Marketplace、Commitment、FSP和统一治理 | 从“卖Gemini”升级为“控制企业多模型采购与Agent运行” | Hyperscaler的中立模型分销能力成为新壁垒 |
+| OpenAI | 进入Google Cloud，同时维持Microsoft主要伙伴地位并已有其他Cloud分发 | 降低对单一Cloud入口依赖，以Codex和模型占据更多企业预算 | 模型公司更像跨Cloud软件平台与超级租户 |
+| 字节／火山引擎 | 豆包2.0同步进入App、API、TRAE、Coding Plan和飞书案例 | 国内最清晰的消费＋Coding＋企业＋Cloud闭环之一 | 对阿里、腾讯、百度MaaS与Coding产品形成直接压力 |
+| 阿里云 | 本周未发现改变排名的新增硬披露 | Qwen、Qoder、钉钉／无影、百炼与全栈Cloud仍具组合优势 | 需观察是否把多模型采购、Commitment与Agent运行时进一步统一 |
+| 腾讯云 | 本周未发现改变排名的新增硬披露 | 混元、WorkBuddy、Hy Token Plan和企业生态仍有入口基础 | 上周Agent非预期访问后，安全Control Plane兑现更重要 |
+| 百度智能云／华为云 | 本周未发现同量级结构性新增披露 | 政企渠道、私有部署和国产算力优势仍在 | 应以治理、数据闭环和国产Agent Runtime对抗低价MaaS |
+| Nscale | 450亿美元级交易仍在谈判；英国项目因电力延期失去Microsoft租约 | 潜在Backlog扩大，但交付、电力与客户集中风险同步上升 | 不上调可交付Capacity排名，等待融资、并网和签约 |
+| CoreWeave／Nebius／Crusoe／Lambda | 本周未发现足以改变排序的新硬披露 | 上周资本成本重定价逻辑继续有效 | 比较重点从GPU数量转为合同覆盖、交付MW与融资成本 |
+| SenseCore | 无新增公开披露改变排名 | 在中型Multi-vendor、Dedicated Cluster和国产Inference仍有位置 | 应建设模型中立的Production Capacity与Agent Runtime |
+| 清程极智 | 未发现新增可验证Cloud Revenue、可调度算力规模或长期Capacity合同 | 赤兔、八卦炉、AI Ping及异构效率价值不等于GPU Cloud规模 | 继续留在AI Infra基础软件／异构算力效率层 |
+
+### 四、对GPUaaS与Inference／Token的影响
+
+#### 1. GPUaaS：需求不会消失，但订单会向掌握分发的Cloud集中
+
+OpenAI进入Google Cloud不会减少总Token需求，却会改变需求落点。企业在Google Cloud现有Commitment内购买OpenAI模型，意味着新增Inference更可能首先落在Google的治理、账单与Capacity体系，而不是单独采购一家Token Hub或Neocloud。
+
+对独立GPU Cloud而言，影响分三层：
+
+- **负面：** 企业更愿意在Hyperscaler统一采购，独立供应商直接触达终端客户的难度增加；
+- **中性：** Hyperscaler仍可能向Neocloud采购底层Capacity，需求只是从零售转为批发；
+- **正面：** 模型多Cloud分发会增加峰值、地域、专属集群和Overflow Capacity需求，为能提供高SLA的大型独立Cloud创造机会。
+
+因此，GPUaaS竞争会从“谁能租出GPU”转向“谁能进入模型公司或Hyperscaler的Capacity供应链，并满足长期合同、网络、数据和安全要求”。
+
+#### 2. Inference／Token：公开单价继续下降，采购承诺与入口补贴改变真实价格
+
+豆包2.0采用Pro、Lite、Mini、Code分层，Google Cloud则允许企业用既有Commitment购买不同模型。表面上是模型选择增加，实质上会出现三套价格：
+
+| 价格口径 | 决定因素 | 谁更有优势 |
+|---|---|---|
+| Public API标价 | 输入／输出、缓存、上下文长度和模型档位 | 模型公司与Token Hub |
+| Commitment后有效价 | Cloud折扣、FSP、年度承诺和Marketplace返点 | Hyperscaler |
+| 每个成功任务成本 | Token＋工具＋沙箱＋失败重试＋人工接管＋SLA | Agent平台与Production Cloud |
+
+未来公开Token价格仍会下行，但Gross Profit不会平均分配。掌握入口的厂商可用低价模型获客，再从订阅、Cloud Commitment、工具、数据和企业治理获利；Token Hub若没有入口或专属Capacity，将面临API价差和客户被Cloud账单吸走的双重挤压。
+
+#### 3. Neocloud：Backlog必须扣除“不可交付折价”
+
+建议把Neocloud的有效Backlog改为：
+
+> 有效Backlog＝名义合同额 × 融资确定性 × 按期供电概率 × GPU交付概率 × 客户不可取消比例。
+
+这不是会计口径，而是比较项目质量的分析工具。Nscale的案例说明，460MW规划与450亿美元谈判可以支持远期想象，但在融资、并网和合同最终签署前，不应等同于可销售GPU或未来Revenue。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 产品定位：成为中国市场的Multi-model Production Gateway
+
+SenseCore无需与豆包、Codex、Claude Code争最终用户入口，而应让这些入口可以安全、稳定地使用其Capacity：
+
+- OpenAI兼容API与主流Agent Harness适配；
+- Qwen、Doubao、DeepSeek、Hunyuan、ERNIE及开源模型统一Serving；
+- NVIDIA与国产GPU之间的路由、量化与SLA分层；
+- Reserved Inference、Dedicated Endpoint与Private Deployment；
+- 沙箱、网络出口、凭证代理和审计日志。
+
+目标是让客户即使更换模型或Coding Agent，也无需迁移底层生产环境。
+
+#### 2. GTM：抓住Hyperscaler不愿细做、Token Hub不能重做的中间层
+
+SenseCore最适合的三类客户与合同：
+
+| 客户 | SenseCore角色 | 合同目标 |
+|---|---|---|
+| 中型AI-native企业 | Multi-vendor中的Primary Production Cloud | 50%—60%核心负载＋Reserved Capacity |
+| Token Hub／模型公司 | Wholesale Inference与专属模型池 | Take-or-pay、最低消费、联合SLA |
+| 大型互联网／政企 | 专项集群、国产迁移、Overflow与私有Agent Runtime | 项目级Dedicated Capacity，不争全量主Cloud |
+
+如果只卖裸GPU卡时，SenseCore会同时受到并行科技、无问芯穹等中型供应商和大厂Cloud的价格压力；若控制生产SLA、跨芯片Serving和安全运行时，就能在Multi-vendor环境中获得更高质量Revenue。
+
+#### 3. 资本与Capacity：每个扩容项目必须对应可兑现合同
+
+Nscale与CoreWeave连续两周的信号表明，SenseCore新增Capacity应设置四道闸门：
+
+1. 电力和机房已锁定，而非仅有规划；
+2. GPU到货与网络／存储交付时间可验证；
+3. Anchor客户合同覆盖折旧、融资成本和最低利用率；
+4. 延期、取消、价格重议和技术代际风险有明确分担机制。
+
+最应避免的是用头部客户的意向证明需求，再由SenseCore单方面承担建设、融资和延期风险。
+
+#### 4. Inference利润池：用“有效任务”而非“生成Token”定价
+
+建议在现有GPUaaS与Inference之外增加：
+
+- Agent Session并发与持续时长；
+- Tool／Browser执行量；
+- P95／P99任务完成时间；
+- 失败重试率和人工接管率；
+- 每个成功任务的有效Token成本；
+- 安全、审计和Private Network Attach Rate。
+
+这样可以把低价Token转化为更高附加值的生产服务，同时避免Public API价格战。
+
+#### 5. 清程极智及软件伙伴：以效率合作，不混淆资源排名
+
+清程极智、无问芯穹、基流科技等伙伴可帮助SenseCore提升国产芯片适配、调度、Serving和集群运营效率。合作应以同模型、同SLO下的每卡有效Token、集群利用率、迁移周期和故障恢复为验收指标。只有当相关公司披露可验证Cloud收入、可调度算力规模或长期Capacity合同，才重新评估其是否进入GPU Cloud竞争序列。
+
+### 六、未来观察指标及风险
+
+1. **Google Cloud分发：** OpenAI模型何时GA；企业是否可用既有Commitment全额抵扣；Codex在Google Cloud上的调用量、地域、数据留存和价格。
+2. **OpenAI多Cloud化：** Microsoft主要伙伴地位是否影响模型版本、Capacity优先级或经济条款；AWS、Oracle、Google之间是否形成同模型价差。
+3. **字节闭环：** 豆包2.0日均Token绝对量、付费占比、缓存命中、企业客户数、TRAE／Coding Plan留存，以及飞书Agent是否形成可复制行业SKU。
+4. **阿里、腾讯、百度、华为：** 是否推出可消耗Cloud Commitment的跨模型采购、统一Agent Runtime与Coding套餐，而非只更新模型Benchmark。
+5. **Nscale：** Anthropic第二份交易是否签署；460MW项目的电力、融资、GPU采购和建设时间；Microsoft退出项目的合同损失与替代客户。
+6. **CoreWeave、Nebius、Crusoe、Lambda：** 已通电MW、Backlog转Revenue、客户集中、融资利差、预付款和取消条款。
+7. **GPUaaS：** On-demand与Reserved价差、专属集群利用率、NVIDIA与国产GPU的每卡有效Token及故障率。
+8. **SenseCore：** Multi-model Gateway上线进度、Take-or-pay覆盖新增Capacity比例、中型Multi-vendor客户的核心生产负载份额、Inference Gross Margin。
+9. **清程极智：** 赤兔与八卦炉在真实生产集群的可复现性能、开源采用、国产芯片覆盖、标杆客户、标准化收入和长期合同。
+10. **主要风险：** Google与火山引擎的模型能力、价格和Token规模主要来自公司口径；Nscale第二份450亿美元交易仍属谈判；模型上架不等同于底层GPU由该Cloud完全自有。不可把Marketplace分发、潜在合同、规划MW直接等同于Revenue或已交付Capacity。
+
+### 结论
+
+本周AI Infra竞争的主线可以归纳为两句话：
+
+> **模型公司的增长瓶颈正在从“能否训练出更强模型”转向“能否进入所有企业采购入口”；Neocloud的增长瓶颈正在从“能否签下大单”转向“能否按期交付通电Capacity”。**
+
+OpenAI与Google Cloud证明，Hyperscaler即使分销竞争模型，也能通过Commitment、治理和Agent Runtime掌握利润池；豆包2.0证明，中国大厂正在把消费、Coding、企业协同与MaaS做成同一Portfolio。对SenseCore而言，最有价值的位置不是另造一个流量入口，而是成为多模型、多芯片、多Agent入口都能调用的Primary Production Cloud，并用可兑现合同约束每一次扩容。
+
+---
+
 ## 2026-10-16｜Agent越权、债券重定价：AI Infra进入“安全×资本成本”双约束
 
 > **观察区间：** 2026年10月10—16日  
