@@ -4,6 +4,202 @@
 
 ---
 
+## 2026-10-30｜Bedrock Token量增17倍，NVIDIA为Neocloud增信：AI Infra进入模型超市与资本担保战
+
+> **观察区间：** 2026年10月24—30日  
+> **口径说明：** “已确认事实”指公司公告、官方产品页或监管材料；“公司口径”保留原始统计边界，不直接等同于Revenue、付费Token或Gross Margin；“可信报道”指可靠媒体取得但尚未由交易各方正式确认的信息；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **模型超市已经从产品叙事进入可量化的Token入口。** Amazon披露，Fortune 500客户在Bedrock上的支出同比接近7倍、Token量同比接近17倍；AWS季度Revenue同比增长39%至460亿美元。前两项属于Amazon公司口径，未披露绝对Token量、付费结构和Bedrock Revenue，但足以证明多模型采购、统一治理与Agent Runtime正在把模型流量汇入Hyperscaler。
+
+2. **中国大厂也在把“模型API”收束为统一Token入口。** 腾讯云已将混元、DeepSeek API等旧入口统一迁移至TokenHub；阿里Model Studio同时上架Qwen与DeepSeek，并把Claude Code、Codex、Qwen Code等工具列入客户端生态。未来竞争不只是自研模型谁更强，而是谁控制模型路由、套餐、账单、身份、Agent执行和企业续费。
+
+3. **Cloud AI Infrastructure的约束从GPU供给扩展到现金流与信用支持。** Amazon过去12个月Free Cash Flow转为流出424亿美元，主要因AI相关Property and Equipment投入；与此同时，Reuters称NVIDIA正讨论为Nscale面向Anthropic的数据中心提供数十亿美元信用担保。前者是已确认财报，后者尚未签署。共同信号是：AI Capacity需要的不只是芯片，还需要能够承受建设周期的资产负债表。
+
+4. **Neocloud将出现“有信用增级的产能”和“纯高杠杆产能”的分化。** Gartner经Reuters转述认为，到2032年约80%的Neocloud可能不再独立运营；这是一项行业预测，不是既定结果。未来3—12个月，CoreWeave、Nebius、Crusoe、Lambda、Nscale等的比较重点会从规划MW和Headline Backlog，转向客户预付款、担保结构、融资利差、按期通电和取消条款。
+
+5. **SenseCore应同时应对入口上收与资本门槛上升。** 产品侧要成为中立的Multi-model Production Cloud，以Reserved Inference、跨芯片Serving和Agent Runtime承接TokenHub及模型公司的底层需求；资本侧则要让新增Capacity与Take-or-pay、客户共同出资或可验证生产负载绑定。清程极智本周没有新增可验证Cloud Revenue、可调度算力规模或长期容量合同，继续归入AI Infra基础软件／异构算力效率层。
+
+### 二、关键动态及影响
+
+#### 1. AWS：Bedrock把模型选择权转化为Cloud消费
+
+**已确认事实／公司口径。** Amazon 10月29日财报称，AWS第三季度Revenue为460亿美元，同比增长39%，Operating Income为178亿美元。公司同时披露，Fortune 500客户在Bedrock上的支出同比接近7倍，Bedrock Token量同比接近17倍；Bedrock新增GPT-6系列、Claude 5系列、Kimi K3、Grok 4.7和GLM 5.3等模型，并推出由OpenAI驱动的Bedrock Managed Agents预览。[Amazon 2026 Q3 Earnings Release，2026-10-29](https://ir.aboutamazon.com/files/doc_earnings/2026/q3/earnings-result/AMZN-Q3-2026-Earnings-Release.pdf)
+
+**边界。** Amazon没有披露Bedrock绝对Token量、付费／免费比例、单Token收入或毛利，因此“17倍”不能直接推导Bedrock Revenue增长17倍，也不能用来与火山方舟、阿里百炼或腾讯TokenHub进行市场份额排名。
+
+**分析判断。** 这组数据首次把“多模型货架—Agent运行—企业账单”的闭环量化到支出和Token层。模型超市的价值不在于多列几个模型，而在于企业无需重新签约、重新做身份与安全集成，就能在同一Cloud承诺下切换模型。AWS即使不拥有被调用的模型，也能获得推理、网络、存储、工具调用、治理和Agent Runtime的消费。
+
+#### 2. Microsoft：模型入口与Cloud财务增长进一步合并
+
+**已确认事实。** Microsoft 10月28日披露，FY2027第一财季Microsoft Cloud Revenue为639亿美元，同比增长30%；Azure Revenue增长48%；Commercial Remaining Performance Obligation增至6770亿美元。公司新的“Agents and Infra”分部Revenue为768亿美元、增长25%，但这一分部包含广泛产品，不能等同于AI Infra或Agent Revenue。[Microsoft FY2027 Q1，2026-10-28](https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast)
+
+**分析判断。** AWS的Bedrock数据与Microsoft的Cloud增长共同说明，Hyperscaler正在用“模型选择＋Agent入口＋既有企业合同”提高AI工作负载的转化率。Codex、Claude Code等Coding Agent因此不再只是独立应用，而成为Cloud模型目录、企业Commitment和Agent Runtime之间可插拔的流量入口。模型公司获得分发，Cloud获得账单与治理权，独立Token Hub则面临更强的企业采购挤压。
+
+#### 3. 腾讯与阿里：国内模型入口向TokenHub／Model Studio收束
+
+**已确认事实。** 腾讯云公告显示，原腾讯混元大模型、知识引擎DeepSeek API及混元生文旧入口已统一迁移至TokenHub，旧平台于9月30日全面停服。TokenHub以统一API和套餐聚合混元、DeepSeek、GLM、Kimi、MiniMax等模型，并兼容OpenAI与Anthropic协议。[腾讯云迁移公告，访问于2026-10-30](https://cloud.tencent.com/announce/detail/2287)
+
+阿里云Model Studio的官方文档显示，平台10月17日全球上架DeepSeek-V4.1-Flash-1017；客户端与开发者工具列表同时覆盖Claude Code、Codex、Qwen Code、Cursor、Qoder等，且提供Throughput Reservation、Token Plan、Coding Plan和Intelligent Routing。[Alibaba Cloud Model Studio，访问于2026-10-30](https://docs.modelstudio.console.alibabacloud.com/en/model-studio/newly-released-models)
+
+**分析判断。** 腾讯与阿里都在把“自研模型＋第三方模型＋Coding Agent＋套餐计费”做成统一入口。区别在于：阿里更接近全球化Model Studio与完整Cloud Portfolio；腾讯更强调TokenHub聚合、混元与微信／企微／QQ相关入口的潜在协同。二者都会压缩只做API转售的Token Hub利润，但也会扩大对高可靠Wholesale Inference和专属Capacity的需求。
+
+#### 4. NVIDIA—Nscale：GPU厂商开始进入项目融资结构
+
+**可信报道，尚未签署。** Reuters 10月30日援引The Information称，NVIDIA正讨论为Nscale提供数十亿美元信用担保，以支持其为Anthropic建设西弗吉尼亚数据中心的债务融资；资金将用于电力基础设施和建设。报道明确指出交易尚未签署、条款仍可能变化，NVIDIA、Nscale与Anthropic未即时回应。[Reuters，2026-10-30](https://www.reuters.com/technology/nvidia-talks-give-credit-support-nscales-deal-with-anthropic-information-reports-2026-10-30/)
+
+**分析判断。** 如果最终落地，NVIDIA的角色将从GPU供应商与股东延伸为项目信用增级方。这能降低Nscale融资门槛并加快GPU需求兑现，但也会形成新的生态依赖：获得NVIDIA投资、供货和信用支持的Neocloud，融资成本与交付能力可能显著优于没有类似支持的玩家。
+
+#### 5. 资本纪律：AI需求强，不等于所有Capacity都能盈利
+
+**已确认事实。** Amazon披露过去12个月Operating Cash Flow为1683亿美元，但Free Cash Flow转为流出424亿美元，主要原因是Property and Equipment净采购同比增加948亿美元，且主要反映AI投资。[Amazon 2026 Q3 Earnings Release，2026-10-29](https://ir.aboutamazon.com/files/doc_earnings/2026/q3/earnings-result/AMZN-Q3-2026-Earnings-Release.pdf)
+
+**行业预测／风险信号。** Reuters 10月26日报道，CoreWeave、Nebius等Neocloud的债券与股价受到杠杆和回报担忧冲击；Gartner认为约80%的Neocloud到2032年可能不再独立运营。该预测不能视为确定结果，但清楚指出资本结构、客户集中和资产折旧已成为与GPU供给同等级的风险。[Reuters，2026-10-26](https://www.reuters.com/business/musks-warning-hits-neocloud-stocks-debt-concerns-mount-2026-10-26/)
+
+### 三、竞争格局变化
+
+| 公司／阵营 | 本周可验证变化 | 对未来3—12个月的含义 | 当前判断 |
+|---|---|---|---|
+| AWS | Bedrock Token量近17倍、Fortune 500支出近7倍；模型与Managed Agents继续扩充 | 模型超市开始形成可量化需求聚合，Cloud Commitment吸走企业Token预算 | Hyperscaler Inference入口明显增强 |
+| Microsoft Azure | Cloud Revenue增长30%、Azure增长48%、cRPO达6770亿美元 | Agent与Infra被放入同一商业叙事，但分部口径宽，不能当AI Revenue | Portfolio整合领先，需继续看Capex回报 |
+| 阿里云 | Model Studio继续上架DeepSeek并覆盖Codex、Claude Code等工具 | Qwen、自研Coding产品、第三方模型、Token Plan与Cloud形成统一采购层 | 国内多模型＋Coding＋Cloud组合仍处第一梯队 |
+| 腾讯云 | 旧模型平台统一迁往TokenHub | 从“混元API”转向自研模型＋第三方模型＋套餐＋协议兼容的Token入口 | Inference分发能力上调，利润与留存待验证 |
+| 字节／火山引擎 | 本观察期未发现改变排序的新增硬披露 | 豆包、TRAE、飞书、火山方舟的入口闭环仍是其核心优势 | 排名不变，继续看外部付费Token与毛利 |
+| 百度智能云 | 本观察期未见同量级新增披露 | 千帆、文心、Comate及政企交付仍有基础，统一Token入口声量偏弱 | 位置不变 |
+| 华为云 | 本观察期未见同量级新增披露 | 昇腾、Agentic MaaS、CodeArts与政企Cloud更偏国产全栈闭环 | 国产化优势不变 |
+| NVIDIA／Nscale | 信用担保仍处讨论，未签署 | GPU供给、股权与融资可能形成三位一体的Neocloud支持体系 | 不上调已交付Capacity，只上调融资可能性 |
+| CoreWeave／Nebius | 杠杆和债券价格承压 | 市场将提高融资成本、客户集中和资产寿命的折价 | 需求仍强，资本风险权重上升 |
+| Crusoe／Lambda | 本周未见改变排序的新增硬披露 | 能源、园区、开发者入口仍是差异化；同样需证明现金回报 | 排名不变 |
+| SenseCore | 无新增公开披露改变排名 | 中型Multi-vendor、Dedicated Cluster与国产Inference仍有窗口 | 必须同时提升Token入口兼容与资本纪律 |
+| 清程极智 | 未见新增可验证Cloud Revenue、算力规模或长约 | 赤兔、八卦炉及异构效率价值仍属于软件层 | 继续列AI Infra基础软件／异构效率层 |
+
+### 四、对GPUaaS与Inference／Token的影响
+
+#### 1. GPUaaS：从“卖卡时”转向“卖可融资、可承诺的生产Capacity”
+
+未来3—6个月，高端GPU需求仍会受到Hyperscaler和模型公司的强劲采购支撑；但Neocloud的可销售供给将按融资条件分层：
+
+- **第一层：** 有Anchor客户、预付款／Take-or-pay、厂商信用支持和已锁定电力的Capacity；
+- **第二层：** 有客户合同但融资、并网或GPU交付仍存在条件的Capacity；
+- **第三层：** 只有规划MW、意向订单或短期现货需求的Capacity。
+
+第一层可获得更低融资成本与更长合同，第三层则更容易陷入高利率、短租约和GPU代际贬值。GPUaaS价格因此不会简单单边下跌：现货卡时可能因区域和型号波动，而长期Dedicated Capacity的价格将更多反映信用、SLA和交付确定性。
+
+#### 2. Inference／Token：公开价格继续下探，利润向“模型路由＋企业账单＋Agent Runtime”集中
+
+Bedrock、TokenHub和Model Studio共同说明，Token市场正在形成三层利润池：
+
+| 利润层 | 收入来源 | 竞争壁垒 | 主要玩家 |
+|---|---|---|---|
+| 模型层 | API授权、模型订阅、专属部署 | 能力、品牌、更新速度、任务完成率 | OpenAI、Anthropic、Qwen、Doubao、DeepSeek等 |
+| 分发与Control Plane | Token套餐、模型路由、企业账单、治理与Agent工具 | 入口、Commitment、身份、安全、数据和工作流 | AWS、Azure、阿里、腾讯、火山等 |
+| 生产Capacity | GPUaaS、Reserved Inference、Dedicated Endpoint、Private Cluster | 电力、融资、Serving效率、SLA和跨芯片运营 | Hyperscaler、Neocloud、SenseCore等 |
+
+对模型公司而言，多Cloud上架扩大流量但让渡部分客户与计费控制；对独立Token Hub而言，多模型聚合已被Hyperscaler复制，护城河必须转向中立路由、跨芯片低成本Serving、专属部署与客户不竞争；对GPU Cloud而言，只有进入这些入口的Wholesale供应链，才能把Token增长转成长期利用率。
+
+#### 3. Codex与Claude Code：入口价值上升，但底层模型与Cloud更可替换
+
+阿里Model Studio和腾讯TokenHub均通过协议兼容接入Codex、Claude Code或邻近工具链，AWS又把多家模型与Managed Agents放进同一平台。未来Coding Agent的竞争单位会拆成：
+
+1. Harness与开发者体验；
+2. 模型路由和任务成功率；
+3. 沙箱、工具、凭证与安全策略；
+4. Token套餐与企业采购；
+5. 底层Inference Capacity。
+
+因此Codex或Claude Code可以主导开发者工作流，却未必独占全部Token与GPU利润。掌握企业账单和运行时的平台，可以在不拥有入口品牌的情况下捕获更多基础设施价值。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 产品：建立Multi-model Production Cloud，而不是再做一个公共模型超市
+
+SenseCore不适合正面复制AWS Bedrock、腾讯TokenHub或火山方舟的长尾入口。更可行的产品是：
+
+- 兼容OpenAI与Anthropic协议，适配Codex、Claude Code、TRAE、Qoder等Harness；
+- 支持Qwen、Doubao、DeepSeek、Hunyuan、ERNIE及主流开源模型；
+- 在NVIDIA与国产GPU之间做量化、路由、P/D分离、KV Cache与SLA分层；
+- 提供Reserved Throughput、Dedicated Endpoint、Private Network和审计；
+- 让模型公司、Token Hub和中型企业在不迁移应用的情况下切换模型或芯片。
+
+目标不是控制最终用户，而是成为多个入口都可以调用的Primary Production Pool。
+
+#### 2. GTM：把TokenHub与模型公司视为批发客户，把中型企业作为Primary Vendor战场
+
+| 客户类型 | SenseCore角色 | 建议合同 |
+|---|---|---|
+| 模型公司／Token Hub | Wholesale Inference与专属模型池 | 12—24个月Take-or-pay、最低消费、超额Token计费 |
+| 年预算千万元至一亿元的AI-native企业 | Multi-vendor中的Primary Production Cloud | 50%—60%核心负载、Reserved Capacity、统一SLA |
+| 大型互联网／政企 | 专项集群、国产迁移、Overflow、Private Agent Runtime | 客户共同出资或项目级Dedicated Cluster |
+| 长尾开发者 | 不直接重建GTM | 通过Token Hub、ISV与渠道间接覆盖 |
+
+腾讯和阿里把入口上收后，SenseCore更不应与其争零售API，而应进入它们、模型公司及独立Token Hub的Capacity供应链，同时保留中型企业的直接生产关系。
+
+#### 3. 资本：新增Capacity需要“信用覆盖率”指标
+
+建议新增一个内部指标：
+
+> **Capacity信用覆盖率＝具备Take-or-pay、预付款、客户共同出资或可转让长期合同的新增投资 ÷ 新增Capacity总投资。**
+
+每个扩容项目至少同时满足：
+
+1. 电力和机房可验证；
+2. GPU、网络、存储交付时间锁定；
+3. Anchor合同覆盖折旧与融资成本；
+4. 延期、取消、价格重议和技术代际风险有明确分担；
+5. Inference负载能以每GPU小时Gross Profit或每个成功任务成本验收。
+
+NVIDIA可能为Nscale增信的案例意味着，未来大型AI Infra项目会越来越依赖生态方信用。SenseCore若无法获得同等级外部增信，就应更多采用客户出资建设、Managed Private AI Cloud或项目SPV，而非独自承担全部CAPEX。
+
+#### 4. Inference利润：从每百万Token升级为任务与SLA定价
+
+公开Token价格下降时，应增加以下可收费单元：
+
+- Reserved Throughput与峰值并发；
+- Agent Session持续时长；
+- Tool／Browser执行与沙箱；
+- P95／P99任务完成时间；
+- 失败重试、人工接管和安全审计；
+- 国产芯片迁移与持续优化服务。
+
+这样可把Token产量增长转成生产服务Gross Profit，而不是仅依赖模型API价差。
+
+#### 5. 清程极智与软件栈伙伴：用真实生产指标验收
+
+清程极智、无问芯穹、基流科技等应按软件栈与集群效率合作评估，而不是与Neocloud横向比GPU规模。对赤兔、八卦炉及类似产品，SenseCore应要求同模型、同硬件、同SLO下的每卡有效Token、训练MFU、集群故障恢复、国产芯片覆盖和可复现客户案例。未出现可验证Cloud Revenue、可调度算力或长期容量合同前，不进入GPU Cloud排名。
+
+### 六、未来观察指标及风险
+
+1. **AWS Bedrock：** 17倍Token增长的绝对量、付费比例、模型分布、企业留存和Gross Margin；Managed Agents从预览到生产的转化。
+2. **Microsoft：** 6770亿美元cRPO的期限与AI／Cloud构成；Azure增长能否覆盖更高Capex与电力采购。
+3. **腾讯TokenHub：** 旧平台迁移后的活跃客户、付费Token、Hy Token Plan续费、模型路由比例和API毛利。
+4. **阿里Model Studio：** DeepSeek与Qwen在Codex、Claude Code等工具中的真实调用、Throughput Reservation占比及国际客户增长。
+5. **字节／火山：** 豆包、TRAE、飞书与火山方舟之间的外部付费Token、企业续费和Inference Gross Margin。
+6. **百度／华为：** 千帆、Comate、Agentic MaaS、CodeArts是否形成统一套餐、账单与生产运行时，而非孤立产品。
+7. **NVIDIA／Nscale：** 信用担保是否签署、金额和追索条款；Anthropic项目的融资、并网、GPU到货与验收。
+8. **CoreWeave、Nebius、Crusoe、Lambda：** 融资利差、客户集中、已通电MW、Backlog转Revenue、预付款和取消条款。
+9. **SenseCore：** Capacity信用覆盖率、Take-or-pay覆盖率、中型Multi-vendor客户的Primary Production份额、每GPU小时Gross Profit、国产Inference有效Token成本。
+10. **清程极智：** 赤兔、八卦炉的开源采用、真实集群复现、国产芯片与主流模型覆盖、标杆客户、标准化Revenue或长期合同。
+11. **主要风险：** Bedrock 7倍支出与17倍Token均为Amazon公司口径；腾讯TokenHub迁移不等于新增Revenue；NVIDIA信用担保尚未签署；Gartner的80%为远期预测。不得把平台迁移、公司增长倍数、潜在担保或规划Capacity直接等同于已确认利润。
+
+### 结论
+
+本周AI Infra竞争的主线已经从“谁有更多模型和GPU”进一步转成两项能力：
+
+> **需求侧，谁能把模型选择、Coding Agent、企业账单与运行时合并成可持续Token入口；供给侧，谁能把客户合同、电力、GPU和信用支持组合成可融资的生产Capacity。**
+
+AWS、Microsoft、阿里、腾讯正掌握第一种能力；NVIDIA与头部Neocloud开始重塑第二种能力。SenseCore的机会位于两者之间：不复制超级入口，而用模型中立、跨芯片Serving、生产SLA和更审慎的Capacity融资，成为多个入口背后的Primary Production Cloud。
+
+### 主要来源
+
+- [Amazon 2026 Q3 Earnings Release，2026-10-29](https://ir.aboutamazon.com/files/doc_earnings/2026/q3/earnings-result/AMZN-Q3-2026-Earnings-Release.pdf)
+- [Microsoft FY2027 Q1 Earnings Release，2026-10-28](https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast)
+- [腾讯云大模型旧平台迁移至TokenHub公告](https://cloud.tencent.com/announce/detail/2287)
+- [Alibaba Cloud Model Studio模型生命周期与工具生态](https://docs.modelstudio.console.alibabacloud.com/en/model-studio/newly-released-models)
+- [Reuters：NVIDIA讨论为Nscale的Anthropic项目提供信用支持，2026-10-30](https://www.reuters.com/technology/nvidia-talks-give-credit-support-nscales-deal-with-anthropic-information-reports-2026-10-30/)
+- [Reuters：Neocloud债务与整合风险，2026-10-26](https://www.reuters.com/business/musks-warning-hits-neocloud-stocks-debt-concerns-mount-2026-10-26/)
+
+
 ## 2026-10-23｜OpenAI借Google Cloud卖Codex，豆包2.0打通四个入口：AI Infra进入分发与交付兑现战
 
 > **观察区间：** 2026年10月17—23日  
