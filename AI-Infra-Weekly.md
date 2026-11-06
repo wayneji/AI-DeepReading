@@ -4,6 +4,249 @@
 
 ---
 
+## 2026-11-06｜Microsoft收紧Neocloud验收，Coding Agent进入订阅运营：AI Infra从合同额转向可用产能
+
+> **观察区间：** 2026年10月31日—11月6日  
+> **口径说明：** “已确认事实”指公司公告、官方产品文档、监管文件或财报；“公司口径”保留企业定义与假设，不直接等同于审计Revenue、已验收Capacity或可持续Gross Margin；“可信报道”指可靠媒体取得但尚未由交易各方完整确认的信息；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **Neocloud竞争从签约能力进入工程验收与客户治理阶段。** Reuters援引Bloomberg称，Microsoft正在加强对Nebius、IREN和Nscale部分数据中心项目的审查，并对新增Neocloud交易更谨慎；Microsoft表示其基础设施策略仍由自建、租赁和第三方合作共同组成。这里的变化不是Microsoft退出Neocloud，而是客户开始把网络设计、供电、建设进度和验收权放到合同额之前。
+
+2. **IREN的数据同时证明需求真实、兑现仍受交付约束。** 公司披露季度AI Cloud Revenue接近三倍至2亿美元、Operating ARR达到10亿美元，超过40亿美元Contracted ARR已安排资金，但因客户要求的网络设计调整与供应商时间，主要产能目标由年末推迟至2027年1月底，并可能延至2月底。Contracted ARR、Operating ARR与Revenue必须分开，真正决定现金流的是Commissioning、Testing和Customer Acceptance。
+
+3. **Coding Agent已从模型竞赛进入“运行时＋安全控制＋订阅运营”竞争。** 华为云码道本周增强批量读写、非阻塞Bash、记忆与订阅升级；Claude Enterprise新增Security Center、Inference Hooks、集中管理和访问控制；火山方舟与腾讯Token Plan则继续扩充多模型套餐。未来利润不只由每百万Token价格决定，而由任务完成率、工具调用、安全治理和席位续费共同决定。
+
+4. **大厂模型入口继续向“多模型采购层”收束。** 阿里百炼、腾讯TokenHub、火山方舟和华为码道都在兼容自研与第三方模型，并连接Codex、Claude Code或邻近Coding Agent工具。模型公司获得分发，但Cloud与企业入口掌握路由、套餐、客户关系和工作负载数据；缺少入口的独立Token Hub必须以中立性、跨芯片效率和Dedicated Inference建立壁垒。
+
+5. **SenseCore的核心产品应从GPU池升级为Acceptance-ready Production Cloud。** 新增Capacity不仅要有Take-or-pay，还要有冻结的网络设计、分阶段验收、性能基线和变更补偿；Inference则应按有效任务、Reserved Throughput与安全SLA收费。清程极智本周未出现新增可验证Cloud Revenue、可调度算力规模或长期Capacity合同，继续归入AI Infra基础软件／异构算力效率层。
+
+### 二、关键动态及影响
+
+#### 1. Microsoft加强Neocloud项目监督：买方开始收回工程控制权
+
+**可信报道。** Reuters 11月5日援引Bloomberg称，Microsoft加强了对Nebius、IREN和Nscale部分数据中心项目的监督，正在退出其认为风险较高的项目，并讨论是否签署新的Neocloud交易。报道同时指出，Microsoft仍未完全排除第三方Capacity，并强调自建数据中心、租赁设施与战略合作共同构成其基础设施策略。[Reuters，2026-11-05](https://www.reuters.com/business/microsoft-tightens-oversight-neocloud-data-center-projects-bloomberg-news-reports-2026-11-05/)
+
+同一报道列出三个具体信号：
+
+- IREN因Microsoft要求调整网络设计，部分交付时间后移；
+- Microsoft未行使将Nscale得州合同规模扩大一倍以上的选择权；
+- Microsoft此前因电力连接推迟至2030年代，退出Nscale英国Loughton旗舰项目的Anchor租约。
+
+**边界。** “加强监督”不等于相关合同全部取消；Nscale得州事件涉及未行使扩容Option，不应把可选Capacity当作已签Backlog后再视为削减。Nebius与Nscale未对Reuters即时回应，因此具体项目范围和商业条款仍待确认。
+
+**分析判断。** Hyperscaler正在把Neocloud合同由单纯的MW／GPU采购升级为工程总包式治理。未来项目融资会重点审查：
+
+1. 网络拓扑与GPU代际是否在签约前冻结；
+2. 电力、冷却、机房和网络是否能同步交付；
+3. Commissioning与Customer Acceptance能否形成分阶段付款；
+4. 客户提出设计变更时，延期、成本和Credit由谁承担；
+5. 未行使Option、条件合同与Firm Backlog是否清楚拆分。
+
+这会淘汰依赖Headline合同融资、但工程控制薄弱的Neocloud，也会提升具备数据中心、网络、集群软件和SRE一体化交付能力的玩家价值。
+
+#### 2. IREN：2亿美元Revenue与40亿美元ARR之间，隔着验收门槛
+
+**已确认事实／公司口径。** IREN 11月5日披露，季度AI Cloud Revenue接近三倍至2亿美元，Operating ARR达到10亿美元；公司称超过40亿美元的Contracted ARR已获得资金安排，现计划在2027年1月31日前投入运营，且可能延至2月底。公司明确说明，Revenue将在数据中心交付后的Commissioning、Testing和Customer Acceptance完成后逐步爬坡。[IREN Q1 FY2027 Results，2026-11-05](https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-q1-fy27-results)
+
+公司监管文件还披露，Horizon 1已于2026年8月交付并获Microsoft接受；Horizon 2—4正在按Microsoft要求实施网络设计变更，双方同时讨论交付日期、费用、Credit与成本补偿。[IREN SEC Filing，2026-11-05](https://www.sec.gov/Archives/edgar/data/1878848/000187884826000065/irenreportsq1-fy27result.htm)
+
+**分析判断。** IREN不是“需求消失”的案例，而是“需求兑现必须经过设计冻结和验收”的案例。建议用三层口径比较Neocloud：
+
+| 口径 | 含义 | 可信度 |
+|---|---|---|
+| Contracted ARR／Backlog | 合同期内的潜在收入或公司年化口径 | 需扣除条件、Option、延期和取消风险 |
+| Operating ARR | 已投入服务的Capacity按公司假设计量的年化规模 | 高于规划值，但仍不等同审计Revenue |
+| Recognized Revenue／Cash | 已交付、已验收并确认的收入与回款 | 最接近真实经营兑现 |
+
+未来市场不会否定Backlog，而会给“已验收、可计费、可回款”的部分更高权重。
+
+#### 3. Claude Enterprise：安全控制成为Agent Runtime的独立产品层
+
+**已确认事实。** Anthropic 11月5日更新Claude Enterprise，新增Security Center、Inference Hooks、集中管理及更多访问控制，其中部分仍处Beta。[Claude Release Notes，2026-11-05](https://support.claude.com/en/articles/12138966-release-notes)
+
+**分析判断。** Codex与Claude Code的竞争正在从模型和IDE体验扩展到企业Control Plane：
+
+- 管理员能否集中定义MCP、网络、文件和凭证权限；
+- 是否能在Inference前后插入策略、审计与阻断；
+- 长任务、SubAgent和后台执行能否被追踪；
+- 数据是否可保留在客户指定Cloud或Private Network；
+- 安全事件能否与企业SOC、SIEM和工单系统联动。
+
+这类功能未必产生大量新增Token，却能提高企业席位价格、续费率和Production Workload占比。对AI Infra供应商而言，安全运行时正在成为高于裸Inference的利润池。
+
+#### 4. 华为码道：从“会写代码”转向长任务运行与端内订阅
+
+**已确认事实。** 华为云码道CodeArts 11月3日上线多项商用更新：智速模式、批量文件读取、带上下文搜索、非阻塞Bash后台执行、IDE端微信扫码支付和Token套餐升级；记忆模块及部分SubAgent展示能力处于公测。[华为云码道更新日志，2026-11-03](https://support.huaweicloud.com/wtsnew-codeartsagent/index.html)
+
+**分析判断。** 这些更新看似偏产品细节，实际对应三类AI Infra需求：
+
+| 产品变化 | 底层需求 | 商业含义 |
+|---|---|---|
+| 非阻塞Bash、批量读写 | 长任务沙箱、任务队列、状态持久化 | Agent从短对话转向持续执行 |
+| 智速模式 | 模型路由、低延迟Inference、Token压缩 | 用不同SLO覆盖价格敏感用户 |
+| 端内支付与套餐升级 | 用量计量、Credits、订阅与限流 | Coding Agent开始形成直接Token变现 |
+| 记忆与SubAgent | 长上下文、向量存储、并发编排 | 单用户Token消费和粘性上升 |
+
+华为正在把国产模型、CodeArts工具链、Agent执行与Cloud计费做成一体化入口，其优势不只来自昇腾供给，也来自研发流程和政企身份体系。
+
+#### 5. 腾讯与火山：多模型套餐继续压低开发者迁移成本
+
+**公司渠道／官方文档。** 腾讯云开发者社区11月6日介绍，Hy4正式版进入Token Plan，个人套餐覆盖28—468元区间，并区分订阅与按量调用；这属于腾讯官方社区的产品说明，不是审计经营数据。[腾讯云开发者社区，2026-11-06](https://cloud.tencent.com/developer/article/2777850)
+
+火山方舟11月2日更新Coding Plan模型目录，新增Kimi-K3.1-Pro，并提供DeepSeek-V4.1-Flash-Economy等不同成本档位；Kimi模型支持函数调用和上下文缓存。[火山方舟模型公告，2026-11-02](https://console.volcengine.com/ark/region:cn-beijing/docs/coding-plan-personal-model-release)
+
+**分析判断。** 腾讯和火山都在降低“更换模型”的摩擦：用户保留Agent Harness和套餐，只需改变路由。模型公司的直接API关系因此弱化，Cloud入口则掌握实际调用、缓存、价格弹性和续费数据。未来Public Token标价仍会下降，但套餐未使用额度、缓存折扣和模型路由会让真实Gross Margin与标价分离。
+
+### 三、竞争格局变化
+
+| 公司／阵营 | 本周可验证变化 | 竞争含义 | 当前判断 |
+|---|---|---|---|
+| Microsoft Azure | 据报道加强Nebius、IREN、Nscale项目监督，并更谨慎评估新增Neocloud合同 | Hyperscaler从Anchor客户升级为工程验收与Capacity治理者 | 不等于退出Neocloud，但显著提高交付门槛 |
+| IREN | AI Cloud Revenue约2亿美元；Operating ARR约10亿美元；40亿美元以上目标因设计变更与供应商时间后移 | 需求与融资能力得到验证，ARR转Revenue仍依赖验收 | 上调经营规模，保留交付折价 |
+| Nscale | Microsoft未行使得州扩容Option，英国项目此前因电力延期失去Anchor租约 | Optional Capacity与Firm Backlog必须拆开 | 不下调已签基础合同，降低远期Option权重 |
+| CoreWeave | Q3财报将在11月10日发布，本周无可用新财务披露 | 市场将关注Backlog、Capex、融资成本与验收进度 | 排名不变，等待财报 |
+| Nebius | Q3财报将在11月12日发布；项目监督报道尚无公司完整回应 | 客户集中和站点合规进入观察期 | 排名不变，等待公司披露 |
+| Lambda／Crusoe | 本周未发现改变排序的新增硬披露 | 开发者入口和能源／园区垂直整合仍是差异点 | 排名不变 |
+| Anthropic／Claude | Enterprise新增安全、Inference Hook和集中管理 | Claude Code从模型入口延伸到安全Control Plane | 企业Production能力上调 |
+| 华为云 | 码道增强长任务执行、低成本模式、记忆和订阅变现 | 模型、Coding Agent、DevOps与Cloud计费进一步整合 | 国内国产Agent Cloud能力上调 |
+| 火山引擎 | Coding Plan新增Kimi-K3.1-Pro及经济型模型档位 | 豆包之外继续强化第三方模型分发与缓存经济性 | 多模型入口优势增强 |
+| 腾讯云 | Hy4进入Token Plan，公司渠道强化订阅与按量双模式 | 自研模型、TokenHub与Coding Agent套餐继续收束 | 需验证付费留存和Token毛利 |
+| 阿里云 | 本周未见改变排序的新增硬披露 | 百炼、Qwen、Qoder／Qwen Code、Token Plan和Cloud仍是完整Portfolio | 国内第一梯队不变 |
+| 百度智能云 | 本周未见同量级新增披露 | 千帆、文心、Comate与政企交付仍有基础 | 位置不变 |
+| SenseCore | 无新增公开披露改变排名 | 工程交付和验收能力的重要性上升 | 应强化Acceptance-ready Production Cloud |
+| 清程极智 | 本周未见新增Cloud收入、算力规模或Capacity长约 | 赤兔、八卦炉、AI Ping的价值仍属于软件与效率层 | 不进入Neocloud／GPU Cloud排名 |
+
+### 四、对GPUaaS与Inference／Token的影响
+
+#### 1. GPUaaS：客户将按验收节点而非GPU采购节点支付溢价
+
+Microsoft的变化会把大型GPUaaS合同拆成更细的风险节点：
+
+> 电力可用 → 机房完成 → GPU到货 → 网络联调 → Commissioning → 性能测试 → Customer Acceptance → 稳定计费。
+
+未来3—12个月可能出现两套价格：
+
+- **未验收Capacity：** 融资成本高，客户可要求延期Credit、折扣和更强退出条款；
+- **已验收Production Capacity：** 可立即承载核心负载，具备更高Reserved溢价和更低空置风险。
+
+因此，GPU数量和规划MW的重要性下降，“Acceptance-adjusted Capacity”更值得比较。建议使用：
+
+> **验收调整后Capacity＝名义GPU／MW × 融资确定性 × 按期交付概率 × 客户验收概率 × 不可取消比例。**
+
+这不是会计口径，而是评估不同Neocloud可兑现供给的分析工具。
+
+#### 2. Inference／Token：利润从每Token价差转向每个成功任务成本
+
+华为的智速模式、火山的经济型模型、腾讯的订阅套餐和Claude的安全控制说明，企业与开发者最终比较的是：
+
+- 一个任务需要多少输入、输出和Cache Token；
+- 完成任务要调用多少工具、SubAgent和重试；
+- 任务持续多久，是否需要后台沙箱；
+- 是否触发安全审批、人工接管和审计；
+- 套餐限额、未使用额度与峰值并发如何影响有效价格。
+
+公开Token单价会继续下降，但高端模型仍可凭更少步骤、更高成功率获得任务级溢价。Token Hub若只聚合API，将受到Hyperscaler套餐和模型直销双重挤压；若能跨芯片优化、进行智能路由并提供专属部署，仍可保留中立Control Plane价值。
+
+#### 3. 模型公司：多Cloud分发增加Token量，也让渡客户控制权
+
+Kimi进入火山Coding Plan、第三方模型进入腾讯TokenHub和阿里百炼，意味着模型公司可以更快获得调用量，但入口方会控制：
+
+- 默认模型和降级路由；
+- 缓存策略与套餐折扣；
+- 客户身份、账单和续费；
+- 任务与工作负载数据；
+- 底层GPU和Region选择。
+
+模型公司需要在更广分发与直接客户关系之间平衡。未来可能形成“自有旗舰入口＋多Cloud批发分发＋Private Deployment”三层GTM，而非只靠Public API。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 建立Acceptance-ready Capacity产品
+
+SenseCore面向头部模型公司、Token Hub和大型企业的Dedicated Cluster，应把交付包标准化：
+
+1. 签约前冻结GPU、网络、存储、模型与SLO基线；
+2. 机房、网络、集群和Inference分阶段验收；
+3. 明确客户变更设计时的工期、费用与Credit；
+4. 用实际模型吞吐、P95／P99延迟、故障恢复和每卡有效Token验收；
+5. 把“已签”“已通电”“已交付”“已验收”“已计费”分别进入Sales与财务看板。
+
+这会降低客户临时改变架构导致的毛利和回款风险，也能让高质量Capacity获得更高价格。
+
+#### 2. 中型Multi-vendor客户：从三分之一份额争取Primary Production Pool
+
+对年GPU Cloud预算1,000万—1亿元的客户，SenseCore、并行科技、无问芯穹等仍会共同进入Vendor List。SenseCore不应追求排他采购，而应争取：
+
+- 核心训练与稳定Inference负载；
+- 50%—60%的Production Capacity；
+- 统一Private Network与安全审计；
+- Reserved Throughput和最低消费；
+- 客户更换模型或Coding Agent时底层环境不迁移。
+
+并行科技可承接弹性与多地域资源，无问芯穹可承接异构迁移，SenseCore应通过验收体系和生产SLA占据Primary Vendor位置。
+
+#### 3. Inference产品：增加任务级与安全级计费
+
+建议在GPU卡时和Token之外，增加：
+
+- Agent Session并发与持续时长；
+- Tool／Browser／Bash执行量；
+- Dedicated Sandbox与Private Network；
+- Inference Hook、审计日志和策略执行；
+- P95／P99完成时间与任务成功率；
+- 模型路由、缓存命中与国产芯片迁移节省分成。
+
+这能把Claude Enterprise和CodeArts正在验证的安全、长任务与订阅价值传导到SenseCore，而不是停留在低毛利Token生产。
+
+#### 4. Capacity投资：从合同覆盖率升级为验收覆盖率
+
+建议同时追踪两项指标：
+
+- **合同覆盖率：** Take-or-pay、预付款或客户共同出资覆盖的新增投资比例；
+- **验收覆盖率：** 已通过客户性能与生产验收、开始稳定计费的新增Capacity比例。
+
+只有合同覆盖率高但验收覆盖率低，仍可能形成延期、Credit和现金流缺口。新增CAPEX应优先对应已冻结设计、明确验收计划的Anchor负载；对政企客户可更多采用客户出资、SenseCore运营的Managed Private AI Cloud。
+
+#### 5. 清程极智与软件伙伴：合作以验收指标为边界
+
+清程极智的赤兔、八卦炉和AI Ping，以及无问芯穹、基流科技等软件栈能力，可用于国产芯片适配、Serving优化和集群运营。SenseCore应以同模型、同硬件、同SLO下的每卡有效Token、训练MFU、故障恢复、模型适配周期和节省成本进行验收。未出现可验证Cloud Revenue、可调度算力规模或长期Capacity合同前，不把清程极智放入GPU Cloud竞争序列。
+
+### 六、未来观察指标及风险
+
+1. **Microsoft：** 是否正式披露Neocloud供应商治理标准；新增与续约合同中网络设计、验收、延期Credit和退出条款如何变化。
+2. **IREN：** Horizon 2—4实际交付与验收日期；40亿美元以上Contracted ARR何时转为Operating ARR、Revenue与现金回款。
+3. **Nscale：** 得州基础合同与未行使Option的精确边界；IPO披露中的Firm Backlog、电力、融资和客户集中度。
+4. **CoreWeave：** 11月10日Q3 Revenue、Backlog、Capex、现金消耗、融资成本和客户验收情况。
+5. **Nebius：** 11月12日Q3财报、Microsoft项目进度、站点合规、客户集中与已通电Capacity。
+6. **Lambda／Crusoe：** 新增长期合同是否带有预付款、项目融资和已锁定电力；开发者平台是否提升GPU利用率。
+7. **Claude Code／Codex：** Enterprise安全控制、Inference Hooks、沙箱与长任务运行时是否形成独立席位或用量收入。
+8. **华为码道：** 智速模式的模型路由、任务成功率、Token节省、订阅付费与企业席位留存。
+9. **腾讯／火山／阿里：** Token Plan和Coding Plan的付费用户、未使用额度、缓存命中、模型路由、企业续费及Inference Gross Margin。
+10. **字节闭环：** 豆包、TRAE、飞书与火山方舟之间的外部付费Token、企业Agent生产负载与Cloud收入转化。
+11. **SenseCore：** 已签／已通电／已交付／已验收／已计费Capacity漏斗，Take-or-pay覆盖率、验收覆盖率、每GPU小时Gross Profit与Primary Vendor份额。
+12. **清程极智：** 赤兔和八卦炉的生产集群复现、国产芯片与主流模型覆盖、开源采用、标杆客户、标准化Revenue及长期合同。
+13. **主要风险：** Microsoft加强监督来自媒体报道，具体合同范围尚未完整披露；IREN的ARR为公司年化口径并依赖利用率与价格假设；腾讯Token Plan材料来自公司开发者社区，不等于审计收入；产品更新不等于形成规模化付费Token。不得把Option、Contracted ARR、规划MW或套餐标价直接等同于已确认Revenue和Gross Margin。
+
+### 结论
+
+本周AI Infra竞争的核心不再是“谁宣布了更多GPU或更大合同”，而是两个可验证问题：
+
+> **Capacity能否在客户设计变更后按期通过生产验收；Agent能否在更低Token、更多工具和更严安全控制下持续完成真实任务。**
+
+Microsoft的监督变化与IREN的延期说明，Neocloud必须把工程、融资与合同做成一个可验收产品；华为码道、Claude Enterprise、腾讯Token Plan和火山方舟则说明，Coding Agent已经进入运行时、安全与订阅运营阶段。SenseCore的最佳位置，是连接两者：以可验收的Dedicated Capacity承载多模型入口，以跨芯片Serving和安全SLA把GPU转换成可持续的任务级Gross Profit。
+
+### 主要来源
+
+- [Reuters：Microsoft加强部分Neocloud项目监督，2026-11-05](https://www.reuters.com/business/microsoft-tightens-oversight-neocloud-data-center-projects-bloomberg-news-reports-2026-11-05/)
+- [IREN Q1 FY2027 Results，2026-11-05](https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-q1-fy27-results)
+- [IREN SEC披露，2026-11-05](https://www.sec.gov/Archives/edgar/data/1878848/000187884826000065/irenreportsq1-fy27result.htm)
+- [Claude Enterprise Release Notes，2026-11-05](https://support.claude.com/en/articles/12138966-release-notes)
+- [华为云码道CodeArts更新日志，2026-11-03](https://support.huaweicloud.com/wtsnew-codeartsagent/index.html)
+- [火山方舟Coding Plan模型公告，2026-11-02](https://console.volcengine.com/ark/region:cn-beijing/docs/coding-plan-personal-model-release)
+- [腾讯混元Hy4与Token Plan说明，2026-11-06](https://cloud.tencent.com/developer/article/2777850)
+
+
 ## 2026-10-30｜Bedrock Token量增17倍，NVIDIA为Neocloud增信：AI Infra进入模型超市与资本担保战
 
 > **观察区间：** 2026年10月24—30日  
