@@ -4,6 +4,268 @@
 
 ---
 
+## 2026-11-13｜客户预付款接管CAPEX，Agent套餐接管Token入口：AI Infra竞争从Backlog转向现金闭环
+
+> **观察区间：** 2026年11月7日—11月13日  
+> **口径说明：** “已确认事实”指公司公告、官方产品文档、监管文件或财报；“公司口径”保留企业定义与假设，不直接等同于审计Revenue、可取消条件已消除或可持续Gross Margin；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **Neocloud的融资单元正在由GPU和Backlog转向客户预付款覆盖的可交付Capacity。** CoreWeave称未来三个月预计收到约90亿美元客户预付款和保证金；Nebius称Q3新签1年以上合同的预付款覆盖相关CAPEX超过100%，可比1—3年合同的常态覆盖率约50%—60%。这类资金降低外部融资需求，但不能替代按期交付、客户验收和合同期限匹配。
+
+2. **CoreWeave证明了规模化AI Cloud需求，也同时暴露“经营利润被资本成本吞噬”的边界。** Q3 Revenue为36.61亿美元、同比增长168%，Revenue Backlog约1,325亿美元；但净利息费用8.46亿美元，高于2.07亿美元Operating Income，Net Loss为7.09亿美元。未来估值分水岭不是Revenue增长本身，而是每新增1美元Revenue需要多少CAPEX、预付款和利息。
+
+3. **Nebius把预付款、Owned Data Center与软件栈组合成更轻的增长模型，但客户口径仍需拆分。** Q3集团Revenue为9.81亿美元、Adjusted EBITDA为4.66亿美元；公司称自Q3以来新签TCV约120亿美元，并给出2027年170亿—200亿美元初步Revenue指引。该指引建立在大规模交付和高预付款假设上，尚不能直接视作已验收Revenue。
+
+4. **Coding Agent竞争已从“谁的模型最好”升级为“谁掌握Agent Harness、模型路由和Credits账本”。** Anthropic推出Fable 5.2并强调按任务成本；阿里百炼让Codex、Claude Code等通过Skill调用图像、视频、语音与决策模型；火山方舟用Ark CLI把Agent Plan直接配置进Codex；华为码道把并发Bash、跨端记忆和积分计费放进同一产品。Public Token价格继续下降，但入口方正在把利润转移到订阅、路由、缓存、工具和任务SLA。
+
+5. **SenseCore应把“客户出资的Production Capacity”做成标准产品，而不是复制高杠杆Neocloud。** 最优路径是以预付款、Take-or-pay或客户CAPEX覆盖新增GPU和国产集群，同时出售验收、Serving优化、Private Network与任务SLA。清程极智本周未出现新增可验证Cloud Revenue、可调度算力规模或长期Capacity合同，继续归入AI Infra基础软件／异构算力效率层。
+
+### 二、关键动态及影响
+
+#### 1. CoreWeave：Backlog创新高，但利息已经成为第一性约束
+
+**已确认事实。** CoreWeave 11月10日披露Q3 Revenue 36.61亿美元，同比增长168%；Operating Income 2.07亿美元，Adjusted Operating Income 3.79亿美元，Net Loss 7.09亿美元，净利息费用8.46亿美元。Revenue Backlog约1,325亿美元，公司上调2026全年Revenue指引至130亿—133亿美元，并将全年CAPEX区间收窄至370亿—390亿美元。[CoreWeave Q3 2026 Results，2026-11-10](https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx)
+
+公司还披露：
+
+- Active Power超过1.7GW，Total Contracted Power超过4.6GW；
+- 未来三个月预计收到约90亿美元客户预付款和保证金；
+- 新增42亿美元可转债、26亿美元短期限合同融资工具；
+- Q4预计利息费用10.5亿—11.5亿美元；
+- CoreWeave Forge把训练、Inference、Evaluation和Agent开发放进统一环境；
+- 公司口径称Vera Rubin NVL72在Cognition首批Production Workload上相对GB200 NVL72实现4.8倍Token吞吐。
+
+**边界。** Revenue Backlog包含尚需满足交付和服务可用性条件的Committed Contracts，不等于全部已验收、不可取消或可立即确认的Revenue；4.8倍Token吞吐是特定客户与平台对比，不能直接外推到所有模型和SLO。
+
+**分析判断。** CoreWeave已经把Neocloud竞争推进到“金融工程＋客户预付款＋Cloud软件”的阶段。真正的正循环是：
+
+> 客户长约与预付款 → 设备和数据中心融资 → 提前交付 → Revenue与经营现金流 → 更低边际资金成本。
+
+但反向循环同样存在：交付延期或客户验收变化会推迟Revenue，而利息仍按期发生。Q3净利息费用约为Operating Income的4.1倍，说明高增长并未自动转化为股东层利润。CoreWeave的下一阶段不是证明“有需求”，而是证明Backlog能以低于毛利扩张速度的资本成本兑现。
+
+#### 2. Nebius：预付款把CAPEX风险前移给客户，Owned Data Center提高长期回报
+
+**已确认事实／公司口径。** Nebius 11月12日披露Q3集团Revenue 9.81亿美元，同比增长571%；Adjusted EBITDA 4.66亿美元，Net Loss from Continuing Operations为3,750万美元。公司股东信称，自Q3开始以来新签TCV约120亿美元；Q3新签1年以上合同的预付款覆盖相关CAPEX超过100%，可比1—3年合同的预付款覆盖率约50%—60%。[Nebius Q3 2026 Results，2026-11-12](https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results) [Nebius Shareholder Letter / SEC Exhibit，2026-11-12](https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-2.htm)
+
+公司同时给出：
+
+- 2026 Revenue指引30亿—34亿美元；
+- 2027初步Revenue指引170亿—200亿美元；
+- 2027预计CAPEX 120亿—130亿美元；
+- 公司预计上述CAPEX的75%—85%由预付款与可用的Investment-grade Asset-backed Financing覆盖；
+- 新交易的每MW年合同价值由此前2,000万—2,500万美元提高至超过2,500万美元；
+- 多数新增Capacity将来自自有数据中心，而非纯租赁机房；
+- 公司目标在2027年底前实现税前盈亏平衡。
+
+**边界。** 120亿美元TCV是合同总价值，不是季度Revenue；集团Revenue还包括Avride、TripleTen等业务，不能全部归入AI Cloud。2027指引依赖新站点、GPU、网络与客户验收按计划完成，仍具显著执行风险。
+
+**分析判断。** Nebius正在形成与CoreWeave不同的资本结构：
+
+| 维度 | CoreWeave | Nebius |
+|---|---|---|
+| 本周核心证明 | 超大规模Revenue与Backlog兑现 | 预付款覆盖CAPEX与高ACV／MW |
+| 资金来源 | 客户预付款、Operating Cash Flow、债务与股权工具并用 | 客户预付款、资产支持融资、自有资产与后续资本 |
+| 资产策略 | 大规模租赁与自有部署并行 | 强调多数新增Capacity进入Owned Data Center |
+| 主要风险 | 利息、客户集中、短合同融资与巨额CAPEX | 高指引兑现、站点建设、客户集中与扩张速度 |
+| 软件上移 | Forge覆盖训练到Agent开发 | Full-stack AI Cloud与Production Deployment |
+
+两者都在从“GPU租赁商”变为AI Cloud平台，但资本效率的关键不是轻资产或重资产标签，而是客户预付款、合同期限、资产寿命和Residual Value能否匹配。
+
+#### 3. Anthropic：Fable 5.2把竞争单位明确为“每个成功任务的成本”
+
+**已确认事实／公司评测。** Anthropic 11月9日发布Claude Fable 5.2与Mythos 5.2，定价为每百万输入Token 8美元、输出Token 40美元；Fast Mode价格翻倍，Token生成速度最高提升2.5倍。公司称Fable 5.2在Claude Code默认Medium Effort下比上一代使用更少Token，并以自有FrontierCode评测展示不同Effort下的Accuracy／Cost关系。[Anthropic，2026-11-09](https://www.anthropic.com/claude-fable-and-mythos-5-2)
+
+**边界。** FrontierCode、内部代码占比及成本比较主要为公司自测，不等同于独立第三方Production Benchmark；复杂任务的真实成本还取决于Tool Call、SubAgent、重试、Sandbox时长和人工复核。
+
+**分析判断。** Claude Code与Codex正在把模型路由显性化：强模型作为Advisor／Orchestrator处理困难步骤，小模型承担搜索、执行和批量子任务。企业最终购买的不是固定模型，而是一个能动态分配：
+
+- 推理强度；
+- 快慢模型；
+- 交互式与后台任务；
+- 工具、浏览器与Sandbox；
+- 安全审计与人工接管；
+- Public Cloud与Private Capacity。
+
+这会让“每百万Token标价”成为原材料价格，而“每个成功任务的完全成本”成为采购指标。强模型即使Token更贵，只要减少重试和人工审查，仍可获得任务级溢价。
+
+#### 4. 阿里与火山：Codex／Claude Code成为Cloud Token Plan的通用前端
+
+**已确认事实。** 阿里云百炼更新Token Plan接入方式：Claude Code通过Slash Command、Codex和Qwen Code通过Skill、OpenCode等通过Agent，可调用图像、视频、语音、实时对话和决策模型；个人版与团队版使用统一Credits账本。[阿里云百炼Token Plan接入概览，2026-11](https://help.aliyun.com/zh/model-studio/token-plan-integration-overview)
+
+火山方舟11月11日更新Agent Plan的Codex接入文档，支持Responses API，并通过Ark CLI一键完成认证、Profile、默认模型和Harness配置；也可把方舟Agent Plan作为Codex的Model Provider。[火山方舟Agent Plan × Codex，2026-11-11](https://console.volcengine.com/ark/region:cn-beijing/docs/agent-plan-personal-codex)
+
+**分析判断。** 这两项变化很重要，因为它们把Codex与Claude Code从“海外模型的专属客户端”变成中国MaaS和Token Hub的分发外壳：
+
+1. Agent Harness保留用户习惯、权限和工作流；
+2. Cloud Provider替换底层Model Endpoint、Credits和路由；
+3. 多模态能力通过Skill／Slash Command绕过文本协议限制；
+4. 客户关系、用量数据和结算留在Cloud入口；
+5. 模型公司获得分发，但默认路由和价格控制进一步让渡。
+
+阿里的优势是Qwen、百炼、Qoder／Qwen Code与多模态模型Portfolio；字节的优势是豆包模型、TRAE、飞书入口、火山方舟与Ark CLI可以形成开发者和企业GTM闭环。未来3—12个月，真正的胜负指标不是“支持多少模型”，而是外部付费席位、生产任务量、缓存命中率与Cloud Revenue转化。
+
+#### 5. 华为码道：国产Coding Agent开始优化并发、记忆和Token账本
+
+**已确认事实。** 华为云码道CodeArts 11月10日更新，Bash单轮最多并行3条命令，Read合并上下文往返以降低Token开销；端侧与云端记忆统一并跨IDE、Web与移动端同步；同时增强资源监控、积分独立计费和AI度量指标。[华为云码道更新日志，2026-11-10](https://support.huaweicloud.com/wtsnew-codeartsagent/index.html)
+
+**分析判断。** 这表明国内Coding Agent已经从模型接入进入Runtime工程：
+
+- 并发Bash提高任务吞吐，却增加Sandbox与峰值GPU需求；
+- Read合并减少Token往返，直接改善有效毛利；
+- 跨端记忆提高留存，并把状态存储变成Cloud资产；
+- 独立积分与AI度量让订阅、Credits和企业分摊可运营；
+- 鸿蒙、CodeArts DevOps与华为云身份体系构成企业入口。
+
+腾讯Hy4已通过TokenHub、WorkBuddy、CodeBuddy、元宝、ima和企业微信助理分发；百度千帆也把Token Plan、Coding Plan与Agent平台纳入同一入口。本周未见两者新增同量级硬披露，因此竞争位置不变，但都在沿“模型—Agent入口—Credits—Cloud”路径收束。
+
+### 三、竞争格局变化
+
+| 公司／阵营 | 本周可验证变化 | 竞争含义 | 当前判断 |
+|---|---|---|---|
+| CoreWeave | Q3 Revenue 36.61亿美元；Backlog 1,325亿美元；预计三个月约90亿美元客户预付款／保证金 | 规模与融资能力继续领先，利息成为利润瓶颈 | 海外Neocloud第一梯队，资本风险未消失 |
+| Nebius | Q3 Revenue 9.81亿美元；Q3以来新签TCV约120亿美元；新签长约预付款覆盖相关CAPEX超100% | 客户资金、Owned Data Center与Full-stack Cloud形成差异化 | 上调兑现能力，保留高指引折价 |
+| Lambda | 本周未见改变排序的新财务或Capacity硬披露 | 开发者入口和模型训练生态仍是优势 | 位置不变，等待收入、合同与电力披露 |
+| Crusoe | 本周未见改变排序的新合同披露 | 能源、园区与AI Cloud垂直整合仍具壁垒 | 位置不变，重点看Anchor客户验收 |
+| Microsoft／Hyperscaler | 上周加强Neocloud监督，本周CoreWeave、Nebius用预付款和验收数据回应市场 | Anchor客户同时成为融资方、验收方与风险控制者 | 对供应商控制权继续上升 |
+| Anthropic／Claude Code | Fable 5.2强化Accuracy／Cost、Advisor／Orchestrator和Fast Mode | 模型路由与任务成本成为产品核心 | 高端Coding Agent能力上调 |
+| OpenAI／Codex | 本周CLI更新模型Provider浏览与增量Tool Update，未见改变模型排名的发布 | Codex继续成为可替换Provider的Agent Harness | 入口价值增强，模型锁定度下降 |
+| 阿里云 | Token Plan通过Skill／Command扩展至图像、视频、语音与决策模型 | 百炼由文本Token包升级为多模态Agent采购层 | 国内Portfolio完整度领先 |
+| 火山引擎 | Agent Plan通过Ark CLI和Responses API接入Codex | 豆包／第三方模型可借Codex Harness分发 | 开发者入口与Cloud结算进一步整合 |
+| 华为云 | 码道增强并发Bash、Token压缩、跨端记忆与积分计费 | 昇腾、CodeArts与企业身份形成国产闭环 | 企业Runtime能力上调 |
+| 腾讯云 | Hy4已进入TokenHub及多产品入口，本周无新增同量级硬披露 | 模型、WorkBuddy／CodeBuddy、企业微信与Credits闭环仍具优势 | 位置不变，需验证付费留存 |
+| 百度智能云 | 千帆维持Token Plan、Coding Plan、Agent与MaaS一体化，本周无排序级变化 | 政企入口与交付仍是主要优势 | 位置不变，需补Production指标 |
+| SenseCore | 无新增公开披露改变排名 | 可用预付款＋验收能力重构独立AI Cloud竞争 | 应主打客户出资的Production Capacity |
+| 清程极智 | 未见新增Cloud收入、可调度规模或Capacity长约 | 赤兔、八卦炉与AI Ping仍属于效率软件 | 不进入Neocloud／GPU Cloud排名 |
+
+### 四、对GPUaaS与Inference／Token的影响
+
+#### 1. GPUaaS：预付款覆盖率将成为继利用率后的第二个核心指标
+
+未来3—12个月，GPUaaS项目应至少同时披露四个比率：
+
+| 指标 | 公式／含义 | 作用 |
+|---|---|---|
+| Contract Coverage | Take-or-pay等合同覆盖新增Capacity的比例 | 判断需求确定性 |
+| Prepayment Coverage | 客户预付款覆盖GPU、机房、网络CAPEX的比例 | 判断外部融资需求 |
+| Acceptance Coverage | 已通过性能和Production验收的Capacity比例 | 判断Revenue可确认性 |
+| Interest Coverage | Operating Income或现金毛利对利息的覆盖 | 判断资本结构可持续性 |
+
+客户预付款会让高质量Anchor Contract获得更低融资成本，并拉开有客户入口与无客户入口Neocloud之间的差距。但预付款不是免费资本：它通常伴随更强的交付时间、SLA、Credit与退款权。供应商若延迟，资金风险会从“债权人追索”变成“客户合同追索”。
+
+**价格判断。** 已验收、带预付款的Dedicated Capacity可能维持溢价；无Anchor客户、未验收的现货GPU则面临更高折价。GPU代际升级后，旧卡不会简单失去价值，而会转向低成本Fine-tuning、Batch Inference和延迟不敏感任务，价格由电力、软件效率和剩余折旧共同决定。
+
+#### 2. Inference／Token：Public价格继续下探，任务SLA和Fast Mode形成新利润池
+
+Anthropic将同一模型划分Standard与Fast Mode，阿里、火山、腾讯、百度和华为把模型装入Credits套餐，说明Inference利润池正在分层：
+
+- **Commodity Token：** 公开API、低SLA、可替换模型，价格持续下降；
+- **Routed Token：** 入口根据难度、缓存和成本自动选模型，利润来自路由效率；
+- **Reserved Throughput：** 企业为并发、稳定延迟和专属Capacity付费；
+- **Agent Runtime：** Sandbox、Tool、Memory、Security、Observability与长期任务；
+- **Outcome／Task SLA：** 按成功任务、完成时间或业务结果计费。
+
+Token Hub若只做API转售，会被Hyperscaler套餐和模型厂直销挤压；若能控制路由、缓存、跨芯片Serving和Dedicated Deployment，则可成为企业中立采购层。模型公司则需要在“被Cloud分发带来Token量”与“失去默认路由、账单和客户数据”之间重新定价。
+
+#### 3. Coding Agent正在提高Inference波峰，而不是只增加平均Token
+
+并发SubAgent、Bash、Browser与长任务会制造明显的短时峰值。对AI Infra而言，平均GPU利用率并不足以衡量价值，需要新增：
+
+- 每Agent Session峰值并发；
+- 长任务P95／P99持续时长；
+- Cache Hit Rate与上下文复用；
+- Tool等待期间的GPU释放率；
+- 每成功任务的Input／Output／Reasoning Token；
+- 重试、失败与人工接管成本。
+
+这会推动Serverless与Reserved Capacity并存：长尾用户共享弹性池，企业核心Agent使用预留吞吐和Private Sandbox。能同时优化两者的Cloud将获得高于裸Token的Gross Margin。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 推出Customer-funded Production Capacity
+
+SenseCore不应复制CoreWeave式高杠杆扩张，而应把新增Capacity分为三类标准合同：
+
+1. **客户预付款型：** 客户预付覆盖50%—100%设备与部署成本，SenseCore提供Dedicated Cluster、SLA和运营；
+2. **Take-or-pay型：** 以最低消费覆盖折旧、电力和融资，超额按GPU小时或Token计费；
+3. **客户CAPEX型：** 客户购买GPU／国产加速卡，SenseCore提供机房、集群设计、调度、Serving和SRE。
+
+三类合同都应明确Design Freeze、分阶段验收、客户变更补偿、延期Credit和设备Residual Value归属。目标不是最大化名义Backlog，而是最大化**预付款覆盖后的风险调整Gross Profit**。
+
+#### 2. 把Primary Production Cloud从销售定位变成验收产品
+
+针对年GPU Cloud预算1,000万—1亿元的Multi-vendor客户，SenseCore应争取核心生产池，而非排他采购。标准验收包应包括：
+
+- 同模型、同SLO的每卡有效Token；
+- 训练MFU、Checkpoint恢复与作业成功率；
+- P95／P99延迟和峰值并发；
+- Private Network、数据隔离和审计；
+- 国产与NVIDIA池之间的迁移时间；
+- 已签、已交付、已验收、已计费四级漏斗。
+
+并行科技可继续承担多地域弹性与HPC长尾，无问芯穹承担异构迁移，SenseCore要用Production SLA、Dedicated Inference和专家服务把份额由三分之一提升到50%—60%。
+
+#### 3. 对接Codex／Claude Code，但保留中立Model Provider定位
+
+阿里与火山已经证明，Codex／Claude Code可以成为第三方Cloud的前端。SenseCore可提供：
+
+- OpenAI／Anthropic兼容Endpoint；
+- Codex、Claude Code、OpenCode与企业IDE的一键Profile；
+- 多模型路由、Prompt Cache和KV Cache复用；
+- Private Sandbox、Browser、Bash与MCP安全网关；
+- 国产芯片模型适配和Fallback；
+- 企业Credits、成本中心和部门配额。
+
+SenseCore不需要复制完整消费者Coding产品，而应成为企业Agent Harness背后的中立Production Cloud。这样既能承接模型公司，也能承接阿里、火山、腾讯等入口无法覆盖的私有化和国产化需求。
+
+#### 4. Inference合同由Token价改为“吞吐＋任务＋安全”三层
+
+建议报价结构：
+
+- 底层：Reserved Tokens／Second、并发和P95延迟；
+- 中层：模型路由、缓存、量化和跨芯片优化节省分成；
+- 上层：Agent Session、Sandbox时长、Tool Call、安全审计与任务成功率；
+- 风险条款：峰值Burst、失败重试、客户模型升级和长上下文超限。
+
+这能避免Public Token降价完全传导到Gross Margin，并把工程能力变成可计费产品。
+
+#### 5. 清程极智与软件伙伴：只按可复现效率采购
+
+清程极智的赤兔、八卦炉与AI Ping，无问芯穹的异构调度，以及基流科技的集群建设运营，可作为SenseCore国产化供应链。采购与合作应统一采用：
+
+- 同硬件、同模型、同精度、同SLO；
+- 每卡有效Token、训练MFU与通信效率；
+- 故障恢复时间与大规模集群稳定性；
+- 模型／芯片适配周期；
+- 可复现客户案例、软件License／服务Revenue与标准化交付。
+
+本周未出现把清程极智升级为GPU Cloud竞争者的证据，不应将技术性能宣传等同于Cloud Revenue或可调度Capacity。
+
+### 六、未来观察指标及风险
+
+1. **CoreWeave：** 约90亿美元预付款／保证金实际到账节奏、退款与交付条件；Q4利息费用是否超过Operating Cash Profit增长；370亿—390亿美元CAPEX的验收转化。
+2. **Nebius：** 120亿美元TCV的客户集中、合同期限和取消条款；2027年170亿—200亿美元Revenue指引对应的站点、GPU、预付款和验收进度。
+3. **Neocloud融资：** 客户预付款、Asset-backed Financing、可转债和短合同融资的资金成本及期限错配；预付款是否被限制用途。
+4. **Microsoft／Hyperscaler：** 是否把Design Freeze、网络、供电、Commissioning和Customer Acceptance写成统一供应商标准；新增Neocloud合同是否继续集中。
+5. **Lambda／Crusoe：** Anchor客户是否提供预付款或项目融资；开发者入口、能源和园区一体化能否转化为更低资金成本。
+6. **Claude Code／Codex：** 强模型Advisor／Orchestrator与小模型SubAgent的真实任务成本；Fast Mode、长任务和安全控制是否形成独立付费。
+7. **阿里云：** Token Plan多模态Skill调用量、团队席位、Qwen／第三方模型路由、百炼Revenue和企业续费。
+8. **字节闭环：** 豆包、TRAE、飞书与火山方舟／Ark CLI之间的外部付费席位、Agent Production Workload和Cloud收入转化。
+9. **腾讯／百度／华为：** Hy4、千帆、码道的付费用户、Credits消耗、缓存命中、任务成功率、企业席位和Inference Gross Margin。
+10. **Inference价格：** Public Token、Fast Mode、Reserved Throughput与Outcome Pricing之间的价格差；低价套餐是否依赖未使用额度。
+11. **SenseCore：** 新增CAPEX的预付款／Take-or-pay覆盖率、Acceptance Coverage、Interest Coverage、Primary Vendor份额及每GPU小时Gross Profit。
+12. **清程极智：** 赤兔、八卦炉在生产集群的第三方可复现结果、国产芯片与主流模型新增适配、开源活跃度、标杆客户、可验证Revenue／订单及产品标准化；未达到Cloud收入、可调度规模或长期Capacity合同门槛前，维持软件层定位。
+
+### 风险提示
+
+- CoreWeave与Nebius的大量数据来自公司Non-GAAP或Forward-looking口径，不能等同于审计利润和确定回款。
+- Revenue Backlog、TCV、ARR、预付款、已验收Revenue属于不同层级，不应混用；客户预付款可能附带退款、Credit与严格交付义务。
+- 模型厂发布的Benchmark、任务成本和Token效率受Harness、Prompt、工具、缓存、硬件与SLO影响，跨平台比较需谨慎。
+- 中国Token Plan的促销价、Credits倍率与未使用额度会改变真实单位经济性；低标价不代表可持续Inference Gross Margin。
+- 国产芯片与软件栈的实验室性能不等于大规模Production稳定性；应以同模型、同精度、同SLO和第三方可复现结果验收。
+
+---
+
 ## 2026-11-06｜Microsoft收紧Neocloud验收，Coding Agent进入订阅运营：AI Infra从合同额转向可用产能
 
 > **观察区间：** 2026年10月31日—11月6日  
