@@ -4,6 +4,322 @@
 
 ---
 
+## 2026-11-20｜大厂交出AI Cloud收入，Rubin加速GPU换代：独立Infra从资源商转向中立生产层
+
+> **观察区间：** 2026年11月14日—11月20日  
+> **口径说明：** “已确认事实”指公司公告、官方产品文档、监管文件或财报；“公司口径”保留企业定义、内部管理数据和Benchmark，不直接等同于审计Revenue、第三方复现结果或可持续Gross Margin；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **中国大厂首次在同一周把“模型—入口—Token—Cloud—利润／现金流”链条披露得足够清楚。** 阿里AI Cloud and Compute Services Revenue同比增长53%至609.73亿元，外部客户Revenue增长64%，Cloud Adjusted EBITA Margin升至14.5%；腾讯明确称WorkBuddy、MaaS和GPU Rental推动Cloud增速，但季度CAPEX Payment达到651亿元；百度AI Cloud Infra Revenue增长94%至82亿元，其中GPU Cloud增长191%，外部客户Token Usage Revenue增长1,159%。竞争已经从模型榜单转向Portfolio能否把使用量转成Cloud Revenue和现金流。
+
+2. **NVIDIA证明GPU需求仍极强，但Vera Rubin的最快换代也提高GPUaaS折旧风险。** NVIDIA FY2027 Q3 Data Center Revenue达到1,076亿美元，同比增长110%，Rubin NVL72已在CoreWeave、Google Cloud、Azure、OCI与Nebius运行。新架构供给不再以多年为周期，而是以年度平台节奏持续升级；未提前锁定客户和模型负载的Neocloud更容易在旧代GPU上承受价格与利用率双重压力。
+
+3. **大厂的真正优势是内部Agent入口能够为Cloud提供Anchor Demand。** 腾讯称WorkBuddy超过1,000万DAU、日均消耗超过100万亿Token；阿里用QwenWork、Qwen App和Qwen Go!连接企业、商家和消费者；百度把DuMate、Comate、Miaoda与千帆、GPU Cloud、Token Exchange整合。大厂可以在自用、MaaS、GPU Rental与Public Token之间平滑Capacity，独立AI Infra则必须依靠Take-or-pay、预付款和多客户调度对冲波峰。
+
+4. **Token Hub正在从API聚合器升级为模型交易所和Agent结算层。** 百度Token Exchange公开提出模型撮合、路由、统计和风控；火山Agent Plan企业版从Coding套餐扩展至语言、向量、视觉、视频和语音模型，并以Agent燃料值（AFP）计费；华为码道增加思考深度、运行恢复、AI度量和Knowledge Plan。未来利润池不是“每百万Token加价”，而是模型采购、路由、缓存、Harness、计量、风控与任务SLA。
+
+5. **SenseCore应避免与大厂争消费者入口，也不应退回纯GPU批发。** 最优位置是中立的Primary Production Cloud：面向中型Multi-vendor客户、模型公司、Token Hub和Private Agent提供Dedicated Capacity、跨芯片Serving、验收与安全运行时。清程极智本周未出现新增可验证Cloud Revenue、可调度算力规模或长期Capacity合同，继续归入AI Infra基础软件／异构算力效率层。
+
+### 二、关键动态及影响
+
+#### 1. NVIDIA：Rubin最快量产，GPU需求与代际风险同时上升
+
+**已确认事实。** NVIDIA 11月17日披露FY2027 Q3 Revenue为1,158亿美元，同比增长103%；Data Center Revenue为1,076亿美元，同比增长110%、环比增长21%；GAAP Gross Margin为74.8%。公司预计Q4 Revenue约1,300亿美元，且指引未计入中国Data Center Compute Revenue。[NVIDIA FY2027 Q3 Results，2026-11-17](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx)
+
+公司同时披露：
+
+- Vera Rubin NVL72已经开始出货，是其历史上最快的架构Ramp；
+- Rubin机架已在CoreWeave、Google Cloud、Microsoft Azure、Oracle Cloud Infrastructure和Nebius运行；
+- CoreWeave、Nebius、Nscale、OpenAI、Meta、Verda等正在采用Vera CPU；
+- NVIDIA继续通过Cloud Provider扩展Anthropic对Grace Blackwell与Vera Rubin Capacity的访问。
+
+**分析判断。** 这组数据同时推翻两个过度简化的判断：
+
+- “GPU需求见顶”不成立：Data Center季度规模仍同比翻倍；
+- “买到GPU就能长期保持溢价”也不成立：Rubin在Blackwell大规模部署后迅速进入Production，代际折价加快。
+
+未来GPUaaS需要按工作负载而非芯片型号管理资产：
+
+| 资产层 | 适合负载 | 价格逻辑 |
+|---|---|---|
+| Rubin／最新NVL平台 | 高并发Agent、前沿训练、低延迟Inference | 以性能、交付时间和Reserved Capacity溢价 |
+| Blackwell／成熟高端GPU | 主流训练、Fine-tuning、规模Inference | 以稳定SLA、软件效率与合同期限竞争 |
+| A100／H系列及同级国产卡 | Batch Inference、蒸馏、成本敏感负载 | 以折旧后成本、电力和模型适配竞争 |
+
+独立Neocloud若先买设备再找客户，会同时暴露在代际、价格、融资和验收风险中；更可持续的做法是先锁定模型、SLO与合同，再决定GPU代际和集群设计。
+
+#### 2. 阿里：AI Cloud已经同时交出增长、利润和企业Agent入口
+
+**已确认事实。** 阿里11月19日披露，季度AI Cloud and Compute Services Revenue同比增长53%至609.73亿元，外部客户Revenue增长64%；其中AI-related Product Revenue为179.18亿元，连续第13个季度实现同比三位数增长。Cloud Adjusted EBITA同比增长121%至88.38亿元，Margin升至14.5%。[Alibaba September Quarter 2026 Results，2026-11-19](https://home.alibabagroup.com/en-US/document-2060213191907999744)
+
+公司还披露：
+
+- Qwen4-Max于11月16日发布；
+- 自研真武V900训练／推理芯片计划于2027年一季度商业发布；
+- QwenWork面向企业文档、会议记录和内部沟通执行任务；
+- QwenWork E-commerce服务商家运营和客服；
+- Qwen App与Qwen Go!面向消费者执行跨平台多步骤任务；
+- 公司继续扩充AI Infrastructure，并强调投资回报与正Free Cash Flow目标。
+
+**分析判断。** 阿里的意义不是单点模型或GPU Cloud领先，而是Portfolio各层可以互相导流：
+
+> Qwen模型 → QwenWork／Qwen App／Qoder等入口 → 百炼MaaS与Token Plan → ECS／GPU Cloud／自研芯片 → Cloud Revenue与EBITA。
+
+这套闭环对独立模型公司和Token Hub形成双重压力。模型公司可以进入百炼获得分发，但默认路由、企业身份、Credits和账单由阿里控制；独立Cloud若只提供GPU，则难以分享Agent席位、工具调用和业务数据带来的利润。
+
+不过，14.5%是Cloud Segment Adjusted EBITA Margin，并非纯AI Infrastructure Gross Margin；609.73亿元还包含Compute Services和可能的设备解决方案，不应直接与Neocloud Revenue横比。更合理的比较是：阿里已经证明Cloud扩张可以同时提升利润，而不是只靠补贴换取Token量。
+
+#### 3. 腾讯：WorkBuddy成为超大Token入口，但现金流显示“入口换算力”并不便宜
+
+**已确认事实／公司口径。** 腾讯11月18日披露，Q3 Total Revenue为2,073亿元，同比增长8%；公司称Cloud Services Revenue Growth加快，主要由WorkBuddy以及更多算力分配至MaaS和GPU Rental推动。WorkBuddy据公司统计超过1,000万DAU，用户每日合计消耗超过100万亿LLM Token。[Tencent Q3 2026 Results，2026-11-18](https://www.tencent.com/wp-content/uploads/2026/11/Tencent-Announces-2026-Third-Quarter-Results.pdf)
+
+财务侧同时显示：
+
+- CAPEX Payments为651亿元，同比增长225%；
+- Q3 Free Cash Flow为-691亿元；
+- 公司称Operating Cash Flow包含用于Hy模型、WorkBuddy Inference、内部AI产品和外部Cloud需求的大额Compute Procurement Prepayments；
+- 剔除相关预付款后，公司口径Free Cash Flow为正169亿元；
+- Non-IFRS Operating Profit为681亿元；剔除Hy、元宝、CodeBuddy、WorkBuddy和小微等New AI Products后为833亿元。
+
+**边界。** “每日100万亿Token”“最大AI应用”等属于腾讯公司口径；Token可能包含用户不可见的Reasoning、工具、SubAgent和系统调用，不能用对话Token直觉解释。833亿元与681亿元的差额也不能简单视为单一AI产品会计亏损，因为“剔除”口径包含多项调整和共享成本。
+
+**分析判断。** 腾讯提供了本周最清晰的Agent Economics样本：
+
+1. 超大入口确实能制造Cloud Anchor Demand；
+2. Agent任务的后台Token远高于用户可见文本；
+3. 自研模型降价未必降低总算力支出，因为使用量、并发和任务长度同时上升；
+4. 大厂可以用游戏、广告、支付和社交现金流为AI Portfolio过渡期融资；
+5. 独立Infra不能仅凭Token增长推断利润，必须看预付款、CAPEX、SLA和单位任务成本。
+
+对GPUaaS而言，WorkBuddy式负载更像持续波动的Inference Factory，而不是固定训练集群。能够跨客户、跨模型平滑峰值并在Tool等待期间释放GPU的服务商，才有机会获得高利用率。
+
+#### 4. 百度：GPU Cloud、Token Revenue与Token Exchange形成中立市场雏形
+
+**已确认事实／内部管理口径。** 百度11月16日披露Q3 AI Cloud Infra Revenue为82亿元，同比增长94%；其中GPU Cloud Revenue同比增长191%、环比增长43%；千帆MaaS外部客户Token Usage Revenue同比增长1,159%。公司表示客户更加多元，预付款增加，合同期限继续延长。[Baidu Q3 2026 Results，2026-11-16](https://ir.baidu.com/news-releases/news-release-details/baidu-announces-third-quarter-2026-results)
+
+百度同时推出Token Exchange，官方产品页将其定义为连接模型供应方与消费方的交易平台，提供模型撮合、多维路由、实时统计和脱敏风控，并披露日均Token调用超过500亿、接入模型版本超过100、平台可用性99.95%。[百度智能云Token Exchange](https://cloud.baidu.com/product-s/token_exchange.html)
+
+**边界。** AI Cloud Infra、GPU Cloud和Token Usage Revenue为内部管理口径，财报明确提示未经审计；Token Exchange的调用规模和SLA为公司产品口径，尚未披露第三方模型占比、交易额、Take Rate和Gross Margin。
+
+**分析判断。** 百度在尝试把千帆从MaaS目录升级为“Token交易所”：
+
+- 模型公司提供供给和价格；
+- 企业客户提供需求；
+- 千帆控制路由、结算、统计和风险；
+- 百度智能云提供GPU与国产芯片Capacity；
+- Comate、DuMate、Miaoda等入口提供自有需求。
+
+这直接进入硅基流动、趋境、PPIO等Token Hub的竞争区间。独立Token Hub仍可凭中立性、长尾模型、海外节点、跨芯片Serving和Dedicated Deployment差异化，但单纯“更多模型＋统一API”会越来越难形成壁垒。
+
+#### 5. 火山与华为：Coding Plan正在升级为可计量的Agent Runtime
+
+**已确认事实。** 火山方舟11月19日更新Agent Plan企业版：相较Coding Plan，模型范围从语言与向量扩展到视觉、生图、生视频和语音，并新增豆包搜索与AI Native应用开发Harness；套餐由按预估模型调用次数转为Agent燃料值（AFP）抵扣。[火山方舟Agent Plan企业版，2026-11-19](https://docs.volcengine.com/docs/ark/agent-plan-enterprise-faq?lang=zh)
+
+华为云码道11月17日更新：
+
+- 内置模型支持配置思考深度和繁忙提示；
+- 探索聚合减少无效上下文往返；
+- Git快照预注入、运行环境异常恢复与数据保留；
+- AI度量报表统计Agent生成代码量与用户入仓代码量；
+- CodeBase Wiki加入Knowledge Plan、模板生成与质量门禁；
+- 11月15日新增OpenPangu-2.1-Pro。[华为云码道更新日志，2026-11-17](https://support.huaweicloud.com/wtsnew-codeartsagent/index.html)
+
+**分析判断。** 两家公司都在解决Token Plan之后的下一层问题：
+
+| 问题 | 火山路径 | 华为路径 |
+|---|---|---|
+| 多模态与工具如何计量 | AFP统一抵扣 | 积分＋AI度量 |
+| Agent如何连接业务 | 豆包搜索＋AI Native Harness | CodeArts、Knowledge Plan、MCP与鸿蒙 |
+| 如何减少无效Token | 模型与Harness路由 | 探索聚合、Git快照和上下文优化 |
+| 如何提高企业可用性 | 企业套餐、专属Endpoint与API Key | 运行恢复、质量门禁、代码入仓统计 |
+
+字节的潜在优势是豆包、TRAE、飞书、火山方舟和广告／内容场景之间的GTM闭环；华为的优势是昇腾、CodeArts、政企身份与鸿蒙端。两者的挑战分别是证明外部企业Revenue与AFP毛利，以及证明国产模型／芯片在真实长任务中的效率和稳定性。
+
+#### 6. Crusoe：AI开始自动优化自己的Inference布局
+
+**公司技术披露。** Crusoe 11月17日公布一项GLM-5.3 Coding Agent测试：在64张GB200组成的16 VM集群上，让dstack Agent自动选择Serving布局；公司称最佳试验Output Throughput由2,188提升至5,114 Token／s，并指出48并发时聚合Serving更优，而P／D Disaggregation可以扩展到192并发Agent。[Crusoe Technical Blog，2026-11-17](https://www.crusoe.ai/resources/blog/serving-glm-5.3-coding-agents-faster-on-nvidia-gb200-nvl72)
+
+**边界。** 这是公司与合作伙伴技术测试，比较对象和负载均有特定配置，不代表独立第三方Benchmark或所有模型的Production表现。
+
+**分析判断。** 更值得关注的不是单个吞吐数字，而是Serving Layout开始被Agent自动搜索。未来AI-native Infra的软件价值可能来自：
+
+- 根据并发自动选择聚合或P／D分离；
+- 在GPU、Host Memory和KV Cache间动态分配；
+- 结合真实Session Trace优化而非静态Benchmark；
+- 把每次优化带来的Token成本下降转成共享收益。
+
+这类能力也定义了清程极智、无问芯穹、基流科技等软件栈玩家应被验证的标准：不是“支持某模型／某芯片”，而是能否在真实工作负载中持续自动优化并形成可复制产品。
+
+### 三、竞争格局变化
+
+| 公司／阵营 | 本周可验证变化 | 竞争含义 | 当前判断 |
+|---|---|---|---|
+| NVIDIA | Data Center Revenue 1,076亿美元；Rubin最快架构Ramp并进入多家Cloud Production | GPU需求继续增长，代际更新和旧卡折价同步加快 | 上游主导权强化 |
+| 阿里云 | AI Cloud and Compute Services 609.73亿元；外部Revenue +64%；Adjusted EBITA Margin 14.5% | 模型、Agent入口、Cloud与利润闭环得到验证 | 中国综合AI Cloud第一梯队领先 |
+| 腾讯云 | WorkBuddy、MaaS和GPU Rental推动Cloud增速；CAPEX Payment 651亿元 | 内部Agent入口成为Anchor Demand，但现金消耗巨大 | 需求入口强，需观察投资回报 |
+| 百度智能云 | AI Cloud Infra 82亿元；GPU Cloud +191%；外部Token Revenue +1,159%；推出Token Exchange | GPU、MaaS、模型交易与Agent入口一体化 | 上调AI Infra与Token Hub竞争力 |
+| 火山引擎 | Agent Plan企业版扩展全模态与Harness，以AFP计费 | 豆包／TRAE／飞书的用量可汇入统一结算层 | Agent Runtime能力上调，等待Revenue证据 |
+| 华为云 | 码道加入思考深度、运行恢复、AI度量、Knowledge Plan和OpenPangu | 昇腾＋CodeArts＋鸿蒙向企业Agent闭环推进 | 国产企业入口能力上调 |
+| CoreWeave | Rubin已进入运行，本周无新增财务披露 | 最新GPU交付能力继续领先 | Neocloud第一梯队不变 |
+| Nebius | Rubin进入运行，本周无新增财务披露 | 预付款融资和新代Capacity兑现继续 | 第一梯队位置不变 |
+| Crusoe | 公布GB200上GLM-5.3 Agent自动Serving优化 | 能源／Cloud之外增加Inference工程差异化 | 技术能力上调，商业规模待验证 |
+| Lambda | 本周未见改变排序的新合同或财务硬披露 | 开发者与训练入口仍是核心差异 | 位置不变 |
+| OpenAI／Codex | GPT-6.2 Astra与Sol进入Work、Codex和API，并提供不同速度／成本层级 | Coding Agent继续强化模型路由与速度分层 | 全球入口竞争增强 |
+| Anthropic／Claude Code | 本周无同量级新模型发布，Fable 5.2与企业Control Plane延续 | 高难任务与安全企业市场仍领先 | 位置不变 |
+| SenseCore | 无新增公开披露改变排名 | 大厂闭环扩大，独立中立生产层更重要 | 需强化Dedicated与跨芯片效率 |
+| 清程极智 | 未见新增Cloud Revenue、可调度规模或Capacity长约 | 赤兔、八卦炉和AI Ping仍属于效率软件 | 不进入Neocloud／GPU Cloud排名 |
+
+### 四、对GPUaaS与Inference／Token的影响
+
+#### 1. GPUaaS：需求上升不等于所有GPU资产升值
+
+NVIDIA的Revenue和Rubin Ramp说明总需求继续增长，但各代资产的定价会更快分层。未来3—12个月应同时看：
+
+- **新代溢价：** Rubin等最新平台的每Rack吞吐、网络和电力密度；
+- **迁移速度：** 模型框架、Kernel、量化和Serving能否快速适配；
+- **合同期限：** 客户承诺是否覆盖设备折旧与代际折价；
+- **Residual Workload：** 旧卡能否承接Batch、蒸馏、Fine-tuning和低成本Inference；
+- **跨代调度：** 同一Agent任务能否由新卡处理高难步骤、旧卡执行SubAgent和工具工作。
+
+因此，GPUaaS的关键指标应从“平均卡时价格”升级为：
+
+> **代际调整后Gross Profit＝合同Revenue－电力／网络／运维－融资成本－预期价格折损－迁移成本。**
+
+有内部入口的Hyperscaler可以把旧卡转给低优先级内部任务；独立Cloud需要多客户、Spot Market和Serving软件才能获得同样的资产调度能力。
+
+#### 2. Inference／Token：价格战继续，但利润从Token转向路由和任务
+
+百度Token Exchange、火山AFP、腾讯WorkBuddy和华为AI度量表明，行业正在采用四种结算单位：
+
+1. 原始Input／Output Token；
+2. 按模型倍率折算的Credits／AFP；
+3. Reserved Throughput、并发和Latency；
+4. 成功任务、代码入仓、交易或业务Outcome。
+
+Public Token单价仍会下降，因为大厂可用模型、芯片和入口交叉补贴。但Production Inference不会完全商品化：企业愿意为P95／P99延迟、峰值并发、Private Network、安全审计、失败重试和模型迁移付费。
+
+**利润池判断：**
+
+- Commodity Token的Gross Margin继续受压；
+- 默认路由与模型采购获得平台Take Rate；
+- Cache、Quantization、P／D Disaggregation和跨芯片适配获得效率利润；
+- Enterprise Agent Harness、Memory、Security与Observability获得软件利润；
+- Reserved Capacity和Outcome SLA获得确定性溢价。
+
+#### 3. 模型公司与Token Hub：分发量增加，但定价权向入口和交易层移动
+
+大厂入口会让第三方模型获得更多调用量，却掌握：
+
+- 模型上架、默认排序与降级路由；
+- Credits倍率、促销和未使用额度；
+- Cache与上下文压缩策略；
+- 企业账号、账单、权限和续费；
+- 底层Cloud、GPU代际和Region；
+- 任务数据与真实成功率。
+
+模型公司未来更可能采用“自有旗舰入口＋多Cloud分发＋Private Deployment”三层GTM。Token Hub若没有自有Capacity或Serving优化，会退化为低Take Rate渠道；若能跨Cloud采购、自动路由并向客户提供可迁移Dedicated Deployment，仍可成为中立采购层。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 不与大厂争消费者入口，争夺中立Production Layer
+
+阿里、腾讯、百度、字节和华为已经拥有模型、Agent入口、Credits和Cloud。SenseCore复制Public Token Plan会面临高获客成本和补贴压力，更合适的定位是：
+
+> **面向模型公司、Token Hub、中型AI-native企业和政企Private Agent的中立Production Cloud。**
+
+核心产品应包括Dedicated GPU／国产加速卡、Private Network、跨芯片Serving、Model Gateway、Agent Sandbox、Security、Observability和SRE，而不是单独售卖卡时。
+
+#### 2. 新GPU投资必须先绑定负载与代际退出路径
+
+面对Rubin快速Ramp，新增设备审批应同时回答：
+
+1. 客户模型、并发与SLO是否已经确定；
+2. 预付款或Take-or-pay覆盖多少CAPEX；
+3. 合同期限是否覆盖主要折旧期；
+4. 新一代GPU到来后，本代设备转向何种Residual Workload；
+5. 国产芯片是否能接替部分Batch／Inference负载；
+6. 客户验收延迟时由谁承担利息和价格折损。
+
+没有明确Anchor Load的最新GPU不应仅因市场热度采购。已有客户出资、长期承诺和可迁移负载的Capacity，即使设备并非最新，也可能产生更高风险调整回报。
+
+#### 3. 把中型Multi-vendor客户变成Primary Production Pool
+
+对年GPU Cloud预算1,000万—1亿元的客户，SenseCore、并行科技、无问芯穹仍会同时进入Vendor List。目标应是：
+
+- 核心训练与稳定Inference占比50%—60%；
+- Reserved Throughput和最低消费；
+- 模型升级时环境不迁移；
+- 统一Private Network、审计和成本中心；
+- 新旧GPU与国产芯片间自动路由；
+- 用每成功任务成本而非卡时单价证明价值。
+
+并行科技可覆盖弹性与多地域， 无问芯穹覆盖异构迁移；SenseCore应占据最难迁移、最重SLA的生产负载。
+
+#### 4. 接入Token Exchange和大厂Harness，但保留客户可见性
+
+百度Token Exchange、火山Agent Plan、阿里百炼和腾讯TokenHub既是竞争者，也可成为SenseCore的Wholesale Inference渠道。合作条件应包括：
+
+- Take-or-pay、预付款或最低毛利；
+- 终端负载类型与SLO可见；
+- 不将稀缺GPU以低价无条件批发；
+- 保留Capacity、延迟、错误率和使用率数据；
+- 国产芯片迁移与Serving优化可按节省分成；
+- 避免入口方单方面控制续约、价格和客户关系。
+
+SenseCore可以接受渠道化，但不能沦为不可见、不可定价的底层设备供应商。
+
+#### 5. 将Inference优化软件标准化为可计费产品
+
+Crusoe的自动布局实验与华为的AI度量提示了产品方向。SenseCore可建立“Inference Efficiency Contract”：
+
+- 以同模型、同精度、同SLO设定Baseline；
+- 按每卡有效Token、TTFT、P95延迟与并发验收；
+- 自动选择聚合Serving或P／D分离；
+- 优化KV Cache、Prefix Cache和Host Memory；
+- 在NVIDIA与国产芯片间进行成本路由；
+- 将节省的GPU成本或新增吞吐按比例分成。
+
+这能把一次性专家服务转为可复制的软件＋运营Revenue，并提高客户迁移成本。
+
+#### 6. 清程极智与软件观察池：从适配数量转向Production证据
+
+清程极智的赤兔、八卦炉和AI Ping继续适合与无问芯穹、基流科技在软件效率层比较。SenseCore应重点验证：
+
+- 真实Coding／Agent Trace下的每卡有效Token；
+- 不同并发下聚合与P／D分离的自动选择；
+- 国产芯片上的精度、TTFT、吞吐和稳定性；
+- 大规模训练MFU、故障恢复与通信效率；
+- 产品是否能标准化License／订阅，而非项目制交付；
+- 标杆客户、可验证Revenue／订单和长期合作。
+
+本周没有足够证据将清程极智列入Neocloud或GPU Cloud竞争序列。
+
+### 六、未来观察指标及风险
+
+1. **NVIDIA：** Rubin季度出货、Cloud上线速度、Blackwell／H系列价格变化、中国Data Center Compute Revenue恢复条件及Neocloud相关融资安排。
+2. **阿里云：** AI-related Product Revenue的MaaS、GPU Cloud与设备方案构成；14.5% Margin是否可持续；QwenWork与Qwen Go!的付费、Token及Cloud转化。
+3. **腾讯：** WorkBuddy的100万亿日Token口径、外部Cloud Revenue、MaaS／GPU Rental占比、Compute Prepayment消化与Free Cash Flow恢复。
+4. **百度：** AI Cloud Infra、GPU Cloud和Token Usage Revenue的审计化程度；Token Exchange交易额、第三方模型占比、Take Rate、SLA及Gross Margin。
+5. **字节闭环：** 豆包、TRAE、飞书、火山方舟之间的外部企业客户、AFP消耗、Harness使用和Cloud Revenue；是否披露真实Production Token而非促销Credits。
+6. **华为云：** OpenPangu与昇腾在码道长任务中的每任务成本、繁忙率、运行恢复、代码入仓和企业续费。
+7. **OpenAI Codex／Claude Code：** 强弱模型路由、Ultrafast／Fast Mode、Background Agent和SubAgent对单位任务Token、峰值并发与企业价格的影响。
+8. **CoreWeave／Nebius：** Rubin Capacity的客户验收、预付款、实际Revenue与旧代GPU再利用；利息和CAPEX是否随Revenue占比下降。
+9. **Crusoe／Lambda：** Serving软件、能源与开发者入口是否形成可验证Revenue；技术Benchmark能否在多模型、不同SLO和第三方环境复现。
+10. **模型公司／Token Hub：** 硅基流动、趋境、PPIO等是否披露付费Token、客户留存、Capacity合同、Gross Margin和跨芯片效率。
+11. **SenseCore：** Primary Vendor份额、Rubin／Blackwell／国产池的负载结构、Take-or-pay覆盖率、每成功任务成本、Inference Gross Profit与旧卡Residual Workload。
+12. **清程极智：** 赤兔、八卦炉的生产集群复现、国产芯片与主流模型新增适配、开源活跃度、融资与产业合作、标杆客户、可验证Revenue／订单及产品标准化；未达到Cloud收入、可调度规模或长期Capacity合同门槛前，维持软件层定位。
+
+### 风险提示
+
+- 阿里Cloud Adjusted EBITA、腾讯New AI Products、百度AI Cloud Infra等口径定义不同，不应直接横向计算市场份额或利润排名。
+- WorkBuddy Token、Token Exchange调用量和Crusoe Benchmark均包含公司定义与特定工作负载，需要第三方复现和持续期数据。
+- NVIDIA Revenue高增长不保证所有GPU Cloud盈利；代际切换、利息、电力、网络和客户验收会显著改变资产回报。
+- Token价格、Credits／AFP倍率、促销和未使用额度会扭曲表面单位成本，必须还原到成功任务、峰值并发和完全成本。
+- 国产芯片和软件栈的实验室性能不等于大规模Production稳定性，应以同模型、同精度、同SLO和第三方可复现结果验收。
+
+---
+
 ## 2026-11-13｜客户预付款接管CAPEX，Agent套餐接管Token入口：AI Infra竞争从Backlog转向现金闭环
 
 > **观察区间：** 2026年11月7日—11月13日  
