@@ -4,6 +4,213 @@
 
 ---
 
+## 2026-11-27｜跨境GPU套利收窄，Agent入口并入Cloud：AI Infra进入合规Capacity竞争
+
+> **观察区间：** 2026年11月21日—11月27日  
+> **口径说明：** “已确认事实”指公司公告、官方产品文档、监管文件或财报；“可信报道”指有明确消息源但尚未由相关公司完整确认的信息；“公司口径”保留企业自报用户数、性能与案例，不直接等同于审计Revenue、第三方复现结果或可持续Gross Margin；“分析判断”是本周报对未来3—12个月的推演。
+
+### 一、核心结论
+
+1. **AI Cloud的稀缺品正从“有GPU”变成“有权、能交付、可审计地运行特定工作负载”。** 美国BIS的新规把先进芯片的控制边界延伸至第三国数据中心提供的远程计算：对部分高风险目的地增加芯片出口许可，并要求向澳门或D:5国家总部／最终母公司提供显著算力的海外数据中心取得许可。区域GPU套利、转租和跨境Cloud路由因此面临更高合规成本，Sovereign Cloud与国产算力的价值上升。
+
+2. **NVIDIA对Neocloud的支持不是无条件资本兜底，而是“融资—部署—运行—验收”后的条件承诺。** NVIDIA披露Cloud服务协议与数据中心租赁承诺合计1,020亿美元、上季为740亿美元，但明确Neocloud相关承诺只有在对方完成融资、Capacity部署上线并被NVIDIA验收后才生效。未来Neocloud的可融资资产不是GPU订单，而是合规站点、Anchor客户、交付里程碑和验收后的现金流。
+
+3. **字节把TRAE纳入豆包飞书账号、订阅和用量体系，验证“模型—Coding Agent—企业身份—Cloud计费”正在真正合并。** 这不是内部组织调整：统一账号使豆包、飞书、TRAE和火山引擎可以共享企业成员、席位、订阅、AI资产与消耗数据，Coding Agent由独立工具变成字节企业AI Portfolio的使用入口和GTM抓手。
+
+4. **华为云选择“平台开放＋伙伴分销”，阿里选择“模型＋Token Plan＋Cloud”，国内竞争开始围绕入口的可复制GTM展开。** 华为云开放AgentArts、OfficeAce和CodeArts并联合30多家伙伴；阿里在Qwen4-Max预览折扣结束后切回标准计费。大厂不再只比模型能力，而是比谁能把Agent席位、模型路由、企业身份、Cloud资源和行业交付合成一个可续费产品。
+
+5. **SenseCore的机会来自合规与国产迁移造成的供给重排，但不会自动转化为高利润。** 应争取成为中立的Primary Production Cloud：以可审计的Capacity、国产异构Serving、Dedicated Inference和验收型SLA承接模型公司、Token Hub及中型Multi-vendor客户。清程极智本周没有新增可验证Cloud Revenue、可调度算力规模或长期Capacity合同，继续归入AI Infra基础软件／异构算力效率层；无问芯穹本周的开源进展也应先按软件栈能力评价，而非直接折算为GPU Cloud份额。
+
+### 二、关键动态及影响
+
+#### 1. BIS：出口控制从“芯片运到哪里”延伸到“算力最终由谁远程使用”
+
+**已确认事实。** 美国商务部BIS于11月16日发布、11月19日刊登临时最终规则（IFR），处理先进“Super Intelligence”芯片和服务器的远程访问。规则的核心变化包括：
+
+- 对印度尼西亚、马来西亚、新加坡、巴西和泰国等目的地的相关先进芯片增加许可要求；
+- 当海外数据中心直接或间接向总部或最终母公司位于澳门或D:5国家的企业提供“显著规模”算力时，芯片所有者、数据中心运营者或转移方需要申请许可；
+- 已经提供此类算力的相关数据中心，需要在规则生效后90天内取得许可，否则可能面临后续出口限制；
+- 商业推荐系统获得例外，说明监管并非禁止所有跨境Cloud使用，而是按算力规模、最终用户与工作负载分类。
+
+来源：[BIS Remote Access IFR，2026-11-19](https://media.bis.gov/media/documents/rin-0694-ak50.pdf)；[BIS官方说明，2026-11-16](https://www.bis.gov/news-updates)
+
+**可信报道。** Reuters 11月26日报道称，新规将增加东南亚节点、海外数据中心和向中国模型公司提供算力的Cloud运营者的合规压力；Fitch认为Neocloud承压更明显，因为其高成本GPU需要维持较高利用率。报道同时提及，部分中国模型公司的海外训练周期可能被拉长。该影响方向可信，但具体公司受影响Capacity、合同金额和训练延迟尚无监管或公司披露，不应当作已确认数字。
+
+**分析判断。** 规则改变了三类资产的相对价值：
+
+| 资产／能力 | 过去主要价值 | 新规后的新增价值 |
+|---|---|---|
+| 东南亚及第三国GPU节点 | 低时延、低电价、跨境弹性 | 需要证明最终用户、远程访问路径与工作负载合规 |
+| 中国境内国产GPU池 | 供给替代、政策安全 | 承接无法稳定使用海外先进GPU的训练、Fine-tuning与Inference |
+| 调度与Serving软件 | 提升利用率、降低Token成本 | 在不同芯片、地域和合规域之间迁移模型与SLO |
+| Token Hub／模型路由 | 比价、统一API、流量聚合 | 增加最终用户识别、模型来源、Capacity地域和审计责任 |
+
+因此，所谓“全球GPU一个池”会进一步分裂为合规域。相同芯片、相同卡时，在不同最终用户、地域和访问路径下可能拥有不同的可售性与风险溢价。
+
+#### 2. NVIDIA：1,020亿美元承诺扩大，但Neocloud必须先完成融资和验收
+
+**已确认事实。** NVIDIA在FY2027 Q3 CFO Commentary中披露，Cloud服务协议与数据中心租赁承诺合计1,020亿美元，高于上季的740亿美元，用于芯片、网络、系统、开放模型和自动驾驶研发所需的物理及Cloud基础设施。公司同时明确：Neocloud相关承诺只有在其获得融资购买数据中心基础设施、相关Compute Capacity完成部署、投入运行并被NVIDIA接受后才生效。[NVIDIA FY2027 Q3 CFO Commentary，2026-11-17](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm)
+
+**分析判断。** 这不是简单的“GPU厂商为行业兜底”，而是带有条件先决项的Capacity采购：
+
+1. Neocloud先证明资本结构可闭环；
+2. 数据中心、电力、网络和GPU按里程碑交付；
+3. Capacity通过运行与验收；
+4. 承诺才开始转化为收入或现金流。
+
+这将Neocloud竞争从订单发布会推向项目融资和交付工程。CoreWeave、Nebius、Crusoe、Lambda等公司的差异，未来更多体现在：合同能否融资、站点能否按期送电、客户是否预付、验收是否顺利，以及旧代GPU能否在新架构上线后维持利用率。本周上述公司没有出现足以改变上一期排序的新财报或重大合同；不以日常合作新闻机械改排名。
+
+#### 3. 字节：TRAE账号升级为豆包飞书账号，Coding入口与企业GTM实质合并
+
+**已确认事实。** TRAE企业版11月18日起将账号体系升级为豆包飞书账号体系；官方文档显示，新版本进一步融合TRAE企业版与豆包飞书的套餐、订阅及用量管理。企业管理员可从豆包飞书管理后台分配席位，企业版同时提供TRAE桌面端、IDE Plugin、TraeWork和TRAE CLI，并支持用量限额、安全策略、模型、企业智能体与企业文档集等AI资产管理。[TRAE企业版更新日志，2026-11-18](https://docs.volcengine.com/docs/trae-cn/release-notes?lang=zh)；[豆包飞书账号融合版快速开始，更新于2026-11-24](https://docs.volcengine.com/docs/trae-cn/quick-start-doubao-feishu-account-integration?lang=zh)
+
+官方隐私政策还说明，为开通、身份校验、交易订购和履约，火山引擎会与豆包飞书账号同步TRAE企业版开通情况、资源配置和消耗数据。[TRAE企业版隐私政策，2026-11-18](https://docs.trae.cn/enterprise_privacy-policy-for-trae-enterprise-2026-11-18?lang=zh)
+
+**分析判断。** 这次整合的战略含义大于新增某个模型：
+
+- **身份入口统一：** 开发者、企业成员与管理员进入同一账号域；
+- **采购入口统一：** Agent席位、订阅和用量可以进入同一企业预算；
+- **数据入口统一：** 代码、知识库、智能体与消耗数据更容易形成持续上下文；
+- **Cloud转化缩短：** TRAE产生的模型调用和沙箱需求可直接回流火山引擎；
+- **GTM复用：** 飞书的企业触点、豆包的用户触点与火山引擎的Cloud交付形成组合销售。
+
+对比Codex与Claude Code，国内产品不必完全复制其CLI或IDE形态。Codex／Claude Code的优势在强模型、Agent Harness、工具调用与开发者心智；字节的差异化是把Coding Agent嵌入已有企业身份、协作和Cloud计费体系。未来胜负取决于任务完成率、治理、安全、用量转化和续费，而不是单次Token刊例价。
+
+#### 4. 华为云：从自营Agent产品转向伙伴可复制的入口与交付体系
+
+**已确认事实。** 华为云11月24日联合首批30多家伙伴发布智能体伙伴开放计划，开放AgentArts平台、OfficeAce和CodeArts等产品与工具，提供培训认证、FDE实战、资源配额、云商店上架和市场支持。公司口径称OfficeAce全球注册用户超过283万、CodeArts超过461万；这些是注册用户而非付费客户、DAU或Cloud Revenue。[华为云智能体伙伴开放计划，2026-11-24](https://www.huaweicloud.com/news/2026/20261125103743796.html)
+
+同日CodeArts更新了长任务稳定性、网关启动、检索冗余、资源监控和鸿蒙迁移等能力。[CodeArts更新日志，2026-11-24](https://codearts.huaweicloud.com/changelog.html)
+
+**分析判断。** 华为的路径不是只做另一个Claude Code，而是把Coding、办公和行业Agent变成伙伴可以二次包装、交付和上架的Cloud产品。这尤其适合政企和Private Deployment，但伙伴层增加也会带来交付质量不一、收入确认周期长和定制化侵蚀毛利的风险。
+
+#### 5. 阿里：Qwen4-Max从预览折扣转入标准计费，Token补贴开始回归产品价值
+
+**已确认事实。** 阿里云Model Studio于11月25日结束Qwen4-Max-Preview：原模型ID会自动路由至正式版Qwen4-Max，预览期折扣终止，调用按正式版标准价格计费。此前预览阶段Credits消耗最低为标准费率的20%，个人版夜间还可进一步折扣。[Alibaba Cloud Token Plan产品动态，2026-11-25](https://www.alibabacloud.com/help/en/model-studio/token-plan-product-updates)
+
+**分析判断。** 这不是全面涨价信号，而是典型的“低价获客—模型转正—恢复标准计费”。未来模型公司与Token Hub仍会用限时补贴拉新，但长期利润必须来自稳定模型质量、缓存、路由、Agent Harness和企业治理。若客户只在折扣窗口迁移，Token Revenue很难形成高质量Backlog。
+
+### 三、竞争格局变化
+
+#### 1. 大厂Portfolio：入口、身份、模型和Cloud开始形成不同闭环
+
+| 玩家 | 当前入口与Portfolio变化 | 对AI Infra竞争的影响 |
+|---|---|---|
+| 字节／火山引擎 | 豆包飞书统一账号承接TRAE、企业席位、订阅与用量 | 最接近“协作入口＋Coding Agent＋模型＋Cloud”统一GTM |
+| 阿里云 | Qwen4-Max、QwenWork／Qwen App、百炼与Token Plan | 以模型能力、消费／企业入口和Cloud利润协同，折扣后检验留存 |
+| 腾讯云 | WorkBuddy、CodeBuddy、企业微信、混元与Token Hub | 内部高频入口可提供Anchor Demand，外部需证明Cloud转化与毛利 |
+| 百度智能云 | Comate、DuMate、千帆、GPU Cloud与Token Exchange | 强调模型交易与企业开发平台；旧文心智能体平台停运也显示入口需要整合而非并存 |
+| 华为云 | AgentArts＋OfficeAce＋CodeArts＋伙伴计划 | 以国产软硬件、Private Deployment和行业伙伴扩大覆盖 |
+| SenseCore | Dedicated GPU／Inference、部署与专家服务 | 缺少大流量软件入口，应争取中立生产层而非复制大厂全栈 |
+
+**分析判断。** 大厂的壁垒不是任一单品，而是可以把低毛利Token、Agent席位、Cloud资源和行业交付在Portfolio内部重新组合。独立Infra如果只出售卡时，会在客户Multi-vendor采购中持续被比价；若能控制生产SLA、跨芯片迁移和验收，则可保留更高价值的核心负载。
+
+#### 2. 海外Neocloud：监管和条件资本把“可交付Backlog”置于名义Backlog之上
+
+| 层级 | 核心玩家 | 本周判断 |
+|---|---|---|
+| 大规模AI Cloud／Neocloud | CoreWeave、Nebius、Crusoe、Lambda | 排名不因本周日常动态改变；新增监管成本使区域、最终用户识别和合同可融资性更重要 |
+| Hyperscaler AI Cloud | Azure、AWS、Google Cloud、OCI | 合规、全球法人和审计能力更强，但同样承担最终用户与远程访问控制责任 |
+| Inference Cloud／Token Factory | Together AI、Fireworks AI、Baseten、Modal等 | 需披露Capacity来源、地域路由、最终用户控制及单位Token毛利，而不只是API价格 |
+| 中国独立AI Cloud | SenseCore、并行科技、无问芯穹等 | 海外先进GPU路径收窄提高国产替代需求，同时加剧国内高端资源竞争与价格分层 |
+
+#### 3. AI Infra基础软件／异构效率层：无问芯穹有新开源进展，清程极智分类不变
+
+**已确认事实。** 无问芯穹11月23日与清华大学开源系统级仿真平台Uni3Sim，用于在实际部署前模拟大规模推理集群的性能；11月26日，其与摩尔线程合作的MUSA后端合入具身端侧推理引擎APXInf，官方称这是APXInf首个国产全功能GPU后端。[无问芯穹新闻动态，2026-11-23／26](https://www.infinigence-ai.com/news.html)
+
+**分析判断。** 这两项进展强化无问芯穹在集群设计、性能预测和国产芯片适配的软件能力，但没有直接证明新增Cloud Revenue、可调度GPU规模或长期容量合同。
+
+**待验证口径。** 本周未发现清程极智在赤兔（Chitu）、八卦炉训练系统、融资、标杆客户、可验证收入／订单或标准化Cloud产品方面出现改变竞争位置的新增公开材料。因此：
+
+- 清程极智继续归入“AI Infra基础软件／异构算力效率层”；
+- 重点观察其能否在国产芯片和主流模型上给出可复现的有效Token／GPU、Latency、稳定性与集群利用率；
+- 与无问芯穹、基流科技比较时，区分软件授权／集成收入、集群建设运营收入和Cloud Capacity收入；
+- 只有出现可验证Cloud Revenue、可调度算力规模或长期Capacity合同，才重新评估其进入GPU Cloud竞争序列。
+
+### 四、对GPUaaS与Inference／Token的影响
+
+#### 1. GPUaaS：区域价格将从“同卡同价”转向“合规域定价”
+
+未来3—12个月，GPUaaS价格可能同时出现三种方向：
+
+- **合规海外Capacity溢价：** 能清晰证明最终用户、地域、远程访问和用途的先进GPU供应更稀缺；
+- **高风险节点折价：** 许可不确定或客户结构难以穿透的Capacity可能提高空置率，并通过短约降价促销；
+- **中国境内国产资源分化：** 能稳定运行主流模型、具备Serving优化和大规模集群SLA的资源维持溢价，只有名义算力而缺乏软件适配的资源继续折价。
+
+因此，公开卡时价不再足够比较供应商。客户应比较“可持续交付的有效GPU小时”，包括许可、故障、排队、网络、模型适配和迁移成本。
+
+#### 2. Inference／Token：价格战仍在，但合规、路由与Harness成为新的收费层
+
+Token刊例价仍会被模型蒸馏、量化、缓存和促销压低；但利润池会向五个环节迁移：
+
+1. 合规模型与Capacity路由；
+2. 企业身份、权限与审计；
+3. Prompt／Context Cache与P／D分离；
+4. Agent Harness、工具调用、沙箱和长任务恢复；
+5. 按任务完成率、Latency与SLA结算的Reserved Inference。
+
+Token Hub若只能将多个API放在一个价格表中，会被大厂的统一账号与模型平台挤压；若能跨Cloud、跨芯片调度并对合规和任务结果负责，才可能保留抽成。
+
+#### 3. 大模型公司：海外训练路径更脆弱，国内生产Inference可能先于前沿训练迁移
+
+前沿训练对先进GPU、高速互联和软件栈要求最高，短期难以完整迁回国产集群；但Fine-tuning、蒸馏、Batch Inference和稳定生产流量更容易先迁移。大模型公司会采用：海外合规训练＋国内国产Inference＋多供应商灾备的组合，而非一次性全量替换。
+
+### 五、对SenseCore的具体传导
+
+#### 1. 建立“合规Capacity Ledger”，把监管能力产品化
+
+每个资源池至少记录并可向客户审计：芯片来源、所在地域、所有权／租赁关系、最终用户与母公司、工作负载类型、远程访问路径、模型与数据边界、许可状态和SLA。对跨境客户，应把合规审查与Capacity预留放进售前，而不是签约后补救。
+
+#### 2. 把国产GPU销售从“卡的替代”升级为“工作负载迁移包”
+
+优先选择可迁移的生产负载：Embedding、Rerank、语音、视觉、Batch Inference、蒸馏和中型开源模型。商业报价应包含：
+
+- 模型适配与精度验收；
+- 每GPU有效Token、TTFT、TPOT和P99 Latency；
+- 故障恢复、扩缩容和版本升级；
+- 从NVIDIA到国产芯片的迁移工具与专家服务；
+- 达不到SLO时的服务抵扣或退出条款。
+
+这也是SenseCore与清程极智、无问芯穹、基流科技合作或竞争的真实接口：软件方提高异构效率，SenseCore提供生产Capacity、客户合同和运行SLA。
+
+#### 3. 中型Multi-vendor客户继续是主战场，但目标应是核心生产池
+
+在年GPU Cloud预算约1,000万—1亿元的客户中，不追求排他采购，而是争取：
+
+- 50%以上的稳定生产负载；
+- Dedicated／Reserved Capacity与最低消费；
+- 推理优化和运行数据权限；
+- 灾备切换与续约主导权。
+
+并行科技可占弹性和长尾资源，无问芯穹可占异构适配池；SenseCore应以核心训练、稳定Inference和严格SLA成为Primary Vendor。
+
+#### 4. 合同从“GPU交付”改成“条件生效＋验收＋Take-or-pay”
+
+参考NVIDIA对Neocloud的条件承诺，新增Capacity应在客户预付款、融资到位、机房送电、模型验收和最低消费之间建立清晰先决条件。避免为尚未确定的Token需求提前承担全部CAPEX，也避免客户在设备上线后以模型变化为由取消。
+
+#### 5. 不复制豆包、飞书或Codex入口，做其背后的中立生产层
+
+SenseCore不具备大厂级消费入口，强行补贴Public Token或开发者IDE会稀释资本回报。更现实的产品是：为模型公司、Token Hub、Agent平台和大型企业提供可白标的Dedicated Inference、Private Agent Runtime、跨芯片路由和安全沙箱，并允许客户保留自己的品牌、模型和终端关系。
+
+### 六、未来观察指标及风险
+
+1. **BIS执行细则：** “显著规模”算力的阈值、Cloud运营者穿透最终母公司的义务、90天过渡期后的许可节奏，以及商业推荐系统例外边界。
+2. **中国模型公司的Capacity迁移：** 是否披露训练延期、海外节点调整、国产GPU适配或国内长期Capacity合同；未披露前不将市场传闻当作订单。
+3. **NVIDIA与Neocloud：** 1,020亿美元承诺中实际生效比例、融资完成率、上线／验收周期和是否出现Capacity削减或转售。
+4. **字节Portfolio转化：** TRAE接入豆包飞书后，企业付费席位、活跃开发者、Token消耗、火山引擎Revenue与客户留存，而非只看统一账号数量。
+5. **华为伙伴计划：** 30多家首批伙伴能否形成标准化Agent产品、Cloud消耗和可复用订单，还是回到高定制项目制。
+6. **Token利润池：** Qwen4-Max预览折扣结束后的留存、国内Token Plan续费率、缓存命中率和Agent任务毛利。
+7. **国产异构效率：** 同一模型／SLO下的有效Token／GPU、集群利用率、故障率、迁移周期与软件授权收入；重点观察无问芯穹新开源项目能否进入生产客户，以及清程极智赤兔／八卦炉是否出现可验证商业化数据。
+8. **SenseCore经营风险：** 海外限制带来的需求上升可能诱发过度扩产；若客户没有Take-or-pay、模型适配不成熟或国产卡供给不稳定，名义需求不会自动变成高质量Revenue和Gross Profit。
+
+### 结语
+
+本周的分水岭不是哪家公司又宣布多少GPU，而是Capacity开始带上明确的地域、最终用户、工作负载、融资和验收条件。与此同时，字节和华为把Coding Agent放进账号、伙伴与Cloud体系，说明真正控制Token分发的将是企业身份和任务入口。
+
+未来3—12个月，AI Infra竞争会沿三层展开：大厂争Agent入口与Portfolio闭环，Neocloud争合规且可融资的Capacity，基础软件公司争把异构芯片转成有效Token。SenseCore最值得守住的位置，是连接后两层的中立生产平台：不与大厂争入口，以可审计Capacity、跨芯片Serving和生产SLA承接那些必须落地、必须稳定、也必须可迁移的AI负载。
+
+---
+
 ## 2026-11-20｜大厂交出AI Cloud收入，Rubin加速GPU换代：独立Infra从资源商转向中立生产层
 
 > **观察区间：** 2026年11月14日—11月20日  
